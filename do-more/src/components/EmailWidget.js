@@ -25,6 +25,11 @@ class EmailWidget extends Component {
           <h4>From: Team-Undefined</h4>
           <p>Welcome to DoMore, we hope you enjoy this prev...</p>
         </div>
+        <div className="email-container">
+          <h4>Subject: Welcome to DoMore</h4>
+          <h4>From: Team-Undefined</h4>
+          <p>Welcome to DoMore, we hope you enjoy this prev...</p>
+        </div>
       </div>
     )
   }

@@ -51,10 +51,18 @@ body {
   background-color: rgba(0, 128, 0, 0.05);
 }
 
-.email-container h4,
-.event-container h4 {
+h4 {
   padding: 0;
   margin: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.calendar-widget {
+  width: 40%;
 }
 
 .email-widget,
@@ -92,4 +100,19 @@ a {
 .article-source {
   margin-left: 1%;
   grid-row: 2 / 2;
+}
+
+.event-container,
+.email-container,
+.article-block {
+  padding-bottom: 2%;
+  border-bottom: 1px solid white;
+}
+
+.event-container {
+  margin-bottom: 4%;
+}
+
+.email-container {
+  margin-bottom: 2%;
 }
