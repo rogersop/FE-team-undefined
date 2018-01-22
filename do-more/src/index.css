@@ -1,5 +1,37 @@
+html,
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
   font-family: sans-serif;
+}
+
+.widget-container {
+  position: fixed;
+  width: 50%;
+  height: 50%;
+}
+
+#NW {
+  top: 0;
+  left: 0;
+  background-color: blue;
+}
+
+#NE {
+  top: 0;
+  left: 50%;
+  background-color: red;
+}
+
+#SW {
+  top: 50%;
+  left: 0;
+  background-color: yellow;
+}
+
+#SE {
+  top: 50%;
+  left: 50%;
+  background-color: green;
 }

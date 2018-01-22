@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import NewsWidget from './components/NewsWidget';
 import EmailWidget from './components/EmailWidget';
 import CalendarWidget from './components/CalendarWidget';
-import TodoWidget from './components/TodoWidget';
+//import TodoWidget from './components/TodoWidget';
 import InfoWidget from './components/InfoWidget';
+import './index.css';
 
 class App extends Component {
   
   render() {
       const style = {
-        "background-image": "url('https://images.unsplash.com/photo-1489844097929-c8d5b91c456e')",
-        "bacground-repeat": "no-repeat",
-        "background-position": "center",
-        "background-size":"cover",
+        "backgroundImage": "url('https://images.unsplash.com/photo-1489844097929-c8d5b91c456e')",
+        "bacgroundRepeat": "no-repeat",
+        "backgroundPosition": "center",
+        "backgroundSize":"cover",
     }
 
     return (
@@ -23,11 +24,18 @@ class App extends Component {
         <p className="App-intro">
           Welcome to DoMore.
         </p>
-        <InfoWidget />
-        <NewsWidget />
-        <EmailWidget />
-        <CalendarWidget />
-        <TodoWidget />
+        <div className="widget-container" id="NW">
+          <InfoWidget />
+        </div>
+        <div className="widget-container" id="NE">
+          <NewsWidget />
+        </div>
+        <div className="widget-container" id="SE">
+          <EmailWidget />
+        </div>
+        <div className="widget-container" id="SW">
+          <CalendarWidget />
+        </div>
       </div>
     );
   }
