@@ -8,11 +8,11 @@ class InfoWidget extends Component {
 
   render () {
     return (
-      <div>
-      <WeatherBox />
-      <TimeBox />
-      <DateBox />
-      <GreetingBox />
+      <div className="info-widget">
+        <WeatherBox />
+        <TimeBox />
+        <DateBox />
+        <GreetingBox />
       </div>
     )
   }
