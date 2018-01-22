@@ -3,6 +3,7 @@ import NewsWidget from './components/NewsWidget';
 import EmailWidget from './components/EmailWidget';
 import CalendarWidget from './components/CalendarWidget';
 import TodoWidget from './components/TodoWidget';
+import WeatherWidget from './components/WeatherWidget'
 
 class App extends Component {
   
@@ -23,6 +24,7 @@ class App extends Component {
         <EmailWidget />
         <CalendarWidget />
         <TodoWidget />
+        <WeatherWidget />
       </div>
     );
   }
