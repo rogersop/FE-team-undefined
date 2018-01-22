@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../index.css'
 
 class EmailWidget extends Component {
   render () {
