@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NewsWidget from './components/NewsWidget';
+import EmailWidget from './components/EmailWidget';
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
           Welcome to DoMore.
         </p>
         <NewsWidget />
+        <EmailWidget />
       </div>
     );
   }
