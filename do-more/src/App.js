@@ -5,9 +5,14 @@ import CalendarWidget from './components/CalendarWidget';
 import TodoWidget from './components/TodoWidget';
 
 class App extends Component {
+  
   render() {
+      const style = {
+        "background": "url('https://images.unsplash.com/photo-1489844097929-c8d5b91c456e')",
+        "background-size":"cover"
+      }
     return (
-      <div className="App">
+      <div className="App" style={style}>
         <header className="App-header">
           <h1 className="App-title">DoMore</h1>
         </header>
