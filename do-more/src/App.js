@@ -8,13 +8,12 @@ import './index.css';
 
 class App extends Component {
   
-  render() {
-      const style = {
-        "backgroundImage": "url('https://images.unsplash.com/photo-1489844097929-c8d5b91c456e')",
-    }
 
+
+  render() {
     return (
-      <div className="App" style={style}>
+      <div className="App">
+      <h1>Team Undefined</h1>
         <div className="widget-container" id="NW">
           <InfoWidget />
         </div>
@@ -22,7 +21,7 @@ class App extends Component {
           <NewsWidget />
         </div>
         <div className="widget-container" id="SE">
-          <EmailWidget />
+          <EmailWidget fetchFiveEmails={this.props.fetchFiveEmails}/>
         </div>
         <div className="widget-container" id="SW">
           <CalendarWidget />
@@ -30,6 +29,7 @@ class App extends Component {
       </div>
     );
   }
+
 }
 
 export default App;
