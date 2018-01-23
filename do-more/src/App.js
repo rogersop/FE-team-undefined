@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import NewsWidget from './components/NewsWidget';
 import EmailWidget from './components/EmailWidget';
 import CalendarWidget from './components/CalendarWidget';
-//import TodoWidget from './components/TodoWidget';
-import InfoWidget from './components/InfoWidget';
+import TodoWidget from './components/TodoWidget';
+import SideBar from './components/SideBar';
 import './index.css';
 
 class App extends Component {
@@ -14,9 +14,11 @@ class App extends Component {
     }
 
     return (
-      <div className="App" style={style}>
+      <div id = "outer-container">
+       <SideBar pageWrapId= "page-wrap"  outerContainerId= "outer-container" />
+      <div className="App" style={style} id = "page-wrap">
         <div className="widget-container" id="NW">
-          <InfoWidget />
+          <TodoWidget />
         </div>
         <div className="widget-container" id="NE">
           <NewsWidget />
@@ -27,6 +29,10 @@ class App extends Component {
         <div className="widget-container" id="SW">
           <CalendarWidget />
         </div>
+        {/* <div className = "side-bar">
+        
+        </div> */}
+      </div>
       </div>
     );
   }

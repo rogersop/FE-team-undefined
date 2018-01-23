@@ -68,12 +68,19 @@ p {
 .email-widget,
 .calendar-widget,
 .todo-widget,
-.info-widget,
 .news-widget {
   color: rgb(230, 230, 230);
   background-color: rgba(0, 0, 0, 0.55);
   padding: 2.5%;
   box-sizing: border-box;
+}
+
+.info-widget {
+  color: rgb(230, 230, 230);
+  background-color: rgba(0, 0, 0, 0.55);
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
 }
 
 a {
@@ -115,4 +122,33 @@ a {
 
 .email-container {
   margin-bottom: 2%;
+}
+
+.bm-burger-button {
+  height: 30px; 
+  width: 36px; 
+  position: fixed; 
+  z-index: 1000; 
+  top: 36px; 
+  left: 36px;
+}
+
+.bm-burger-bars {
+  background: gray;
+}
+
+.bm-cross-button {
+height: 24px;
+width: 24px;
+}
+
+
+.bm-cross {
+  background: whitesmoke;
+}
+
+.side-bar-top, 
+.side-bar-bottom {
+  height: 50%;
+  width: 100%;
 }
