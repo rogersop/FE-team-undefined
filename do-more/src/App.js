@@ -21,6 +21,8 @@ class App extends Component {
     ]
   }
 
+  //compdidmount
+
   assignSpace = (space, widgetName) => {
     const widget = this.state.widgets.find(widget => {
       return widget.name === widgetName
@@ -33,6 +35,9 @@ class App extends Component {
   }
   
   render() {
+
+    const {fetchFiveEmails} = this.props;
+
     return (
       <div id="outer-container">
        <SideBar pageWrapId= "page-wrap"  outerContainerId="outer-container" assignSpace={this.assignSpace} />
@@ -45,6 +50,7 @@ class App extends Component {
       </div>
     );
   }
+
 }
 
 export default App;
