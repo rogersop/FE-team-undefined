@@ -1,17 +1,59 @@
 import React, { Component } from 'react';
+import {geolocated} from 'react-geolocated';
 
 class WeatherBox extends Component {
 
-  render () {
-    return (
-        <div className="weather-box">
-          <img style={{"height": "40px"}}src="http://cdn.mysitemyway.com/icons-watermarks/simple-black/raphael/raphael_rain-cloud/raphael_rain-cloud_simple-black_512x512.png" alt="cloud"/>
-          <h2>7°C</h2>
-          <h3>Rain</h3>
-          <p>Manchester grey all day long</p>
-        </div>
-    )
+  state = {
+    weather : {},
+    loading: true,
   }
+
+  componentDidMount() {
+      this.geoFindMe();
+  }
+
+  geoFindMe = () => {
+   
+
+
+    navigator.geolocation.getCurrentPosition(this.success)
+
+  }
+
+   success = (position)  => {
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+
+
+  return  fetch(`https://fcc-weather-api.glitch.me/api/current?lat=${latitude}&lon=${longitude}`).then((res) => {
+
+     return res.json();
+      }).then((res) => {
+       
+
+
+         return  this.setState({
+               weather: res,
+               loading: false
+           })
+
+       }).catch(console.error);
+
+ }
+
+
+  render() {
+    console.log(this.state.weather)
+    if(this.state.loading) return <div>Loading...</div>
+    return ( 
+      <div>
+        <h2>{this.state.weather.name}</h2>
+        <h2>{this.state.weather.main.temp.toFixed(0) +  "°C"}</h2>
+        <h2>{this.state.weather.weather[0].main}</h2> 
+      </div>
+    )
+}
+
 }
 
 export default WeatherBox;
