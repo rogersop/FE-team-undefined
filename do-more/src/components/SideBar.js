@@ -1,27 +1,39 @@
 import React, { Component } from 'react';
 import '../index.css';
 import InfoWidget from './InfoWidget.js';
-import TwitterWidget from './TwitterWidget.js'
 import { push as Menu } from 'react-burger-menu';
-import CalendarWidget from './CalendarWidget';
+import WidgetSelector from './WidgetSelector';
 
 
-const SideBar = ({assignSpace}) => {
+class SideBar extends Component {
 
-  function showSideBar (event) {
-    event.preventDefault();
+  state = {
+    selectedSpace: ''
   }
 
-  return (
-    <Menu pageWrapId = { "page-wrap" }>
-      <div className="side-bar-top">
-        <InfoWidget />
-      </div>
-      <div className="side-bar-bottom">
-        <button onClick={() => assignSpace("topLeft", "CalendarWidget")}>Calendar</button>
-      </div>
-    </Menu>
-  )
+  handleChange = (event) => {
+    this.setState({selectedSpace: event.target.value}, () => {
+    });
+  }
+
+  render () {
+    return (
+      <Menu pageWrapId = { "page-wrap" }>
+        <div className="side-bar-top">
+          <InfoWidget />
+        </div>
+        <div className="side-bar-bottom">
+          <select value={this.state.selectedSpace} onChange={this.handleChange}>
+            <option value="topLeft">Top Left</option>
+            <option value="topRight">Top Right</option>
+            <option value="bottomLeft">Bottom Left</option>
+            <option value="bottomRight">Bottom Right</option>
+          </select>
+          <WidgetSelector assignSpace={this.props.assignSpace} widgets={this.props.widgets} selectedSpace={this.state.selectedSpace} />
+        </div>
+      </Menu>
+    )
+  }
   
 }
 
