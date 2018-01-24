@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../index.css';
-import moment from 'moment';
+// import moment from 'moment';
 
 class EmailWidget extends Component {
  
@@ -9,15 +9,15 @@ class EmailWidget extends Component {
     emails: {}
   }
 
-  componentWillReceiveProps = (newProps) => {
-    console.log(newProps, "newProps")
-    this.handleFetchEmailsClick();
-  }
+  // componentWillReceiveProps = (newProps) => {
+  //   // console.log(newProps, "newProps")
+  //   this.handleFetchEmailsClick();
+  // }
 
   handleFetchEmailsClick = () => {
-    console.log(this.props)    
+     
     this.props.fetchFiveEmails((fiveEmails) => {
-      console.log(fiveEmails) 
+      // console.log(fiveEmails) 
       this.setState({
         emails: fiveEmails,
         loading: false
@@ -41,7 +41,6 @@ class EmailWidget extends Component {
   render () {
 
     const {loading, emails} = this.state;
-
     return( 
       <div className="email-widget">
         <button id="sign-in-or-out-button"
@@ -58,7 +57,7 @@ class EmailWidget extends Component {
           loading ? 
           'Sign-in to view your most recent emails...' : 
           emails.map((email, i) => (
-            <div id={i} className="email-container">
+            <div key={i} className="email-container">
               <h4>Subject: Subject example</h4>
               <h4>From: Team-Undefined</h4>
               <p>{email.result.snippet}</p>
