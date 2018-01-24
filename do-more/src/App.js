@@ -49,6 +49,7 @@ class App extends Component {
     })
   }
   
+
   assignSpace = (space, widgetName) => {
     const newSpaces = Object.assign({}, this.state.spaces)
     newSpaces[space] = widgetName;
