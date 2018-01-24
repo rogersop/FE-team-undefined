@@ -29,7 +29,7 @@ class EmailWidget extends Component {
         emails: fiveEmails,
         loading: false
       });
-    }), 500);
+    }), 1000);
   }
 
   handleAuthClick = () => {
