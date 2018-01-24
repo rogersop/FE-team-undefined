@@ -1,38 +1,18 @@
-import React from 'react';
-import CalendarWidget from './CalendarWidget';
-import NewsWidget from './NewsWidget';
-import EmailWidget from './EmailWidget';
-import InfoWidget from './InfoWidget';
+import React, { Component } from 'react';
 
-const WidgetContainer = ({widget, id}) => {
-  if (widget === "CalendarWidget") {
+class WidgetContainer extends Component {
+
+  render () {
+
+    const {widget, id} = this.props;
+
     return (
       <div className="widget-container" id={id}>
-       <CalendarWidget />
+        {widget.component}
       </div>
     )
   }
-  if (widget === "EmailWidget") {
-    return (
-      <div className="widget-container" id={id}>
-       <EmailWidget />
-      </div>
-    )
-  }
-  if (widget === "InfoWidget") {
-    return (
-      <div className="widget-container" id={id}>
-       <InfoWidget />
-      </div>
-    )
-  }
-  if (widget === "NewsWidget") {
-    return (
-      <div className="widget-container" id={id}>
-       <NewsWidget />
-      </div>
-    )
-  }
+
 }
 
 export default WidgetContainer;
