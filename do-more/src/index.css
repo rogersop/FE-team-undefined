@@ -1,0 +1,154 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Libre Franklin', sans-serif;
+}
+
+.App {
+  background: url('https://images.unsplash.com/photo-1489844097929-c8d5b91c456e') no-repeat center center fixed ;
+  background-size:cover;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.widget-container {
+  position: fixed;
+  width: 50%;
+  height: 50%;
+  padding: 1.5%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+
+}
+
+#NW {
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 255, 0.05);
+}
+
+#NE {
+  top: 0;
+  left: 50%;
+  background-color: rgba(255, 0, 0, 0.05);
+}
+
+#SW {
+  top: 50%;
+  left: 0;
+  background-color: rgba(255, 255, 0, 0.05);
+}
+
+#SE {
+  top: 50%;
+  left: 50%;
+  background-color: rgba(0, 128, 0, 0.05);
+}
+
+h4 {
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.calendar-widget {
+  width: 40%;
+}
+
+.email-widget,
+.calendar-widget,
+.todo-widget,
+.news-widget {
+  color: rgb(230, 230, 230);
+  background-color: rgba(0, 0, 0, 0.55);
+  padding: 2.5%;
+  box-sizing: border-box;
+}
+
+.info-widget {
+  color: rgb(230, 230, 230);
+  background-color: rgba(0, 0, 0, 0.55);
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  display: grid;
+  margin: 1%;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 10% 10% 10% 10% 10%;
+  font-size: 14px;
+}
+
+.article-image {
+  height: 50px;
+  width: 50px;
+  grid-row: 1 / span 2;
+}
+
+.article-title {
+  margin-left: 1%;
+  grid-row: 2 / 1;
+}
+
+.article-source {
+  margin-left: 1%;
+  grid-row: 2 / 2;
+}
+
+.event-container,
+.email-container,
+.article-block {
+  padding-bottom: 2%;
+  border-bottom: 1px solid white;
+}
+
+.event-container {
+  margin-bottom: 4%;
+}
+
+.email-container {
+  margin-bottom: 2%;
+}
+
+.bm-burger-button {
+  height: 30px; 
+  width: 36px; 
+  position: fixed; 
+  z-index: 1000; 
+  top: 36px; 
+  left: 36px;
+}
+
+.bm-burger-bars {
+  background: gray;
+}
+
+.bm-cross-button {
+height: 24px;
+width: 24px;
+}
+
+
+.bm-cross {
+  background: whitesmoke;
+}
+
+.side-bar-top, 
+.side-bar-bottom {
+  height: 50%;
+  width: 100%;
+}
