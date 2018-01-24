@@ -48,7 +48,6 @@ class App extends Component {
       widgets: functioningWidgets
     })
   }
-  
 
   assignSpace = (space, widgetName) => {
     const newSpaces = Object.assign({}, this.state.spaces)
@@ -64,7 +63,7 @@ class App extends Component {
 
     return (
       <div id="outer-container">
-       <SideBar pageWrapId= "page-wrap"  outerContainerId="outer-container" assignSpace={this.assignSpace} />
+       <SideBar pageWrapId= "page-wrap"  outerContainerId="outer-container" assignSpace={this.assignSpace} widgets={this.state.widgets} />
         <div className="App" id="page-wrap">
           <WidgetContainer id="NW" widget={widgets[spaces.topLeft]} />
           <WidgetContainer id="NE" widget={widgets[spaces.topRight]} />
