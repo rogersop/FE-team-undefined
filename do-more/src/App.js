@@ -37,11 +37,12 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    const fetchFiveEmails = this.props.fetchFiveEmails;
+    const {fetchFiveEmails, authClick} = this.props;
+
     
     const functioningWidgets = Object.assign({}, this.state.widgets, {
       emailWidget: Object.assign({}, this.state.widgets.emailWidget, {
-        component: <EmailWidget fetchFiveEmails={fetchFiveEmails}/>
+        component: <EmailWidget fetchFiveEmails={fetchFiveEmails} authClick={authClick}/>
       })
     })
     this.setState({

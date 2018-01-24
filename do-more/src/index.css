@@ -73,6 +73,7 @@ p {
   background-color: rgba(0, 0, 0, 0.55);
   padding: 2.5%;
   box-sizing: border-box;
+  overflow-y: scroll;
 }
 
 .info-widget {
@@ -151,4 +152,9 @@ width: 24px;
 .side-bar-bottom {
   height: 50%;
   width: 100%;
+}
+
+.email-widget p {
+  font-size: 10px;
+  margin-bottom: 1%;
 }

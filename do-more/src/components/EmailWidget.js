@@ -1,68 +1,82 @@
 import React, { Component } from 'react';
 import '../index.css';
-// import moment from 'moment';
+import moment from 'moment';
 
 class EmailWidget extends Component {
  
   state = {
     loading: true,
+    signedIn: false,
     emails: {}
   }
 
-  // componentWillReceiveProps = (newProps) => {
-  //   // console.log(newProps, "newProps")
-  //   this.handleFetchEmailsClick();
-  // }
+  componentWillReceiveProps = () => {
+    this.autoFetchEmails();
+  }
 
-  handleFetchEmailsClick = () => {
-     
+  handleFetchEmails = () => {   
     this.props.fetchFiveEmails((fiveEmails) => {
-      // console.log(fiveEmails) 
       this.setState({
         emails: fiveEmails,
         loading: false
       })
     }) 
   }
-  // console.log(msgs[0].result) // FROM
-  // // console.log(msgs[0].payload.headers[20].value) // SUBJECT
-  // // console.log(msgs[0].payload.headers[18].value) // DATE / TIME
-  // console.log(msgs[0].result.snippet) // PREVIEW
-  // console.log(msgs[1].result.snippet) // PREVIEW
-  // console.log(msgs[2].result.snippet) // PREVIEW
-  // console.log(msgs[3].result.snippet) // PREVIEW
-  // console.log(msgs[4].result.snippet) // PREVIEW
-  // console.log(moment(msgs[0].result.payload.headers[1].value.split(';')[1]).startOf('hour').fromNow()) // DATE
-  // console.log(moment(msgs[1].result.payload.headers[1].value.split(';')[1]).startOf('hour').fromNow()) // DATE
-  // console.log(moment(msgs[2].result.payload.headers[1].value.split(';')[1]).startOf('hour').fromNow()) // DATE
-  // console.log(moment(msgs[3].result.payload.headers[1].value.split(';')[1]).startOf('hour').fromNow()) // DATE
-  // console.log(moment(msgs[4].result.payload.headers[1].value.split(';')[1]).startOf('hour').fromNow()) // DATE
+
+  autoFetchEmails = () => {
+    setTimeout(() => this.props.fetchFiveEmails((fiveEmails) => {
+      this.setState({
+        emails: fiveEmails,
+        loading: false
+      });
+    }), 500);
+  }
+
+  handleAuthClick = () => {
+    this.props.authClick(this.onSignOut, this.onSignIn);
+  }
+
+  onSignOut = () => {
+    this.setState({
+      emails: [],
+      loading: true
+    })
+  }
+
+  onSignIn = () => {
+    this.handleFetchEmails();
+  }
 
   render () {
 
     const {loading, emails} = this.state;
+
     return( 
       <div className="email-widget">
         <button id="sign-in-or-out-button"
-          style={{marginLeft: "25px"}}>Sign In/Authorize</button>
+          style={{marginLeft: "25px"}} onClick={this.handleAuthClick}>Sign In/Authorize</button>
         <button id="revoke-access-button"
           style={{display: "none", marginLeft: "25px"}}>Revoke access</button>
         <button id="fetch-emails-button"
           style={{display: "none", marginLeft: "25px"}}
-          onClick={this.handleFetchEmailsClick}>Fetch emails</button>  
+          onClick={this.handleFetchEmails}>Fetch emails</button>  
         
         <div id="auth-status" style={{display: "inline", paddingLeft: "25px"}}></div><hr />
         
         {
           loading ? 
           'Sign-in to view your most recent emails...' : 
-          emails.map((email, i) => (
-            <div key={i} className="email-container">
-              <h4>Subject: Subject example</h4>
-              <h4>From: Team-Undefined</h4>
+          emails.map((email, i) => {
+            const subject = email.result.payload.headers.find(header => (header.name === "Subject")).value
+            const from = email.result.payload.headers.find(header => (header.name === "From")).value
+            const date = moment(email.result.payload.headers.find(header => (header.name === "Date")).value.split(' +0000')[0], 'ddd-DD-MMM-YYYY-HH-mm-ss').fromNow();
+            return <div key={i} className="email-container">
+              <p>Subject: {subject}</p>
+              <p>From: {from}</p>
+              <p>Received: {date}</p>
               <p>{email.result.snippet}</p>
             </div>
-          ))
+          })
         }
   
       </div>

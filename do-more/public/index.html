@@ -27,7 +27,7 @@
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
-  <div id="root"></div>
+  
   <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -44,6 +44,7 @@
 
     let fiveEmails = [];
     let user;
+    let cbIn;
 
     function handleClientLoad() {
       // Load the API's client and auth2 modules.
@@ -76,9 +77,6 @@
 
         // Call handleAuthClick function when user clicks on
         //      "Sign In/Authorize" button.
-        $('#sign-in-or-out-button').click(function () {
-          handleAuthClick();
-        });
         $('#revoke-access-button').click(function () {
           revokeAccess();
         });
@@ -86,36 +84,41 @@
     }
 
     function fetchFiveEmails(cb) {
-      var requestEmailIds = gapi.client.gmail.users.messages.list({
-        'userId': user.w3.U3,
-        'maxResults': 5
-      });
-      let fiveEmailsArray = []
-      requestEmailIds.execute(function (response) {
+      if (user.w3) {
+        var requestEmailIds = gapi.client.gmail.users.messages.list({
+          'userId': user.w3.U3,
+          'maxResults': 5
+        });
+        let fiveEmailsArray = []
+        requestEmailIds.execute(function (response) {
 
-          Promise.all(response.result.messages.map(message => {
-              var requestEmailContent = gapi.client.gmail.users.messages.get({
-                "userId": user.w3.U3,
-                "id": message.id,
-                "metadataHeaders": null
-              })
-              return new Promise((resolve, reject) => {
-                requestEmailContent.execute(function (response) {
-                  fiveEmailsArray.push(response);
-                  if (fiveEmailsArray.length === 5) cb(fiveEmailsArray);
+            Promise.all(response.result.messages.map(message => {
+                var requestEmailContent = gapi.client.gmail.users.messages.get({
+                  "userId": user.w3.U3,
+                  "id": message.id,
+                  "metadataHeaders": null
                 })
-              })
-          }))
-        })
+                return new Promise((resolve, reject) => {
+                  requestEmailContent.execute(function (response) {
+                    fiveEmailsArray.push(response);
+                    if (fiveEmailsArray.length === 5) cb(fiveEmailsArray);
+                  })
+                })
+            }))
+          })
+        }
       }
 
-    function handleAuthClick() {
+    function authClick(cbOut, cbInFunc) {
       if (GoogleAuth.isSignedIn.get()) {
         // User is authorized and has clicked 'Sign out' button.
-        GoogleAuth.signOut();
+        GoogleAuth.signOut().then(cbOut());
+
       } else {
+        cbIn = cbInFunc;
         // User is not signed in. Start Google auth flow.
         GoogleAuth.signIn();
+
       }
     }
 
@@ -127,6 +130,7 @@
       var user = GoogleAuth.currentUser.get();
       var isAuthorized = user.hasGrantedScopes(SCOPE);
       if (isAuthorized) {
+        if(cbIn) cbIn();
         $('#sign-in-or-out-button').html('Sign out');
         $('#revoke-access-button').css('display', 'inline-block');
         $('#auth-status').html('You are currently signed in and have granted access to this app.');
@@ -148,6 +152,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()">
   </script>
+
+  <div id="root"></div>
 </body>
 
 </html>
