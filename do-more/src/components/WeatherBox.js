@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {geolocated} from 'react-geolocated';
+
 
 class WeatherBox extends Component {
 
@@ -43,13 +43,14 @@ class WeatherBox extends Component {
 
 
   render() {
-    console.log(this.state.weather)
+  
     if(this.state.loading) return <div>Loading...</div>
     return ( 
-      <div>
-        <h2>{this.state.weather.name}</h2>
-        <h2>{this.state.weather.main.temp.toFixed(0) +  "°C"}</h2>
+      <div className="weather-box">
+        <img src={this.state.weather.weather[0].icon} alt="logo"/>
         <h2>{this.state.weather.weather[0].main}</h2> 
+        <h2>{this.state.weather.main.temp.toFixed(0) +  "°C"}</h2>
+        <h2>{this.state.weather.name}</h2>
       </div>
     )
 }
