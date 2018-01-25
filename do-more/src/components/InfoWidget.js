@@ -8,9 +8,9 @@ class InfoWidget extends Component {
   render () {
     return (
       <div className="info-widget">
-        <WeatherBox />
         <TimeBox />
         <GreetingBox />
+        <WeatherBox />
       </div>
     )
   }
