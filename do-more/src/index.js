@@ -4,6 +4,7 @@ import App from './App';
 
 ReactDOM.render(
   <App 
+  authClick={window.authClick}
     fetchFiveEmails={window.fetchFiveEmails} 
-    authClick={window.authClick} 
+    fetchFiveEvents={window.fetchFiveEvents}
   /> , document.getElementById('root'));

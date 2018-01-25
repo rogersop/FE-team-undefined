@@ -27,11 +27,12 @@
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
-  
-  
+
+
   <script>
     var GoogleAuth;
-    var SCOPE = "https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.compose https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly";
+    var SCOPE =
+      "https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.compose https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly";
 
     let fiveEmails = [];
     let user;
@@ -40,20 +41,20 @@
     function handleClientLoad() {
       // Load the API's client and auth2 modules.
       // Call the initClient function after the modules load.
-      gapi.load('client:auth2', initClient);
+      gapi.load('client:auth2', initClient)
     }
 
     function initClient() {
       // Retrieve the discovery document for version q of Gmail API.
       // In practice, your app can retrieve one or more discovery documents.
-      var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest';
+      var discoveryUrls = ['https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest', 'https://content.googleapis.com/discovery/v1/apis/calendar/v3/rest'];
 
       // Initialize the gapi.client object, which app uses to make API requests.
       // Get API key and client ID from API Console.
       // 'scope' field specifies space-delimited list of access scopes.
       gapi.client.init({
         'apiKey': 'AIzaSyAyoRZuyJWk_Jc17ru8ow1X8COhUHF75Nw',
-        'discoveryDocs': [discoveryUrl],
+        'discoveryDocs': discoveryUrls,
         'clientId': '62660733029-09suo8kteh932jei4rtvjrk9r0eofeu7.apps.googleusercontent.com',
         'scope': SCOPE
       }).then(function () {
@@ -83,22 +84,34 @@
         let fiveEmailsArray = []
         requestEmailIds.execute(function (response) {
 
-            Promise.all(response.result.messages.map(message => {
-                var requestEmailContent = gapi.client.gmail.users.messages.get({
-                  "userId": user.w3.U3,
-                  "id": message.id,
-                  "metadataHeaders": null
-                })
-                return new Promise((resolve, reject) => {
-                  requestEmailContent.execute(function (response) {
-                    fiveEmailsArray.push(response);
-                    if (fiveEmailsArray.length === 5) cb(fiveEmailsArray);
-                  })
-                })
-            }))
-          })
-        }
+          Promise.all(response.result.messages.map(message => {
+            var requestEmailContent = gapi.client.gmail.users.messages.get({
+              "userId": user.w3.U3,
+              "id": message.id,
+              "metadataHeaders": null
+            })
+            return new Promise((resolve, reject) => {
+              requestEmailContent.execute(function (response) {
+                fiveEmailsArray.push(response);
+                if (fiveEmailsArray.length === 5) cb(fiveEmailsArray);
+              })
+            })
+          }))
+        })
       }
+    }
+
+    function fetchFiveEvents(cb) {
+      if (user.w3) {
+        var requestEvents = gapi.client.calendar.events.list({
+          "calendarId": user.w3.U3,
+          "maxResults": "5",
+          "privateExtendedProperty": null,
+          "sharedExtendedProperty": null
+        })
+        requestEvents.execute(cb)
+      }
+    }
 
     function authClick(cbOut, cbInFunc) {
       if (GoogleAuth.isSignedIn.get()) {
@@ -121,7 +134,7 @@
       var user = GoogleAuth.currentUser.get();
       var isAuthorized = user.hasGrantedScopes(SCOPE);
       if (isAuthorized) {
-        if(cbIn) cbIn();
+        if (cbIn) cbIn();
         $('#sign-in-or-out-button').html('Sign out');
         $('#revoke-access-button').css('display', 'inline-block');
         $('#auth-status').html('Signed in.');

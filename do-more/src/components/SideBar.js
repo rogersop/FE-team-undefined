@@ -22,10 +22,12 @@ class SideBar extends Component {
 
   onSignOut = () => {
     this.props.autoClearEmails();
+    this.props.autoClearEvents();
   }
 
   onSignIn = () => {
     this.props.autoFetchEmails();
+    this.props.autoFetchEvents();
   }
 
   render() {

@@ -24,7 +24,6 @@ body {
   box-sizing: border-box;
   display: flex;
   justify-content: center;
-
 }
 
 #NW {
@@ -61,10 +60,7 @@ p {
   margin: 0;
 }
 
-.calendar-widget {
-  width: 40%;
-}
-
+.event-widget,
 .email-widget,
 .calendar-widget,
 .todo-widget,
@@ -117,10 +113,7 @@ a {
   border-bottom: 1px solid white;
 }
 
-.event-container {
-  margin-bottom: 4%;
-}
-
+.event-container,
 .email-container {
   margin-bottom: 2%;
 }
@@ -139,10 +132,9 @@ a {
 }
 
 .bm-cross-button {
-height: 24px;
-width: 24px;
+  height: 24px;
+  width: 24px;
 }
-
 
 .bm-cross {
   background: whitesmoke;
@@ -154,6 +146,7 @@ width: 24px;
   width: 100%;
 }
 
+.calendar-widget p,
 .email-widget p {
   font-size: 10px;
   margin-bottom: 1%;
@@ -162,11 +155,8 @@ width: 24px;
 /******** INFO WIDGET ******/ 
 
 .info-widget {
-
   text-align: center;
-
 }
-
 
 .info-widget h2 {
   margin: 0;
