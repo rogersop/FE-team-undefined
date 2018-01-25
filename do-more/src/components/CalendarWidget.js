@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../index.css'
 
 class CalendarWidget extends Component {
+
   render () {
     return (
       <div className="calendar-widget">
