@@ -8,6 +8,8 @@
     "react-burger-menu": "^2.2.3",
     "react-dom": "^16.2.0",
     "react-geolocated": "^2.3.0",
+    "react-live-clock": "^2.0.2",
+    "react-moment": "^0.7.0",
     "react-scripts": "1.1.0"
   },
   "scripts": {
