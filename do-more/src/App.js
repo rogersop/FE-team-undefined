@@ -23,7 +23,7 @@ class App extends Component {
         component: <EmailWidget loading={true} emails={[]} />
       },
       'calendarWidget': {
-        component: <CalendarWidget />
+        component: <CalendarWidget loading={true} events={[]} />
       },
       'infoWidget': {
         component: <InfoWidget />
@@ -85,6 +85,29 @@ class App extends Component {
     });
   }
 
+  autoFetchEvents = () => {
+    setTimeout(() => this.props.fetchFiveEvents((fiveEvents) => {
+      const functioningWidgets = Object.assign({}, this.state.widgets, {
+        calendarWidget: Object.assign({}, this.state.widgets.calendarWidget, {
+          component: <CalendarWidget loading={false} events={fiveEvents}/>
+        })
+      })
+      this.setState({
+        widgets: functioningWidgets
+      });
+    }), 1000);
+  }
+
+  autoClearEvents = () => {
+    const functioningWidgets = Object.assign({}, this.state.widgets, {
+      calendarWidget: Object.assign({}, this.state.widgets.calendarWidget, {
+        component: <CalendarWidget loading={true} events={[]}/>
+      })
+    })
+    this.setState({
+      widgets: functioningWidgets
+    });
+  }
 
   render() {
 
@@ -92,7 +115,16 @@ class App extends Component {
 
     return (
       <div id="outer-container">
-        <SideBar pageWrapId="page-wrap" outerContainerId="outer-container" assignSpace={this.assignSpace} widgets={this.state.widgets} authClick={this.props.authClick} autoFetchEmails={this.autoFetchEmails} autoClearEmails={this.autoClearEmails}/>
+        <SideBar 
+          pageWrapId="page-wrap" 
+          outerContainerId="outer-container" 
+          assignSpace={this.assignSpace} 
+          widgets={this.state.widgets} 
+          authClick={this.props.authClick} 
+          autoFetchEmails={this.autoFetchEmails} 
+          autoClearEmails={this.autoClearEmails}
+          autoFetchEvents={this.autoFetchEvents} 
+          autoClearEvents={this.autoClearEvents}/>
         <div className="App" id="page-wrap">
           <WidgetContainer id="NW" widget={widgets[spaces.topLeft]} />
           <WidgetContainer id="NE" widget={widgets[spaces.topRight]} />
