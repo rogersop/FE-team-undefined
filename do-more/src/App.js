@@ -11,7 +11,6 @@ import TwitterWidget from './components/TwitterWidget';
 class App extends Component {
 
   state = {
-    googleSignedIn: false,
     spaces: {
       topLeft: 'emailWidget',
       topRight: 'calendarWidget',
@@ -37,22 +36,6 @@ class App extends Component {
     }
   }
 
-  // componentDidMount = () => {
-  //   const functioningWidgets = Object.assign({}, this.state.widgets, {
-  //     emailWidget: Object.assign({}, this.state.widgets.emailWidget, {
-  //       component: <EmailWidget loading={true} emails={[]}/>
-  //     })
-  //   },
-  //     {
-  //       calendarWidget: Object.assign({}, this.state.widgets.calendarWidget, {
-  //         component: <CalendarWidget />
-  //       })
-  //     })
-  //   this.setState({
-  //     widgets: functioningWidgets
-  //   })
-  // }
-
   assignSpace = (space, widgetName) => {
     const newSpaces = Object.assign({}, this.state.spaces)
     newSpaces[space] = widgetName;
@@ -73,18 +56,7 @@ class App extends Component {
       });
     }), 1000);
   }
-
-  autoClearEmails = () => {
-    const functioningWidgets = Object.assign({}, this.state.widgets, {
-      emailWidget: Object.assign({}, this.state.widgets.emailWidget, {
-        component: <EmailWidget loading={true} emails={[]}/>
-      })
-    })
-    this.setState({
-      widgets: functioningWidgets
-    });
-  }
-
+  
   autoFetchEvents = () => {
     setTimeout(() => this.props.fetchFiveEvents((fiveEvents) => {
       const functioningWidgets = Object.assign({}, this.state.widgets, {
@@ -98,8 +70,13 @@ class App extends Component {
     }), 1000);
   }
 
-  autoClearEvents = () => {
+  autoClearEmailsAndEvents = () => {
     const functioningWidgets = Object.assign({}, this.state.widgets, {
+      emailWidget: Object.assign({}, this.state.widgets.emailWidget, {
+        component: <EmailWidget loading={true} emails={[]}/>
+      })
+    }, 
+    {
       calendarWidget: Object.assign({}, this.state.widgets.calendarWidget, {
         component: <CalendarWidget loading={true} events={[]}/>
       })
@@ -122,9 +99,8 @@ class App extends Component {
           widgets={this.state.widgets} 
           authClick={this.props.authClick} 
           autoFetchEmails={this.autoFetchEmails} 
-          autoClearEmails={this.autoClearEmails}
           autoFetchEvents={this.autoFetchEvents} 
-          autoClearEvents={this.autoClearEvents}/>
+          autoClearEmailsAndEvents={this.autoClearEmailsAndEvents}/>
         <div className="App" id="page-wrap">
           <WidgetContainer id="NW" widget={widgets[spaces.topLeft]} />
           <WidgetContainer id="NE" widget={widgets[spaces.topRight]} />

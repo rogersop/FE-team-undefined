@@ -31,7 +31,6 @@ class CalendarWidget extends Component {
             <p>{location}</p>
             <p>{description}</p>
           </div>
-
         })
       }
       </div>

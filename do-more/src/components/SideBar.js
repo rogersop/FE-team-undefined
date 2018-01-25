@@ -21,8 +21,7 @@ class SideBar extends Component {
   }
 
   onSignOut = () => {
-    this.props.autoClearEmails();
-    this.props.autoClearEvents();
+    this.props.autoClearEmailsAndEvents();
   }
 
   onSignIn = () => {
