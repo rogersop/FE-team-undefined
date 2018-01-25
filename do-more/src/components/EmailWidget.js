@@ -3,65 +3,13 @@ import '../index.css';
 import moment from 'moment';
 
 class EmailWidget extends Component {
- 
-  state = {
-    loading: true,
-    signedIn: false,
-    emails: {}
-  }
-
-  componentWillReceiveProps = () => {
-    this.autoFetchEmails();
-  }
-
-  handleFetchEmails = () => {   
-    this.props.fetchFiveEmails((fiveEmails) => {
-      this.setState({
-        emails: fiveEmails,
-        loading: false
-      })
-    }) 
-  }
-
-  autoFetchEmails = () => {
-    setTimeout(() => this.props.fetchFiveEmails((fiveEmails) => {
-      this.setState({
-        emails: fiveEmails,
-        loading: false
-      });
-    }), 1000);
-  }
-
-  handleAuthClick = () => {
-    this.props.authClick(this.onSignOut, this.onSignIn);
-  }
-
-  onSignOut = () => {
-    this.setState({
-      emails: [],
-      loading: true
-    })
-  }
-
-  onSignIn = () => {
-    this.handleFetchEmails();
-  }
-
+  
   render () {
-
-    const {loading, emails} = this.state;
+    const emails = this.props.emails;
+    const loading = this.props.loading;
 
     return( 
       <div className="email-widget">
-        <button id="sign-in-or-out-button"
-          style={{marginLeft: "25px"}} onClick={this.handleAuthClick}>Sign In/Authorize</button>
-        <button id="revoke-access-button"
-          style={{display: "none", marginLeft: "25px"}}>Revoke access</button>
-        <button id="fetch-emails-button"
-          style={{display: "none", marginLeft: "25px"}}
-          onClick={this.handleFetchEmails}>Fetch emails</button>  
-        
-        <div id="auth-status" style={{display: "inline", paddingLeft: "25px"}}></div><hr />
         
         {
           loading ? 
@@ -78,7 +26,6 @@ class EmailWidget extends Component {
             </div>
           })
         }
-  
       </div>
     )
   }

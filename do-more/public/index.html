@@ -28,19 +28,10 @@
     You need to enable JavaScript to run this app.
   </noscript>
   
-  <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+  
   <script>
     var GoogleAuth;
-    var SCOPE = "https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.compose";
+    var SCOPE = "https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.compose https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly";
 
     let fiveEmails = [];
     let user;
@@ -133,13 +124,12 @@
         if(cbIn) cbIn();
         $('#sign-in-or-out-button').html('Sign out');
         $('#revoke-access-button').css('display', 'inline-block');
-        $('#auth-status').html('You are currently signed in and have granted access to this app.');
+        $('#auth-status').html('Signed in.');
         $('#fetch-emails-button').css('display', 'inline-block');
       } else {
         $('#sign-in-or-out-button').html('Sign In/Authorize');
         $('#revoke-access-button').css('display', 'none');
-        $('#auth-status').html('You have not authorized this app or you are ' +
-          'signed out.');
+        $('#auth-status').html('Signed out.');
         $('#fetch-emails-button').css('display', 'none');
       }
     }

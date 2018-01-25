@@ -12,13 +12,25 @@ class SideBar extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({selectedSpace: event.target.value}, () => {
+    this.setState({ selectedSpace: event.target.value }, () => {
     });
   }
 
-  render () {
+  handleAuthClick = () => {
+    this.props.authClick(this.onSignOut, this.onSignIn);
+  }
+
+  onSignOut = () => {
+    this.props.autoClearEmails();
+  }
+
+  onSignIn = () => {
+    this.props.autoFetchEmails();
+  }
+
+  render() {
     return (
-      <Menu pageWrapId = { "page-wrap" }>
+      <Menu pageWrapId={"page-wrap"}>
         <div className="side-bar-top">
           <InfoWidget />
         </div>
@@ -29,12 +41,22 @@ class SideBar extends Component {
             <option value="bottomLeft">Bottom Left</option>
             <option value="bottomRight">Bottom Right</option>
           </select>
+
           <WidgetSelector assignSpace={this.props.assignSpace} widgets={this.props.widgets} selectedSpace={this.state.selectedSpace} />
+
+          <button id="sign-in-or-out-button"
+            style={{ marginLeft: "25px" }} onClick={this.handleAuthClick}>Sign In/Authorize</button>
+          <button id="revoke-access-button"
+            style={{ display: "none", marginLeft: "25px" }}>Revoke access</button>
+          <div id="auth-status" style={{ display: "inline", paddingLeft: "25px" }}></div><hr />
         </div>
       </Menu>
     )
   }
-  
+
 }
 
 export default SideBar;
+
+
+
