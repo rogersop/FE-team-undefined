@@ -85,15 +85,21 @@ a {
   color: white;
   display: grid;
   margin: 1%;
-  grid-template-columns: 10% 90%;
+  grid-template-columns: 20% 80%;
   grid-template-rows: 10% 10% 10% 10% 10%;
-  font-size: 14px;
+  font-size: 2.1vh;
+}
+
+.article-image-box {
+  height: 7vh;
+  width: 14vh;
+  grid-row: 1 / span 2;
 }
 
 .article-image {
-  height: 50px;
-  width: 50px;
-  grid-row: 1 / span 2;
+  height: 7vh;
+  width: 100%;
+  overflow: hidden;
 }
 
 .article-title {
@@ -106,11 +112,21 @@ a {
   grid-row: 2 / 2;
 }
 
+.article-source,
+.article-title {
+  float: left;
+  font-size: 2vh;
+}
+
 .event-container,
 .email-container,
 .article-block {
   padding-bottom: 2%;
   border-bottom: 1px solid white;
+}
+
+.category-selector label {
+  font-size: 1.5vh;
 }
 
 .event-container,

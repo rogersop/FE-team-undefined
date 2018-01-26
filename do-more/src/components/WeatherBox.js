@@ -1,49 +1,41 @@
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 
 
 class WeatherBox extends Component {
 
   state = {
-    weather : {},
+    weather: {},
     loading: true,
   }
 
   componentDidMount() {
-      this.geoFindMe();
+    this.geoFindMe();
   }
 
   geoFindMe = () => {
-   
-
-
     navigator.geolocation.getCurrentPosition(this.success)
-
   }
 
-   success = (position)  => {
+  success = (position) => {
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
 
 
-  return  fetch(`https://fcc-weather-api.glitch.me/api/current?lat=${latitude}&lon=${longitude}`).then((res) => {
-
-     return res.json();
-      }).then((res) => {
-       
-
-
-         return  this.setState({
-               weather: res,
-               loading: false
-           })
-
-       }).catch(console.error);
-
- }
+    return fetch(`https://fcc-weather-api.glitch.me/api/current?lat=${latitude}&lon=${longitude}`).then((res) => {
+      return res.json();
+    }).then((res) => {
+      return this.setState({
+        weather: res,
+        loading: false
+      })
+    }).catch(console.error);
+  }
 
 
   render() {
-  
+
     if(this.state.loading) return <div>Loading...</div>
     return ( 
       <div className="weather-box">
@@ -53,7 +45,7 @@ class WeatherBox extends Component {
         <h2>{this.state.weather.name}</h2>
       </div>
     )
-}
+  }
 
 }
 

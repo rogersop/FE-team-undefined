@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "moment": "^2.20.1",
+    "newsapi": "^2.1.0",
     "react": "^16.2.0",
     "react-burger-menu": "^2.2.3",
     "react-dom": "^16.2.0",
