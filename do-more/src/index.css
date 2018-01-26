@@ -160,6 +160,7 @@ a {
 .side-bar-bottom {
   height: 50%;
   width: 100%;
+  background-color: grey;
 }
 
 .calendar-widget p,

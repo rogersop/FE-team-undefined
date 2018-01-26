@@ -7,15 +7,16 @@ import NewsWidget from './components/NewsWidget';
 import EmailWidget from './components/EmailWidget';
 import InfoWidget from './components/InfoWidget';
 import TwitterWidget from './components/TwitterWidget';
+import TodoWidget from './components/TodoWidget';
 
 class App extends Component {
 
   state = {
     spaces: {
       topLeft: 'emailWidget',
-      topRight: 'calendarWidget',
-      bottomLeft: 'newsWidget',
-      bottomRight: 'twitterWidget'
+      topRight: 'todoWidget',
+      bottomLeft: 'twitterWidget',
+      bottomRight: 'calendarWidget'
     },
     widgets: {
       'emailWidget': {
@@ -32,6 +33,9 @@ class App extends Component {
       },
       'twitterWidget': {
         component: <TwitterWidget />
+      },
+      'todoWidget' :  {
+        component: <TodoWidget />
       }
     }
   }
