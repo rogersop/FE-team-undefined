@@ -42,6 +42,7 @@ class NewsWidget extends Component {
   }
 
   handleCountryChange = (event) => {
+    console.log(event.target.value)
     this.setState({
       country: event.target.value
     });
@@ -105,23 +106,42 @@ class NewsWidget extends Component {
               Technology
             </label>
           </form>
-          <select className="country-selector">
-            <option value="gb"
-            selected={this.handleCountryChange}>
-            Great Britain</option>
-            <option value="ie"
-            selected={this.handleCountryChange}>
-            Ireland</option>
-            <option value="us"
-            selected={this.handleCountryChange}>
-            United States of America</option>
-            <option value="au"
-            selected={this.handleCountryChange}>
-            Australia</option>
-            <option value="ru"
-            selected={this.handleCountryChange}>
-            Russia</option>
-          </select>
+          <br/>
+          <p> By country: </p>
+          <form className="country-selector">
+            <label>
+              <input 
+              type="radio" name="country" value="au" 
+              checked={this.state.country==='au'} 
+              onChange={this.handleCountryChange} />
+              Australia
+            </label>
+            <label>
+              <input 
+              type="radio" name="country" value="ie" 
+              checked={this.state.country==='ie'} 
+              onChange={this.handleCountryChange} />
+              Ireland
+            </label>
+            <label>
+              <input type="radio" name="country" value="gb" 
+              checked={this.state.country==='gb'} 
+              onChange={this.handleCountryChange} />
+              Great Britain
+            </label>
+            <label>
+              <input type="radio" name="country" value="ca" 
+              checked={this.state.country==='ca'} 
+              onChange={this.handleCountryChange} />
+             Canada
+            </label>
+            <label>
+              <input type="radio" name="country" value="us" 
+              checked={this.state.country==='us'} 
+              onChange={this.handleCountryChange} />
+              USA
+            </label>
+          </form>
           <button onClick={this.handleSettingsClick}>Save settings</button>
         </div> :
         
