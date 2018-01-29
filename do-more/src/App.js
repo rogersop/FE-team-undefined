@@ -25,9 +25,7 @@ class App extends Component {
       'calendarWidget': {
         component: <CalendarWidget loading={true} events={[]} />
       },
-      // 'infoWidget': {
-      //   component: <InfoWidget />
-      // },
+
       'newsWidget': {
         component: <NewsWidget />
       },
