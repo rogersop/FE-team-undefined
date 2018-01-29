@@ -17,8 +17,11 @@ let provider = new firebase.auth.TwitterAuthProvider();
 class TwitterWidget extends Component {
 
   state = {
-    tweets: []
+    tweets: [],
+    isAutheticated: false,
   }
+
+
 
   twitterSignin = () => {
     firebase.auth().signInWithPopup(provider)
@@ -46,34 +49,55 @@ class TwitterWidget extends Component {
  
  addTweetsToState = (tweets) => {
   this.setState({
-    tweets
+    tweets,
+    isAuthenticated: true,
   })
  }
 
  twitterSignout = () => {
    firebase.auth().signOut()
    
-   .then(function() {
-      console.log('Signout successful!')
-   }, function(error) {
-      console.log('Signout failed!')
+   .then( () => {
+    
+      this.setState({
+        tweets : [],
+        isAuthenticated: false
+      })
+   }, (error)  => {
+      console.log(error)
    });
  }
 
   render () {
+    if(!this.state.isAuthenticated) return  <div className="twitter-widget"><button onClick = {this.twitterSignin}>Twitter Sign in</button></div>
     return (
       <div className="twitter-widget">
+
+      
+
+        <h2>Latest Tweets</h2>
           {
             this.state.tweets.map((tweet, i) => {
-            return <div key={i} className="tweet-container">
-            <p>{tweet.name}</p>
-            <span>{tweet.screen_name}</span>
-            <img src={tweet.profile_image_url} alt='tweet-logo'/>
-            {tweet.text}
-        </div>
+            return (
+            <div key={i} className="tweet-container">
+              <div className="tweet-grid-1">
+                <a href={`https://www.twitter.com/${tweet.screen_name}`} target="_blank"><img src={tweet.profile_image_url} alt='tweet-logo'/></a>
+              </div>
+              <div className="tweet-grid-2">
+              <a href={`https://www.twitter.com/${tweet.screen_name}`} target="_blank"><p className="tweet-name">{tweet.name}</p>
+                <span className="tweet-screename"> @{tweet.screen_name}</span></a>
+                <div>
+                     <a href={`https://twitter.com/${tweet.screen_name}/status/${tweet.id}`} target="_blank" className="tweet-text">
+                    <p> {tweet.text}</p>
+
+                     </a>
+                </div>
+              </div>
+          </div>
+            )
           })
         }
-        <button onClick = {this.twitterSignin}>Twitter Signin</button>
+        <button onClick = {this.twitterSignin}>Twitter Sign in</button>
         <button onClick = {this.twitterSignout}>Twitter Signout</button>
       </div>
     )

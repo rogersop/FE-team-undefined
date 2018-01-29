@@ -64,7 +64,8 @@ p {
 .email-widget,
 .calendar-widget,
 .todo-widget,
-.news-widget {
+.news-widget,
+.twitter-widget {
   color: rgb(230, 230, 230);
   background-color: rgba(0, 0, 0, 0.55);
   padding: 2.5%;
@@ -202,3 +203,29 @@ a {
    padding: 20px 0;
    font-size: 1.5em;
 }
+
+.tweet-container {
+  display: grid;
+  grid-template-columns: 10% 90%;
+  margin: 20px 0;
+  grid-column-gap: 0.5em;
+  border-bottom: 1px solid whitesmoke;
+  padding: 10px 0;
+}
+
+.tweet-name {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.tweet-text {
+  font-size: 0.7em;
+  margin: 10px 0;
+  width: 100%;
+  text-decoration: none;
+  display: block;
+  /* color: red; */
+}
+
