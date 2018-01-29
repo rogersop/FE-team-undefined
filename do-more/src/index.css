@@ -169,6 +169,12 @@ a {
   margin-bottom: 1%;
 }
 
+
+.filter-option:hover {
+  background-color: greenyellow;
+  color: black;
+}
+
 /******** INFO WIDGET ******/ 
 
 .info-widget {
