@@ -37,6 +37,7 @@ class SideBar extends Component {
         </div>
         <div className="side-bar-bottom">
           <select value={this.state.selectedSpace} onChange={this.handleChange}>
+            <option value="Select space to replace">Select space to replace</option>
             <option value="topLeft">Top Left</option>
             <option value="topRight">Top Right</option>
             <option value="bottomLeft">Bottom Left</option>
