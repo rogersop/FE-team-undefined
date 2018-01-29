@@ -3,15 +3,23 @@ import React from 'react';
 
 const TodoItem = (props) => {
   return (
-    <p 
-      data-index={props.index}
-      style={{
+    <div>
+      <span
+        data-index={props.index}
+        style={{
         textDecoration: props.complete ? "line-through" : "none"
-      }}
-      onClick={props.toggleTodo}
+        }}
+        onClick={props.toggleTodo}
       >
-  {props.children}
-      </p>
+        {props.children}
+      </span>
+      <span 
+        data-index={props.index}
+        onClick={props.deleteItem}
+      >
+        [x]
+      </span>
+    </div>
   )
 }
 
