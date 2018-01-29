@@ -66,9 +66,9 @@ class TwitterWidget extends Component {
           {
             this.state.tweets.map((tweet, i) => {
             return <div key={i} className="tweet-container">
-            {tweet.name}
-            {tweet.profile_image_url}
-            {tweet.screen_name}
+            <p>{tweet.name}</p>
+            <span>{tweet.screen_name}</span>
+            <img src={tweet.profile_image_url} alt='tweet-logo'/>
             {tweet.text}
         </div>
           })
