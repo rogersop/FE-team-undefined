@@ -10,18 +10,15 @@ class TodoWidget extends Component {
 
 
   componentDidMount = () => {
-    // need to add functionality to GET todo items from database for the user
-    this.setState({
-      todoItems: [
-        {
-          text: "Example todo item, add your own tasks for the day below",
-          complete: false
-        }
-      ],
-      selectedFilter: "All"
-    }) 
-  }
-
+      const todoState = JSON.parse(localStorage.getItem("todoState"));
+      if(localStorage.todoState) {
+        this.setState({
+        todoItems: todoState.todoItems,
+        inputText: todoState.inputText,
+        selectedFilter: todoState.selectedFilter
+      })
+    } 
+  } 
   updateInputText = (event) => {
     this.setState({
       inputText: event.target.value
@@ -32,36 +29,12 @@ class TodoWidget extends Component {
     const newTodo = {text: this.state.inputText, complete: false}
     if (this.state.inputText === '') return;
     this.setState({
-      todoItems: [...this.state.todoItems, newTodo]
-    })
-    // need to add functionality to PUT new todo item in database for the user
+      todoItems: [...this.state.todoItems, newTodo],
+      inputText: ""
+    }, res => {localStorage.setItem("todoState", JSON.stringify(this.state))})
   }
 
-  setFilterAll = () => {
-    this.setState({
-      selectedFilter: "All"
-    })
-  }
 
-  setFilterDone = () => {
-    this.setState({
-      selectedFilter: "Done"
-    })
-  }
-
-  setFilterTodo = () => {
-    this.setState({
-      selectedFilter: "Todo"
-    })
-  }
-
-  filterTodos = (todos, filter) => {
-    return todos.filter(todo => {
-      if(filter === "Done") return todo.complete
-      else if( filter === "Todo") return !todo.complete
-      else return true;
-    })
-  }
 
   toggleTodo = (event) => {
     const index = +event.target.dataset.index
@@ -80,6 +53,34 @@ class TodoWidget extends Component {
 
     this.setState({
       todoItems: newTodos
+    }, res => {localStorage.setItem("todoState", JSON.stringify(this.state))})
+  }
+
+
+  filterTodos = (todos, filter) => {
+    return todos.filter(todo => {
+      if(filter === "Done") return todo.complete
+      else if( filter === "Todo") return !todo.complete
+      else return true;
+    })
+  }
+
+
+  setFilterAll = () => {
+    this.setState({
+      selectedFilter: "All"
+    })
+  }
+
+  setFilterDone = () => {
+    this.setState({
+      selectedFilter: "Done"
+    })
+  }
+
+  setFilterTodo = () => {
+    this.setState({
+      selectedFilter: "Todo"
     })
   }
 
