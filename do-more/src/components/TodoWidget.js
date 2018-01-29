@@ -34,13 +34,20 @@ class TodoWidget extends Component {
     }, res => {localStorage.setItem("todoState", JSON.stringify(this.state))})
   }
 
-
+  deleteItem = (event) => {
+    const index = +event.target.dataset.index
+    const newTodos = [
+      ...this.state.todoItems.slice(0, index),
+      ...this.state.todoItems.slice(index + 1)
+    ]
+    this.setState({
+      todoItems: newTodos
+    }, res => {localStorage.setItem("todoState", JSON.stringify(this.state))})
+  }
 
   toggleTodo = (event) => {
     const index = +event.target.dataset.index
-
     const todo = this.state.todoItems[index]
-
     const newTodo = Object.assign({}, todo, {
       complete: !todo.complete
     })
@@ -64,7 +71,6 @@ class TodoWidget extends Component {
       else return true;
     })
   }
-
 
   setFilterAll = () => {
     this.setState({
@@ -100,6 +106,7 @@ class TodoWidget extends Component {
            index={i}
            complete={item.complete}
            toggleTodo={this.toggleTodo}
+           deleteItem={this.deleteItem}
            >
            {item.text}
            </TodoItem>
