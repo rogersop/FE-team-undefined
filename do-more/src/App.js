@@ -54,7 +54,6 @@ class App extends Component {
   }
 
   assignSpace = (space, widgetName) => {
-    console.log(widgetName, typeof widgetName)
     increaseUseCount(widgetName);
     const newSpaces = Object.assign({}, this.state.spaces)
     newSpaces[space] = widgetName;
@@ -80,6 +79,7 @@ class App extends Component {
 
   autoFetchEvents = () => {
     setTimeout(() => this.props.fetchFiveEvents((fiveEvents) => {
+      console.log(fiveEvents)
       const functioningWidgets = Object.assign({}, this.state.widgets, {
         calendarWidget: Object.assign({}, this.state.widgets.calendarWidget, {
           component: <CalendarWidget loading={false} events={fiveEvents} />

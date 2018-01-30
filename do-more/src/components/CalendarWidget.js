@@ -14,6 +14,8 @@ class CalendarWidget extends Component {
       {
         loading ?
         'Sign-in to see your upcoming calendar events...' :
+        events.items.length < 1 ?
+        'No more upcoming events this week...':
         events.items.map((event, i) => {
           const summary = event.summary;
           const location = event.location;

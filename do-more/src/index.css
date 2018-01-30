@@ -87,6 +87,7 @@ a {
   left: 95%;
 }
 
+<<<<<<< HEAD
 .refresh-logo fa {
   font-size: 4vh;
   color: whitesmoke;
@@ -96,12 +97,23 @@ a {
 }
 
 .like-logo fa {
+=======
+.email-link i {
+>>>>>>> 3c641404daf481ca29824bb02b613e065e4281f1
   font-size: 4vh;
   color: whitesmoke;
   margin: 0;
   padding: 0;
   text-shadow: grey 1px 1px 10px
 }
+/* 
+.like-logo i {
+  font-size: 4vh;
+  color: whitesmoke;
+  margin: 0;
+  padding: 0;
+  text-shadow: grey 1px 1px 10px
+} */
 
 .fa:hover {
    box-shadow: 0 0 10px rgb(255, 0, 0);
@@ -139,6 +151,7 @@ a {
   border-bottom: 1px solid white;
 }
 
+<<<<<<< HEAD
 
 .email-container fa {
   font-size: 1.5vh;
@@ -148,6 +161,8 @@ a {
   text-shadow: grey 1px 1px 10px;
 }
 
+=======
+>>>>>>> 3c641404daf481ca29824bb02b613e065e4281f1
 .event-container,
 .email-container {
   margin-bottom: 2%;
@@ -158,6 +173,14 @@ a {
 .email-widget p {
   font-size: 10px;
   margin-bottom: 1%;
+}
+
+.email-container i {
+  font-size: 2vh;
+  color: whitesmoke;
+  margin: 0;
+  padding: 0;
+  text-shadow: grey 1px 1px 10px;
 }
 
 /* News widget */
