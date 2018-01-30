@@ -49,15 +49,10 @@ class EmailWidget extends Component {
               <p>From: {from}</p>
               <p>Received: {date}</p>
               <p>{email.result.snippet}</p>
-<<<<<<< HEAD
-              <i class="fa fa-envelope-open"></i>
-              <i class="fa fa-reply"></i>
-=======
               <a className="email-link" href={`https://mail.google.com/mail/u/0/#inbox/${email.id}`}>
                 <i className="fa fa-reply" />
                 <i className="fa fa-envelope-open" />
               </a>
->>>>>>> 3c641404daf481ca29824bb02b613e065e4281f1
             </div>
           })
         }
