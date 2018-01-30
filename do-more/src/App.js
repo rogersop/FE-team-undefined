@@ -66,6 +66,7 @@ class App extends Component {
 
   autoFetchEmails = () => {
     setTimeout(() => this.props.fetchFiveEmails((fiveEmails) => {
+      console.log(fiveEmails)
       const functioningWidgets = Object.assign({}, this.state.widgets, {
         emailWidget: Object.assign({}, this.state.widgets.emailWidget, {
           component: <EmailWidget loading={false} emails={fiveEmails} />

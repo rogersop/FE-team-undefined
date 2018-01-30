@@ -23,6 +23,8 @@ class EmailWidget extends Component {
               <p>From: {from}</p>
               <p>Received: {date}</p>
               <p>{email.result.snippet}</p>
+              <i class="fa fa-envelope-open"></i>
+              <i class="fa fa-reply"></i>
             </div>
           })
         }

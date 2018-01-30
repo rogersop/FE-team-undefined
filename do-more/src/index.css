@@ -87,7 +87,15 @@ a {
   left: 95%;
 }
 
-.fa {
+.refresh-logo fa {
+  font-size: 4vh;
+  color: whitesmoke;
+  margin: 0;
+  padding: 0;
+  text-shadow: grey 1px 1px 10px
+}
+
+.like-logo fa {
   font-size: 4vh;
   color: whitesmoke;
   margin: 0;
@@ -131,8 +139,13 @@ a {
   border-bottom: 1px solid white;
 }
 
-.category-selector label {
+
+.email-container fa {
   font-size: 1.5vh;
+  color: whitesmoke;
+  margin: 0;
+  padding: 0;
+  text-shadow: grey 1px 1px 10px;
 }
 
 .event-container,
@@ -148,6 +161,10 @@ a {
 }
 
 /* News widget */
+
+.category-selector label {
+  font-size: 1.5vh;
+}
 
 .article-image-box {
   height: 7vh;
