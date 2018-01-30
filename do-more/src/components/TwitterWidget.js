@@ -68,10 +68,18 @@ class TwitterWidget extends Component {
    });
  }
 
+ dragstart_handler = (event) => {
+  console.log('dragging')
+
+  event.dataTransfer.setData("text/plain", event.target.id);
+
+}
+
+
   render () {
-    if(!this.state.isAuthenticated) return  <div className="twitter-widget notDroppable"><button onClick = {this.twitterSignin}>Twitter Sign in</button></div>
+    if(!this.state.isAuthenticated) return  <div className="twitter-widget notDroppable" draggable='true' onDragStart={this.dragstart_handler} id="twitterWidget"><button onClick = {this.twitterSignin}>Twitter Sign in</button></div>
     return (
-      <div className="twitter-widget notDroppable">
+      <div className="twitter-widget notDroppable" draggable='true' onDragStart={this.dragstart_handler} id="twitterWidget">
 
       
 

@@ -16,8 +16,16 @@ class WidgetContainer extends Component {
     drop_handler = (event) =>{
       console.log('drophandler')
       event.preventDefault();
-  
-      const targetContainer = event.target.id;
+      const widRex = /Widget/;
+      let targetContainer;
+      
+      if(event.target.id.match(widRex)){
+        targetContainer = this.props.findSpace(event.target.id);
+      } else { 
+        targetContainer = event.target.id;
+        
+      }
+      console.log('eventTarget', event.target)
       const currentWidget = event.dataTransfer.getData("text/plain");
       const previousPosition = this.props.findSpace(currentWidget);
       const replacingWidget = this.props.findCurrentWidget(targetContainer)

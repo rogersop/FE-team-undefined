@@ -48,12 +48,18 @@ class NewsWidget extends Component {
     });
   }
 
+  dragstart_handler = (event) => {
+    console.log('dragging')
+
+    event.dataTransfer.setData("text/plain", event.target.id);
+
+  }
 
   render () {
     const {articles, settings} = this.state
    
     return (
-      <div className="news-widget notDroppable">
+      <div className="news-widget notDroppable" draggable='true' onDragStart={this.dragstart_handler} id="newsWidget">
       {
         settings ?
         
