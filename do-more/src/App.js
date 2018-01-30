@@ -54,7 +54,6 @@ class App extends Component {
   }
 
   assignSpace = (space, widgetName) => {
-    console.log(widgetName, typeof widgetName)
     increaseUseCount(widgetName);
     const newSpaces = Object.assign({}, this.state.spaces)
     newSpaces[space] = widgetName;
