@@ -1,3 +1,5 @@
+/* Top level styling */
+
 html,
 body {
   margin: 0;
@@ -66,6 +68,18 @@ p {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+  display: grid;
+  margin: 1%;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 10% 10% 10% 10% 10%;
+  font-size: 2.1vh;
+}
+
+/* General widget styling */
+
 .event-widget,
 .email-widget,
 .calendar-widget,
@@ -87,15 +101,32 @@ p {
   width: 100%;
 }
 
-a {
-  text-decoration: none;
-  color: white;
-  display: grid;
-  margin: 1%;
-  grid-template-columns: 20% 80%;
-  grid-template-rows: 10% 10% 10% 10% 10%;
-  font-size: 2.1vh;
+/* Email / Calendar / News widgets */
+
+.event-container,
+.email-container,
+.article-block {
+  padding-bottom: 2%;
+  border-bottom: 1px solid white;
 }
+
+.category-selector label {
+  font-size: 1.5vh;
+}
+
+.event-container,
+.email-container {
+  margin-bottom: 2%;
+}
+
+
+.calendar-widget p,
+.email-widget p {
+  font-size: 10px;
+  margin-bottom: 1%;
+}
+
+/* News widget */
 
 .article-image-box {
   height: 7vh;
@@ -125,21 +156,42 @@ a {
   font-size: 2vh;
 }
 
-.event-container,
-.email-container,
-.article-block {
-  padding-bottom: 2%;
-  border-bottom: 1px solid white;
+/* Twitter widget */
+
+.tweet-container {
+  display: grid;
+  grid-template-columns: 10% 90%;
+  margin: 20px 0;
+  grid-column-gap: 0.5em;
+  border-bottom: 1px solid whitesmoke;
+  padding: 10px 0;
 }
 
-.category-selector label {
-  font-size: 1.5vh;
+.tweet-name {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  font-weight: bold;
 }
 
-.event-container,
-.email-container {
-  margin-bottom: 2%;
+.tweet-text {
+  font-size: 0.7em;
+  margin: 10px 0;
+  width: 100%;
+  text-decoration: none;
+  display: block;
 }
+
+
+/* Todo widget */
+
+.filter-option:hover {
+  background-color: greenyellow;
+  color: black;
+}
+
+
+/* Side bar and burger button */
 
 .bm-burger-button {
   height: 30px; 
@@ -170,19 +222,7 @@ a {
   background-color: grey;
 }
 
-.calendar-widget p,
-.email-widget p {
-  font-size: 10px;
-  margin-bottom: 1%;
-}
-
-
-.filter-option:hover {
-  background-color: greenyellow;
-  color: black;
-}
-
-/******** INFO WIDGET ******/ 
+/* Info widget */ 
 
 .info-widget {
   text-align: center;
@@ -210,28 +250,5 @@ a {
    font-size: 1.5em;
 }
 
-.tweet-container {
-  display: grid;
-  grid-template-columns: 10% 90%;
-  margin: 20px 0;
-  grid-column-gap: 0.5em;
-  border-bottom: 1px solid whitesmoke;
-  padding: 10px 0;
-}
 
-.tweet-name {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  font-weight: bold;
-}
-
-.tweet-text {
-  font-size: 0.7em;
-  margin: 10px 0;
-  width: 100%;
-  text-decoration: none;
-  display: block;
-  /* color: red; */
-}
 

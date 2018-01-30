@@ -14,7 +14,7 @@ const firebase = require('firebase');
 // }
 const db = firebase.database();
 
-const widgets = ['twitterWidget', 'todoWidget', 'calendarWidget', 'emailWidget', 'newsWidget']
+// const widgets = ['twitterWidget', 'todoWidget', 'calendarWidget', 'emailWidget', 'newsWidget']
 
 const createWidgetObject = (widget) => {
   db.ref(`widgets/${widget}/`).set({
@@ -108,5 +108,18 @@ const getRandomBackground = () => {
   })
 }
 
-export default getRandomBackground;
+
+export { 
+  createWidgetObject,
+  increaseUseCount,
+  decreaseUseCount,
+  getWidgetsInfo,
+  imageUrls,
+  seedImageInfo,
+  getAllImagesInfo,
+  getImageInfo,
+  increaseLikeCount,
+  decreaseLikeCount,
+  getRandomBackground
+};
 

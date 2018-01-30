@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import './index.css';
 import SideBar from './components/SideBar';
 import WidgetContainer from './components/WidgetContainer'
-import './index.css';
 import CalendarWidget from './components/CalendarWidget';
 import NewsWidget from './components/NewsWidget';
 import EmailWidget from './components/EmailWidget';
-import InfoWidget from './components/InfoWidget';
 import TwitterWidget from './components/TwitterWidget';
 import TodoWidget from './components/TodoWidget';
-import getRandomBackground from './database/index.js';
-import moment, { locale } from 'moment';
+import {increaseUseCount, getRandomBackground} from './database/index.js';
+// import getRandomBackground from './database/index.js';
+import moment from 'moment';
 
 class App extends Component {
 
@@ -27,7 +27,6 @@ class App extends Component {
       'calendarWidget': {
         component: <CalendarWidget loading={true} events={[]} />
       },
-
       'newsWidget': {
         component: <NewsWidget />
       },
@@ -42,13 +41,11 @@ class App extends Component {
   }
 
   componentWillMount = () => {
-    let currentTimeStamp = moment().format();
-    let lastRefreshTimeStamp = localStorage.getItem('bgLastRefresh')
-    let difference = moment.utc(moment(currentTimeStamp).diff(moment(lastRefreshTimeStamp))).format('HH')
+    const currentTimeStamp = moment().format();
+    const lastRefreshTimeStamp = localStorage.getItem('bgLastRefresh')
+    const difference = moment.utc(moment(currentTimeStamp).diff(moment(lastRefreshTimeStamp))).format('HH')
     const currentBackground = JSON.parse(localStorage.getItem('background'));
 
-    
-    console.log(lastRefreshTimeStamp)
     if (lastRefreshTimeStamp === null || +difference > 24) {
       getRandomBackground()
         .then(background => {
@@ -58,19 +55,19 @@ class App extends Component {
           localStorage.setItem('bgLastRefresh', currentTimeStamp)
         })
     } else {
-   
-
      this.setState({ background: currentBackground })
-
     }
   }
 
   assignSpace = (space, widgetName) => {
+    console.log(widgetName, typeof widgetName)
+    increaseUseCount(widgetName);
     const newSpaces = Object.assign({}, this.state.spaces)
     newSpaces[space] = widgetName;
     this.setState({
       spaces: newSpaces
     })
+    
   }
 
   autoFetchEmails = () => {
