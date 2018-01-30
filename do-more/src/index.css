@@ -21,6 +21,7 @@ body {
 .background-image {
   width: 100%;
   height: 100%;
+  overflow: hidden;
   position: center center;
 }
 
@@ -77,6 +78,26 @@ a {
   grid-template-rows: 10% 10% 10% 10% 10%;
   font-size: 2.1vh;
 }
+
+/* Like button */
+.background-btns {
+  z-index: 1000;
+  position: absolute;
+  top: 90%;
+  left: 95%;
+}
+
+.fa {
+  font-size: 4vh;
+  color: whitesmoke;
+  margin: 0;
+  padding: 0;
+  text-shadow: grey 1px 1px 10px
+}
+
+.fa:hover {
+   box-shadow: 0 0 10px rgb(255, 0, 0);
+} 
 
 /* General widget styling */
 
