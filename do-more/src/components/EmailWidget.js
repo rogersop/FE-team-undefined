@@ -4,12 +4,20 @@ import moment from 'moment';
 
 class EmailWidget extends Component {
   
+  dragstart_handler = (event) => {
+    console.log('dragging')
+
+    event.dataTransfer.setData("text/plain", event.target.id);
+
+  }
+
+
   render () {
     const emails = this.props.emails;
     const loading = this.props.loading;
 
     return( 
-      <div className="email-widget">
+      <div className="email-widget draggable" draggable='true' onDragStart={this.dragstart_handler} id='emailWidget' >
         
         {
           loading ? 

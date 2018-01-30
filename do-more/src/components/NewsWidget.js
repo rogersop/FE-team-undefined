@@ -53,7 +53,7 @@ class NewsWidget extends Component {
     const {articles, settings} = this.state
    
     return (
-      <div className="news-widget">
+      <div className="news-widget notDroppable">
       {
         settings ?
         

@@ -34,25 +34,25 @@ body {
   justify-content: center;
 }
 
-#NW {
+#topLeft {
   top: 0;
   left: 0;
   /* background-color: rgba(0, 0, 255, 0.03); */
 }
 
-#NE {
+#topRight {
   top: 0;
   left: 50%;
   /* background-color: rgba(255, 0, 0, 0.03); */
 }
 
-#SW {
+#bottomLeft {
   top: 50%;
   left: 0;
   /* background-color: rgba(255, 255, 0, 0.03); */
 }
 
-#SE {
+#bottomRight {
   top: 50%;
   left: 50%;
   /* background-color: rgba(0, 128, 0, 0.03); */

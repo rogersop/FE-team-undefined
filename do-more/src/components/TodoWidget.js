@@ -95,7 +95,7 @@ class TodoWidget extends Component {
     const {todoItems, inputText, selectedFilter} = this.state;
 
     return (
-      <div className="todo-widget">
+      <div className="todo-widget notDroppable">
         <div className="todo-header">
           <h3>To-Do:</h3>
         </div>
