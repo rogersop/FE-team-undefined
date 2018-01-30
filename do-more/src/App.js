@@ -9,6 +9,7 @@ import InfoWidget from './components/InfoWidget';
 import TwitterWidget from './components/TwitterWidget';
 import TodoWidget from './components/TodoWidget';
 import getRandomBackground from './database/index.js';
+import moment, { locale } from 'moment';
 
 class App extends Component {
 
@@ -33,7 +34,7 @@ class App extends Component {
       'twitterWidget': {
         component: <TwitterWidget />
       },
-      'todoWidget' :  {
+      'todoWidget': {
         component: <TodoWidget />
       }
     },
@@ -41,10 +42,27 @@ class App extends Component {
   }
 
   componentWillMount = () => {
-    getRandomBackground()
-      .then(background => {
-        this.setState({background})
-      })
+    let currentTimeStamp = moment().format();
+    let lastRefreshTimeStamp = localStorage.getItem('bgLastRefresh')
+    let difference = moment.utc(moment(currentTimeStamp).diff(moment(lastRefreshTimeStamp))).format('HH')
+    const currentBackground = JSON.parse(localStorage.getItem('background'));
+
+    
+    console.log(lastRefreshTimeStamp)
+    if (lastRefreshTimeStamp === null || +difference > 24) {
+      getRandomBackground()
+        .then(background => {
+          this.setState({ background })
+
+          localStorage.setItem('background', JSON.stringify(background))
+          localStorage.setItem('bgLastRefresh', currentTimeStamp)
+        })
+    } else {
+   
+
+     this.setState({ background: currentBackground })
+
+    }
   }
 
   assignSpace = (space, widgetName) => {
@@ -59,7 +77,7 @@ class App extends Component {
     setTimeout(() => this.props.fetchFiveEmails((fiveEmails) => {
       const functioningWidgets = Object.assign({}, this.state.widgets, {
         emailWidget: Object.assign({}, this.state.widgets.emailWidget, {
-          component: <EmailWidget loading={false} emails={fiveEmails}/>
+          component: <EmailWidget loading={false} emails={fiveEmails} />
         })
       })
       this.setState({
@@ -67,12 +85,12 @@ class App extends Component {
       });
     }), 1000);
   }
-  
+
   autoFetchEvents = () => {
     setTimeout(() => this.props.fetchFiveEvents((fiveEvents) => {
       const functioningWidgets = Object.assign({}, this.state.widgets, {
         calendarWidget: Object.assign({}, this.state.widgets.calendarWidget, {
-          component: <CalendarWidget loading={false} events={fiveEvents}/>
+          component: <CalendarWidget loading={false} events={fiveEvents} />
         })
       })
       this.setState({
@@ -84,14 +102,14 @@ class App extends Component {
   autoClearEmailsAndEvents = () => {
     const functioningWidgets = Object.assign({}, this.state.widgets, {
       emailWidget: Object.assign({}, this.state.widgets.emailWidget, {
-        component: <EmailWidget loading={true} emails={[]}/>
+        component: <EmailWidget loading={true} emails={[]} />
       })
-    }, 
-    {
-      calendarWidget: Object.assign({}, this.state.widgets.calendarWidget, {
-        component: <CalendarWidget loading={true} events={[]}/>
+    },
+      {
+        calendarWidget: Object.assign({}, this.state.widgets.calendarWidget, {
+          component: <CalendarWidget loading={true} events={[]} />
+        })
       })
-    })
     this.setState({
       widgets: functioningWidgets
     });
@@ -103,17 +121,17 @@ class App extends Component {
 
     return (
       <div id="outer-container">
-        <SideBar 
-          pageWrapId="page-wrap" 
-          outerContainerId="outer-container" 
-          assignSpace={this.assignSpace} 
-          widgets={this.state.widgets} 
-          authClick={this.props.authClick} 
-          autoFetchEmails={this.autoFetchEmails} 
-          autoFetchEvents={this.autoFetchEvents} 
-          autoClearEmailsAndEvents={this.autoClearEmailsAndEvents}/>
+        <SideBar
+          pageWrapId="page-wrap"
+          outerContainerId="outer-container"
+          assignSpace={this.assignSpace}
+          widgets={this.state.widgets}
+          authClick={this.props.authClick}
+          autoFetchEmails={this.autoFetchEmails}
+          autoFetchEvents={this.autoFetchEvents}
+          autoClearEmailsAndEvents={this.autoClearEmailsAndEvents} />
         <div className="App" id="page-wrap" >
-        <img className="background-image" src={`${background.url}`} />
+          <img className="background-image" src={`${background.url}`} alt="background" />
           <WidgetContainer id="NW" widget={widgets[spaces.topLeft]} />
           <WidgetContainer id="NE" widget={widgets[spaces.topRight]} />
           <WidgetContainer id="SE" widget={widgets[spaces.bottomRight]} />
