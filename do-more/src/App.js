@@ -8,6 +8,7 @@ import EmailWidget from './components/EmailWidget';
 import InfoWidget from './components/InfoWidget';
 import TwitterWidget from './components/TwitterWidget';
 import TodoWidget from './components/TodoWidget';
+import getRandomBackground from './database/index.js';
 
 class App extends Component {
 
@@ -35,7 +36,15 @@ class App extends Component {
       'todoWidget' :  {
         component: <TodoWidget />
       }
-    }
+    },
+    background: {}
+  }
+
+  componentWillMount = () => {
+    getRandomBackground()
+      .then(background => {
+        this.setState({background})
+      })
   }
 
   assignSpace = (space, widgetName) => {
@@ -90,7 +99,7 @@ class App extends Component {
 
   render() {
 
-    const { widgets, spaces } = this.state
+    const { widgets, spaces, background } = this.state
 
     return (
       <div id="outer-container">
@@ -103,7 +112,8 @@ class App extends Component {
           autoFetchEmails={this.autoFetchEmails} 
           autoFetchEvents={this.autoFetchEvents} 
           autoClearEmailsAndEvents={this.autoClearEmailsAndEvents}/>
-        <div className="App" id="page-wrap">
+        <div className="App" id="page-wrap" >
+        <img className="background-image" src={`${background.url}`} />
           <WidgetContainer id="NW" widget={widgets[spaces.topLeft]} />
           <WidgetContainer id="NE" widget={widgets[spaces.topRight]} />
           <WidgetContainer id="SE" widget={widgets[spaces.bottomRight]} />
