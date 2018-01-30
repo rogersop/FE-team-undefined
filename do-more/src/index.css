@@ -87,13 +87,21 @@ a {
   left: 95%;
 }
 
-.fa {
+.email-link i {
   font-size: 4vh;
   color: whitesmoke;
   margin: 0;
   padding: 0;
   text-shadow: grey 1px 1px 10px
 }
+/* 
+.like-logo i {
+  font-size: 4vh;
+  color: whitesmoke;
+  margin: 0;
+  padding: 0;
+  text-shadow: grey 1px 1px 10px
+} */
 
 .fa:hover {
    box-shadow: 0 0 10px rgb(255, 0, 0);
@@ -131,10 +139,6 @@ a {
   border-bottom: 1px solid white;
 }
 
-.category-selector label {
-  font-size: 1.5vh;
-}
-
 .event-container,
 .email-container {
   margin-bottom: 2%;
@@ -147,7 +151,19 @@ a {
   margin-bottom: 1%;
 }
 
+.email-container i {
+  font-size: 2vh;
+  color: whitesmoke;
+  margin: 0;
+  padding: 0;
+  text-shadow: grey 1px 1px 10px;
+}
+
 /* News widget */
+
+.category-selector label {
+  font-size: 1.5vh;
+}
 
 .article-image-box {
   height: 7vh;
