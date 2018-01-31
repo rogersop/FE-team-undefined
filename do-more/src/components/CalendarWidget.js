@@ -4,14 +4,27 @@ import moment from 'moment';
 
 class CalendarWidget extends Component {
 
+  state = {}
+
   dragstart_handler = (event) => {
     // console.log('dragging')
     event.dataTransfer.setData("text/plain", event.target.id);
   }
 
+  componentDidMount = () => {
+    setTimeout(() => {
+      this.props.fetchFiveEvents(events => {
+        this.setState({
+          events,
+          loading: false
+        })
+      });
+    }, 1000)
+  }
+
   render () {
-    const events = this.props.events;
-    const loading = this.props.loading;
+    const events = this.state.events ? this.state.events : this.props.events;
+    const loading = this.state.loading === false ? this.state.loading : this.props.loading;
     
     return(
       <div className="calendar-widget calendarWidget" draggable='true' onDragStart={this.dragstart_handler} id="calendarWidget">

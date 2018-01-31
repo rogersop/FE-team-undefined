@@ -21,13 +21,6 @@ class EmailWidget extends Component {
       });
     }, 1000)
   }
-  // componentWillReceiveProps = (newProps) => {
-  //   // const emails = newProps.emails
-  //   // if (emails.length) {
-  //     this.props.refreshEmailsOnLoad()
-  //   // }
-  // }
-
 
   render () {
     const emails = this.state.emails ? this.state.emails : this.props.emails;
