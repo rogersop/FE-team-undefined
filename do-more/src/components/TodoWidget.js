@@ -90,16 +90,24 @@ class TodoWidget extends Component {
     })
   }
 
+  dragstart_handler = (event) => {
+    console.log('dragging')
+
+    event.dataTransfer.setData("text/plain", event.target.id);
+
+  }
+
+
 
   render() {
     const {todoItems, inputText, selectedFilter} = this.state;
 
     return (
-      <div className="todo-widget">
-        <div className="todo-header">
-          <h3>To-Do:</h3>
+      <div className="todo-widget todoWidget" draggable='true' onDragStart={this.dragstart_handler} id="todoWidget">
+        <div className="todo-header todoWidget">
+          <h3 className="todoWidget">To-Do:</h3>
         </div>
-        <div className="todo-list">
+        <div className="todo-list todoWidget">
         {this.filterTodos(todoItems, selectedFilter).map((item, i) => {
          return <TodoItem
            key={i} 
@@ -114,15 +122,15 @@ class TodoWidget extends Component {
         </div>
 
         <div className="todo-footer">
-          <div className="todo-filter">
-            <span className="filter-option" onClick={this.setFilterAll} value="All">All</span>{" | "}
-            <span className="filter-option" onClick={this.setFilterDone} value="Done">Done</span>{" | "}
-            <span className="filter-option" onClick={this.setFilterTodo} value="To-Do">To-Do</span>
+          <div className="todo-filter todoWidget">
+            <span className="filter-option todoWidget" onClick={this.setFilterAll} value="All" >All</span>{" | "}
+            <span className="filter-option todoWidget" onClick={this.setFilterDone} value="Done" >Done</span>{" | "}
+            <span className="filter-option todoWidget" onClick={this.setFilterTodo} value="To-Do" >To-Do</span>
           </div>
 
-          <div className="todo-input">
-            <input type="text" value={inputText} onChange={this.updateInputText} />
-            <button onClick={this.addTodoItem}>Add item</button>
+          <div className="todo-input todoWidget">
+            <input type="text" className="todoWidget"value={inputText} onChange={this.updateInputText} />
+            <button onClick={this.addTodoItem} className="todoWidget">Add item</button>
           </div>
         </div>
       </div>

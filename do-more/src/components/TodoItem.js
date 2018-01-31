@@ -4,7 +4,7 @@ import React from 'react';
 const TodoItem = (props) => {
   return (
     <div>
-      <span
+      <span id="todoWidget"
         data-index={props.index}
         style={{
         textDecoration: props.complete ? "line-through" : "none"
@@ -13,7 +13,7 @@ const TodoItem = (props) => {
       >
         {props.children}
       </span>
-      <span 
+      <span id="todoWidget"
         data-index={props.index}
         onClick={props.deleteItem}
       >
