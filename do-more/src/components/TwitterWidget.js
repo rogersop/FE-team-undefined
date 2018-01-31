@@ -69,7 +69,11 @@ class TwitterWidget extends Component {
  }
 
   render () {
-    if(!this.state.isAuthenticated) return  <div className="twitter-widget"><button onClick = {this.twitterSignin}>Twitter Sign in</button></div>
+    if(!this.state.isAuthenticated){
+      return  <div className="twitter-widget">
+                <button onClick = {this.twitterSignin}>Twitter Sign in</button>
+              </div>
+    } 
     return (
       <div className="twitter-widget">
 
