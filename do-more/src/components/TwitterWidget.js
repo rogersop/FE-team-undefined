@@ -98,14 +98,16 @@ import firebase from 'firebase';
     if(!this.state.isAuthenticated) {
       return  <div className="twitter-widget twitterWidget twitterWidget" 
                 draggable='true' onDragStart={this.dragstart_handler} id="twitterWidget">
-                <button onClick = {this.twitterSignin}>Twitter Sign in</button>
+                <div className="twitter-sign-in">
+                  <button onClick = {this.twitterSignin}>Twitter Sign In</button>
+                </div>
               </div>
     }
 
     return (
       <div className="twitter-widget twitterWidget" draggable='true' onDragStart={this.dragstart_handler} id="twitterWidget">
-      <button className="twitterWidget" onClick = {this.twitterSignout}>Twitter Signout</button>
-        <h2 className="twitterWidget">Latest Tweets</h2>
+        <h2 className="twitterWidget">// LATEST TWEETS</h2>
+        <button className="twitterWidget" onClick = {this.twitterSignout}>Twitter Sign Out</button>
           {
             this.state.tweets.map((tweet, i) => {
             return (
@@ -118,8 +120,7 @@ import firebase from 'firebase';
                 <span className="tweet-screename twitterWidget"> @{tweet.screen_name}</span></a>
                 <div>
                      <a href={`https://twitter.com/${tweet.screen_name}/status/${tweet.id}`} target="_blank" className="tweet-text twitterWidget">
-                    <p className="twitterWidget"> {tweet.text}</p>
-
+                      <p className="twitterWidget"> {tweet.text}</p>
                      </a>
                 </div>
               </div>
