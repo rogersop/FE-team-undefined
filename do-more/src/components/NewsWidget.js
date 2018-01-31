@@ -63,7 +63,7 @@ class NewsWidget extends Component {
       {
         settings ?
         
-        <div className="news-settings">
+        <div className="news-settings" id="newsWidget">
           <p>Filter settings</p>
           <p>by category:</p>
           <form className="category-selector">
@@ -151,15 +151,15 @@ class NewsWidget extends Component {
           <button onClick={this.handleSettingsClick}>Save settings</button>
         </div> :
         
-        <div className="news-articles">
+        <div className="news-articles" id="newsWidget"> 
           <h4>Latest headlines:</h4>
           <button onClick={this.handleSettingsClick}>Settings</button>
           {articles.map((article, i) => {
             return <div key={i}>
               <a className="article-block" href={article.url}>
-                <div className="article-image-box"><img className="article-image" src={article.urlToImage} alt="news pic" /></div>
-                <span className="article-title">{article.title}</span>
-                <span className="article-source">{article.source.name}</span>
+                <div className="article-image-box"><img className="article-image" id="newsWidget" src={article.urlToImage} alt="news pic" /></div>
+                <span className="article-title" id="newsWidget">{article.title}</span>
+                <span className="article-source" id="newsWidget">{article.source.name}</span>
               </a>
             </div>
           })}
