@@ -101,7 +101,7 @@ class TodoWidget extends Component {
 
     return (
 
-      <div className="todo-widget todoWidget">
+      <div className="todo-widget todoWidget" draggable='true' onDragStart={this.dragstart_handler} id='todoWidget' >
         <div className="todo-header todoWidget">
           <h3 className="todoWidget">// DAILY WORK PLANNER</h3>
           <div className="todo-input todoWidget">

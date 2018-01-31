@@ -24,9 +24,9 @@ class WidgetContainer extends Component {
             eventWidgetClass = className;
           }
       })
-      // console.log('eventWidgetClass', eventWidgetClass)
-      // console.log('eventID', event.target.id)
-      // console.log('eventTargetClass', event.target.classList, event.target.classList.toString())
+      console.log('eventWidgetClass', eventWidgetClass)
+      console.log('eventID', event.target.id)
+      console.log('eventTargetClass', event.target.classList, event.target.classList.toString())
       if(eventWidgetClass === undefined) {
            targetContainer = event.target.id;
       }
@@ -39,11 +39,11 @@ class WidgetContainer extends Component {
       const currentWidget = event.dataTransfer.getData("text/plain");
       const previousPosition = this.props.findSpace(currentWidget);
       const replacingWidget = this.props.findCurrentWidget(targetContainer)
-      // console.log('eventTarget', event.target)
-      // console.log("targetContainer", targetContainer);
-      // console.log("currentWidget", currentWidget);
-      // console.log("previousPosition", previousPosition);
-      // console.log("replacingWidget", replacingWidget);
+      console.log('eventTarget', event.target)
+      console.log("targetContainer", targetContainer);
+      console.log("currentWidget", currentWidget);
+      console.log("previousPosition", previousPosition);
+      console.log("replacingWidget", replacingWidget);
       this.props.assignSpace(targetContainer, currentWidget, previousPosition, replacingWidget)
     }
 
