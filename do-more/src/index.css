@@ -154,6 +154,10 @@ p {
 
 /* Email / Calendar / News widgets */
 
+.i.fa.fa-envelope-open {
+  color: rgb(27, 25, 39);
+}
+
 .event-container,
 .email-container,
 .article-block
@@ -173,6 +177,11 @@ p {
 .event-container,
 .email-container {
   margin-bottom: 2%;
+}
+
+.email-link {
+  text-decoration: none;
+  color: rgb(27, 25, 39);
 }
 
 .calendar-widget h2,
@@ -340,9 +349,18 @@ p {
 
 /* Todo widget */
 
+.todo-widget {
+  position: relative;
+}
+
+.todo-footer {
+  position: absolute;
+  right: 5%;
+  bottom: 10%;
+}
+
 .filter-option:hover {
-  background-color: greenyellow;
-  color: black;
+  cursor: pointer;
 }
 
 .todo-widget {
@@ -460,6 +478,3 @@ p {
    padding: 20px 0;
    font-size: 1.5em;
 }
-
-
-
