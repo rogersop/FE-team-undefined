@@ -97,7 +97,7 @@ class App extends Component {
       this.setState({
         widgets: functioningWidgets
       });
-    }), 2000);
+    }), 5000);
   }
 
   autoFetchEvents = () => {
@@ -111,7 +111,7 @@ class App extends Component {
       this.setState({
         widgets: functioningWidgets
       });
-    }), 2000);
+    }), 5000);
   }
 
   autoClearEmailsAndEvents = () => {

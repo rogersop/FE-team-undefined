@@ -175,6 +175,16 @@ p {
   margin-bottom: 2%;
 }
 
+.email-link {
+  text-decoration: none;
+  color: rgb(27, 25, 39);
+}
+
+.calendar-widget h2,
+.calendar-widget h3,
+.calendar-widget h4 {
+  margin: 0.5vh;
+}
 
 .email-widget p {
   font-size: 2vh;
@@ -350,9 +360,18 @@ padding-top: 0.1vh;
 
 /* Todo widget */
 
+.todo-widget {
+  position: relative;
+}
+
+.todo-footer {
+  position: absolute;
+  right: 5%;
+  bottom: 10%;
+}
+
 .filter-option:hover {
-  background-color: greenyellow;
-  color: black;
+  cursor: pointer;
 }
 
 .todo-widget {
@@ -470,6 +489,3 @@ padding-top: 0.1vh;
    padding: 20px 0;
    font-size: 1.5em;
 }
-
-
-
