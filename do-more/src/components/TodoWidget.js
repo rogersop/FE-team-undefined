@@ -8,7 +8,6 @@ class TodoWidget extends Component {
     selectedFilter: "All"
   }
 
-
   componentDidMount = () => {
       const todoState = JSON.parse(localStorage.getItem("todoState"));
       if(localStorage.todoState) {
@@ -119,7 +118,7 @@ class TodoWidget extends Component {
         })}
         </div>
 
-        <div className="todo-footer">
+        <div className="todo-footer todoWidget">
           <div className="todo-filter todoWidget">
             <span className="filter-option todoWidget" onClick={this.setFilterAll} value="All" >All</span>{" | "}
             <span className="filter-option todoWidget" onClick={this.setFilterDone} value="Done" >Done</span>{" | "}

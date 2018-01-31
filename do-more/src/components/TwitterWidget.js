@@ -12,13 +12,21 @@ import firebase from 'firebase';
     };
     firebase.initializeApp(config);
 
-let provider = new firebase.auth.TwitterAuthProvider();
+  let provider = new firebase.auth.TwitterAuthProvider();
 
-class TwitterWidget extends Component {
+  class TwitterWidget extends Component {
 
   state = {
     tweets: [],
-    isAutheticated: false,
+    isAuthenticated: false,
+  }
+
+  componentDidMount = () => {
+    let data = JSON.parse(localStorage.getItem('twitterData'))
+    if(data) {
+      this.fetchTweets(data)
+      this.fetchTweetsInterval(data)
+    } 
   }
 
   twitterSignin = () => {
@@ -30,27 +38,42 @@ class TwitterWidget extends Component {
           token: token,
           secret: secret
         }
-      fetch('https://aqueous-meadow-64857.herokuapp.com', {method: 'POST', body: JSON.stringify(data), headers: new Headers({
-        'Content-Type': 'application/json'
-      })})
-        .then((res) => {
-          return res.json()
-        })
-        .then((res) => {
-          this.addTweetsToState(res)
-        })
-        }).catch(function(error) {
+        localStorage.setItem('twitterData', JSON.stringify(data))
+
+        this.fetchTweets(data);
+        this.fetchTweetsInterval(data);        
+      })
+        .catch(function(error) {
             console.log(error.code)
             console.log(error.message)
         });
   }
  
- addTweetsToState = (tweets) => {
-  this.setState({
-    tweets,
-    isAuthenticated: true,
-  })
- }
+
+  fetchTweets = (data) => {
+    fetch('https://team-undefined-back-end.herokuapp.com', {method: 'POST', body: JSON.stringify(data), headers: new Headers({
+      'Content-Type': 'application/json'
+    })})
+    .then((res) => {
+      return res.json()
+    })
+    .then((res) => {
+      this.addTweetsToState(res)
+    })
+  }
+  
+  fetchTweetsInterval = (data) => {
+    // console.log('fetching tweets intermittently')
+    setInterval(() => this.fetchTweets(data),  1800000) // this is 30 minutes, do not change please
+  }
+
+  addTweetsToState = (tweets) => {
+    this.setState({
+      tweets,
+      isAuthenticated: true,
+    }, res => {localStorage.setItem("twitterState", JSON.stringify(this.state))})
+
+  }
 
  twitterSignout = () => {
    firebase.auth().signOut()
@@ -81,6 +104,7 @@ class TwitterWidget extends Component {
 
     return (
       <div className="twitter-widget twitterWidget" draggable='true' onDragStart={this.dragstart_handler} id="twitterWidget">
+      <button className="twitterWidget" onClick = {this.twitterSignout}>Twitter Signout</button>
         <h2 className="twitterWidget">Latest Tweets</h2>
           {
             this.state.tweets.map((tweet, i) => {
@@ -102,9 +126,7 @@ class TwitterWidget extends Component {
           </div>
             )
           })
-        }
-        <button className="twitterWidget" onClick = {this.twitterSignin}>Twitter Sign in</button>
-        <button className="twitterWidget" onClick = {this.twitterSignout}>Twitter Signout</button>
+        }        
       </div>
     )
   }
