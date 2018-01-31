@@ -274,12 +274,39 @@ p {
 
 /* Twitter widget */
 
+.twitter-widget button {
+  margin-left: 40%;
+  border: solid 0.1vh rgb(27, 25, 39);
+  background-color: rgba(255, 255, 255, 0);
+  font-family: 'Josefin Sans', sans-serif;
+  padding: 1%;
+}
+
+.twitter-widget h2{
+  display: inline-block;
+}
+
+.twitter-sign-in {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0);
+  font-family: 'Josefin Sans', sans-serif;
+  padding: 18%;
+}
+
+.twitter-sign-in button {
+  margin: 0;
+  padding: 14%;
+  font-size: 2vh;
+}
+
 .tweet-container {
   display: grid;
   grid-template-columns: 10% 90%;
   margin: 20px 0;
   grid-column-gap: 0.5em;
-  border-bottom: 1px solid whitesmoke;
+  border-bottom: solid 0.1vh rgb(27, 25, 39);
   padding: 10px 0;
 }
 
@@ -296,6 +323,19 @@ p {
   width: 100%;
   text-decoration: none;
   display: block;
+}
+
+.tweet-container a {
+  display: block;
+}
+
+.tweet-name,
+.tweet-container .tweet-text {
+  font-size: 2vh;
+}
+
+.tweet-screename {
+  font-size: 1.8vh;
 }
 
 /* Todo widget */
@@ -332,14 +372,16 @@ p {
 
 .todo-input button:hover,
 .news-articles button:hover,
-.news-settings button:hover {
+.news-settings button:hover,
+.twitter-widget button:hover {
   cursor: pointer;
 }
 
 .todo-input button:focus,
 .todo-input input:focus,
 .news-articles button:focus,
-.news-settings button:focus {
+.news-settings button:focus,
+.twitter-widget button:focus {
   outline: none;
 }
 
