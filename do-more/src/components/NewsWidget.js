@@ -48,7 +48,6 @@ class NewsWidget extends Component {
   }
 
   dragstart_handler = (event) => {
-    // console.log('dragging')
     event.dataTransfer.setData("text/plain", event.target.id);
   }
 
