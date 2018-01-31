@@ -22,10 +22,18 @@ class App extends Component {
     },
     widgets: {
       'emailWidget': {
-        component: <EmailWidget loading={true} emails={[]} />
+        component: <EmailWidget 
+                      loading={true} 
+                      emails={[]} 
+                      fetchFiveEmails={this.props.fetchFiveEmails} 
+                    />
       },
       'calendarWidget': {
-        component: <CalendarWidget loading={true} events={[]} />
+        component: <CalendarWidget 
+                      loading={true} 
+                      events={[]} 
+                      fetchFiveEvents={this.props.fetchFiveEvents} 
+                    />
       },
       'newsWidget': {
         component: <NewsWidget />
@@ -53,19 +61,34 @@ class App extends Component {
     }
   }
 
-  assignSpace = (space, widgetName) => {
+  assignSpace = (space, widgetName, previousSpace, replacingWidget) => {
     increaseUseCount(widgetName);
     const newSpaces = Object.assign({}, this.state.spaces)
     newSpaces[space] = widgetName;
+    if(previousSpace) {
+      newSpaces[previousSpace] = replacingWidget;
+    }
     this.setState({
       spaces: newSpaces
     })
-    
+  }
+
+  findSpace = (widgetName) => {
+    const spaces = this.state.spaces;
+    for(let position in spaces) {
+      if(spaces[position] === widgetName){
+        return position;
+      }
+    }
+  }
+
+  findCurrentWidget = (position) => {
+    const spaces = this.state.spaces;
+    return spaces[position];
   }
 
   autoFetchEmails = () => {
     setTimeout(() => this.props.fetchFiveEmails((fiveEmails) => {
-      console.log(fiveEmails)
       const functioningWidgets = Object.assign({}, this.state.widgets, {
         emailWidget: Object.assign({}, this.state.widgets.emailWidget, {
           component: <EmailWidget loading={false} emails={fiveEmails} />
@@ -149,6 +172,10 @@ class App extends Component {
           autoClearEmailsAndEvents={this.autoClearEmailsAndEvents} />
         <div className="App" id="page-wrap" >
           <img className="background-image" src={`${background.url}`} alt="background" />
+          <WidgetContainer id="topLeft" widget={widgets[spaces.topLeft]}  assignSpace={this.assignSpace} findSpace={this.findSpace} findCurrentWidget={this.findCurrentWidget}/>
+          <WidgetContainer id="topRight" widget={widgets[spaces.topRight]} assignSpace={this.assignSpace} findSpace={this.findSpace} findCurrentWidget={this.findCurrentWidget} />
+          <WidgetContainer id="bottomRight" widget={widgets[spaces.bottomRight]} assignSpace={this.assignSpace} findSpace={this.findSpace} findCurrentWidget={this.findCurrentWidget} />
+          <WidgetContainer id="bottomLeft" widget={widgets[spaces.bottomLeft]} assignSpace={this.assignSpace} findSpace={this.findSpace} findCurrentWidget={this.findCurrentWidget}  />
           <div className="background-btns">
           <p className="refresh-logo" onClick={this.handleRefreshClick}>
             <i className="fa fa-refresh" />
@@ -157,10 +184,6 @@ class App extends Component {
             <i className="fa fa-heart-o" />
           </p>  
           </div>
-          <WidgetContainer id="NW" widget={widgets[spaces.topLeft]} />
-          <WidgetContainer id="NE" widget={widgets[spaces.topRight]} />
-          <WidgetContainer id="SE" widget={widgets[spaces.bottomRight]} />
-          <WidgetContainer id="SW" widget={widgets[spaces.bottomLeft]} />
         </div>
       </div>
     );

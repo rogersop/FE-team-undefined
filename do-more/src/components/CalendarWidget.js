@@ -4,12 +4,30 @@ import moment from 'moment';
 
 class CalendarWidget extends Component {
 
+  state = {}
+
+  dragstart_handler = (event) => {
+    // console.log('dragging')
+    event.dataTransfer.setData("text/plain", event.target.id);
+  }
+
+  componentDidMount = () => {
+    setTimeout(() => {
+      this.props.fetchFiveEvents(events => {
+        this.setState({
+          events,
+          loading: false
+        })
+      });
+    }, 1000)
+  }
+
   render () {
-    const events = this.props.events;
-    const loading = this.props.loading;
+    const events = this.state.events ? this.state.events : this.props.events;
+    const loading = this.state.loading === false ? this.state.loading : this.props.loading;
     
     return(
-      <div className="calendar-widget">
+      <div className="calendar-widget calendarWidget" draggable='true' onDragStart={this.dragstart_handler} id="calendarWidget">
 
       {
         loading ?
@@ -26,12 +44,13 @@ class CalendarWidget extends Component {
           endTime = moment(endTime.split('-05:00')[0], 'YYYY-MM-DD-HH-mm-ss')
           const startTimeFormatted = startTime.format('llll');
           const duration = endTime.from(startTime, true)
-          return <a key={i} className="event-container" href="https://calendar.google.com/calendar/r/agenda">
-              <h2>{summary}</h2>
-              <h3>{location}</h3>
-              <h3>{startTimeFormatted} </h3> <h4>This event lasts {duration}</h4>
+          return <a key={i} className="event-container calendarWidget" href="https://calendar.google.com/calendar/r/agenda">
+              <h2 className="calendarWidget">{summary}</h2>
+              <h3 className="calendarWidget">{location}</h3>
+              <h3 className="calendarWidget">{startTimeFormatted}</h3> 
+              <h4 className="calendarWidget">This event lasts {duration}</h4>
               
-              <p>{description}</p>
+              <p className="calendarWidget">{description}</p>
             </a>
         })
       }

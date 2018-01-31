@@ -6,7 +6,6 @@ const newsapi = new NewsAPI(process.env.REACT_APP_NEWSAPIKEY);
 
 class NewsWidget extends Component {
   
-  
   state = {
     articles: [],
     settings: false,
@@ -48,68 +47,85 @@ class NewsWidget extends Component {
     });
   }
 
+  dragstart_handler = (event) => {
+    // console.log('dragging')
+    event.dataTransfer.setData("text/plain", event.target.id);
+  }
 
   render () {
     const {articles, settings} = this.state
    
     return (
-        <div className="news-widget">
+
+        <div className="news-widget newsWidget">
       {
         settings ?
         
-        <div className="news-settings">
-          <h3>Filter settings</h3>
-          <button onClick={this.handleSettingsClick}>Save Settings</button>
-          <div className="settings">
-          <form className="category-selector">
-          <h4>By Category:</h4>
-            <label>
+        <div className="news-settings newsWidget">
+          <h3 className="newsWidget">Filter settings</h3>
+          <button className="newsWidget" onClick={this.handleSettingsClick}>Save Settings</button>
+          <div className="settings newsWidget">
+          <form className="category-selector newsWidget">
+          <h4 className="newsWidget">By Category:</h4>
+            <label className="newsWidget">
               <input 
+              className="newsWidget"
               type="radio" name="category" value="business" 
               checked={this.state.category==='business'} 
               onChange={this.handleCategoryChange} />
               Business
             </label>
             <label>
-              <input 
+              <input  
+              className="newsWidget"
               type="radio" name="category" value="entertainment" 
               checked={this.state.category==='entertainment'} 
               onChange={this.handleCategoryChange} />
               Entertainment
             </label>
             <label>
-              <input type="radio" name="category" value="general" 
+              <input  
+              className="newsWidget"
+               type="radio" name="category" value="general" 
               checked={this.state.category==='general'} 
               onChange={this.handleCategoryChange} />
               General
             </label>
             <label>
-              <input type="radio" name="category" value="health" 
+              <input  
+              className="newsWidget"
+              type="radio" name="category" value="health" 
               checked={this.state.category==='health'} 
               onChange={this.handleCategoryChange} />
               Health
             </label>
             <label>
-              <input type="radio" name="category" value="science" 
+              <input  
+              className="newsWidget"
+              type="radio" name="category" value="science" 
               checked={this.state.category==='science'} 
               onChange={this.handleCategoryChange} />
               Science
             </label>
             <label>
-              <input type="radio" name="category" value="sports"  
+              <input  
+              className="newsWidget"
+              type="radio" name="category" value="sports"  
               checked={this.state.category==='sports'} 
               onChange={this.handleCategoryChange} />
               Sports
             </label>
             <label>
-              <input type="radio" name="category" value="technology" 
+              <input  
+              className="newsWidget"
+              type="radio" name="category" value="technology" 
               checked={this.state.category==='technology'} 
               onChange={this.handleCategoryChange} />
               Technology
             </label>
           </form>
-          <form className="country-selector">
-          <h4> By Country: </h4>
+          <form className="country-selector newsWidget">
+          <h4 className="newsWidget"> By Country: </h4>
             <label>
               <input 
               type="radio" name="country" value="au" 
@@ -118,26 +134,30 @@ class NewsWidget extends Component {
               Australia
             </label>
             <label>
-              <input 
+              <input  
+              className="newsWidget" 
               type="radio" name="country" value="ie" 
               checked={this.state.country==='ie'} 
               onChange={this.handleCountryChange} />
               Ireland
             </label>
             <label>
-              <input type="radio" name="country" value="gb" 
+              <input  
+              className="newsWidget" type="radio" name="country" value="gb" 
               checked={this.state.country==='gb'} 
               onChange={this.handleCountryChange} />
               Great Britain
             </label>
             <label>
-              <input type="radio" name="country" value="ca" 
+              <input  
+              className="newsWidget" type="radio" name="country" value="ca" 
               checked={this.state.country==='ca'} 
               onChange={this.handleCountryChange} />
              Canada
             </label>
             <label>
-              <input type="radio" name="country" value="us" 
+              <input  
+              className="newsWidget" type="radio" name="country" value="us" 
               checked={this.state.country==='us'} 
               onChange={this.handleCountryChange} />
               USA
@@ -146,15 +166,15 @@ class NewsWidget extends Component {
           </div>
         </div> :
         
-        <div className="news-articles">
-          <h3>// LATEST HEADLINES</h3>
+        <div className="news-articles newsWidget">
+          <h3 className="newsWidget">// LATEST HEADLINES</h3>
           <button onClick={this.handleSettingsClick}>Settings</button>
           {articles.map((article, i) => {
-            return <div key={i}>
-              <a className="article-block" href={article.url}>
-                <div className="article-image-box"><img className="article-image" src={article.urlToImage} alt="news pic" /></div>
-                <span className="article-title">{article.title}</span>
-                <span className="article-source">{article.source.name}</span>
+            return <div className="newsWidget" key={i}>
+              <a className="article-block newsWidget" href={article.url}>
+                <div className="article-image-box newsWidget"><img className="article-image newsWidget" src={article.urlToImage} alt="news pic" /></div>
+                <span className="article-title newsWidget">{article.title}</span>
+                <span className="article-source newsWidget" >{article.source.name}</span>
               </a>
             </div>
           })}

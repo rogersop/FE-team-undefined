@@ -37,29 +37,28 @@ body {
   justify-content: center;
 }
 
-
-#NW {
+#topLeft {
   top: 0;
   left: 0;
   padding-left: 8%;
   padding-right: 2%;
 }
 
-#NE {
+#topRight {
   top: 0;
   left: 50%;
   padding-right: 8%;
   padding-left: 2%;
 }
 
-#SW {
+#bottomLeft {
   top: 50%;
   left: 0;
   padding-left: 8%;
   padding-right: 2%;
 }
 
-#SE {
+#bottomRight {
   top: 50%;
   left: 50%;
   padding-right: 8%;

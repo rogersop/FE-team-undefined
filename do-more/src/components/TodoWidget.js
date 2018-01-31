@@ -8,7 +8,6 @@ class TodoWidget extends Component {
     selectedFilter: "All"
   }
 
-
   componentDidMount = () => {
       const todoState = JSON.parse(localStorage.getItem("todoState"));
       if(localStorage.todoState) {
@@ -90,20 +89,27 @@ class TodoWidget extends Component {
     })
   }
 
+  dragstart_handler = (event) => {
+    // console.log('dragging')
+    event.dataTransfer.setData("text/plain", event.target.id);
+  }
+
+
 
   render() {
     const {todoItems, inputText, selectedFilter} = this.state;
 
     return (
-      <div className="todo-widget">
-        <div className="todo-header">
-          <h3>// DAILY WORK PLANNER</h3>
-          <div className="todo-input">
-            <input type="text" value={inputText} onChange={this.updateInputText} />
-            <button onClick={this.addTodoItem}>Add Task</button>
+
+      <div className="todo-widget todoWidget">
+        <div className="todo-header todoWidget">
+          <h3 className="todoWidget">// DAILY WORK PLANNER</h3>
+          <div className="todo-input todoWidget">
+            <input className="todoWidget" type="text" value={inputText} onChange={this.updateInputText} />
+            <button className="todoWidget" onClick={this.addTodoItem}>Add Task</button>
           </div>
         </div>
-        <div className="todo-list">
+        <div className="todo-list todoWidget">
         {this.filterTodos(todoItems, selectedFilter).map((item, i) => {
          return <TodoItem
            key={i} 
@@ -116,12 +122,13 @@ class TodoWidget extends Component {
            </TodoItem>
         })}
         </div>
-        <div className="todo-footer">
-          <div className="todo-filter">
-            <span className="filter-option" onClick={this.setFilterAll} value="All">All</span>{" | "}
-            <span className="filter-option" onClick={this.setFilterDone} value="Done">Done</span>{" | "}
-            <span className="filter-option" onClick={this.setFilterTodo} value="To-Do">To-Do</span>
+        <div className="todo-footer todoWidget">
+          <div className="todo-filter todoWidget">
+            <span className="filter-option todoWidget" onClick={this.setFilterAll} value="All">All</span>{" | "}
+            <span className="filter-option todoWidget" onClick={this.setFilterDone} value="Done">Done</span>{" | "}
+            <span className="filter-option todoWidget" onClick={this.setFilterTodo} value="To-Do">To-Do</span>
           </div>
+
         </div>
       </div>
     )
