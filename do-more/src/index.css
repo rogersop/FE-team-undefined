@@ -5,7 +5,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   height: 100%;
   width: 100%;
   font-weight: 400;
@@ -41,27 +41,29 @@ body {
 #NW {
   top: 0;
   left: 0;
-  padding-right: 1%;
-  /* background-color: rgba(0, 0, 255, 0.03); */
+  padding-left: 8%;
+  padding-right: 2%;
 }
 
 #NE {
   top: 0;
   left: 50%;
-  padding-right: 5%;
-
+  padding-right: 8%;
+  padding-left: 2%;
 }
 
 #SW {
   top: 50%;
   left: 0;
-  padding-right: 1%;
+  padding-left: 8%;
+  padding-right: 2%;
 }
 
 #SE {
   top: 50%;
   left: 50%;
-  padding-right: 5%;
+  padding-right: 8%;
+  padding-left: 2%;
 }
 
 h4 {
@@ -77,7 +79,7 @@ p {
 .twitter-widget a,
 .news-widget a {
   text-decoration: none;
-  color: white;
+  color: rgb(27, 25, 39);
   display: grid;
   margin: 1%;
   grid-template-columns: 20% 80%;
@@ -96,7 +98,6 @@ p {
   justify-content: center;
   align-items: center;
 }
-
 
 .i.fa.fa-envelope-open, {
   font-size: 4vh;
@@ -128,25 +129,25 @@ p {
 
 /* General widget styling */
 
+.news-widget,
 .event-widget,
 .email-widget,
 .calendar-widget,
 .todo-widget,
-.news-widget,
 .twitter-widget {
-  color: rgb(255, 255, 255);
-  text-shadow: black 1px 1px 5px;    
-  /* background-color: rgba(0, 0, 0, 0.55); */
+  background-color: rgba(250, 250, 250, 0.1);
+  box-shadow: -10px 10px 50px black;
+  color: rgb(27, 25, 39);
+  font-weight: 100;
+  width: 88%;
   padding: 2.5%;
   box-sizing: border-box;
   overflow-y: scroll;
- 
 }
 
 .info-widget {
-  color: rgb(230, 230, 230);
-  text-shadow: black 2px 2px 10px;  
-  /* background-color: rgba(0, 0, 0, 0.55); */
+  color: rgb(24, 24, 24);
+  text-shadow: black 2px 2px 10px;
   box-sizing: border-box;
   height: 100%;
   width: 100%;
@@ -156,9 +157,10 @@ p {
 
 .event-container,
 .email-container,
-.article-block {
-  padding-bottom: 2%;
-  border-bottom: 1px solid white;
+.article-block
+{
+  padding: 2% 0;
+  border-bottom: 1px solid rgb(27, 25, 39);
 }
 
 .email-container fa {
@@ -223,12 +225,13 @@ p {
 }
 
 .article-title {
-  margin-left: 1%;
+  margin-left: 10%;
   grid-row: 2 / 1;
+  font-weight: bold;
 }
 
 .article-source {
-  margin-left: 1%;
+  margin-left: 10%;
   grid-row: 2 / 2;
 }
 
@@ -236,6 +239,38 @@ p {
 .article-title {
   float: left;
   font-size: 1.7vh;
+}
+
+.news-settings h4 {
+  display: inline;
+}
+
+.news-settings h3 {
+  display: inline-block;
+  margin-right: 60%;
+}
+
+.news-articles h3 {
+  display: inline;
+  margin-right: 50%;
+}
+
+.settings {
+  margin-top: 2%;
+}
+
+.news-settings label {
+  display: block;
+}
+
+.category-selector {
+  float: left;
+  width: 50%;
+}
+
+.country-selector {
+  float: left;
+  width: 50%
 }
 
 /* Twitter widget */
@@ -264,7 +299,6 @@ p {
   display: block;
 }
 
-
 /* Todo widget */
 
 .filter-option:hover {
@@ -272,6 +306,47 @@ p {
   color: black;
 }
 
+.todo-widget {
+  font-weight: 600;
+}
+
+.todo-input {
+  text-align: center;
+}
+
+.todo-input input {
+  width: 50%;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  border-bottom: solid 0.1vh rgb(27, 25, 39);
+}
+
+.todo-input button,
+.news-articles button,
+.news-settings button {
+  margin-left: 4%;
+  border: solid 0.1vh rgb(27, 25, 39);
+  background-color: rgba(255, 255, 255, 0);
+  font-family: 'Josefin Sans', sans-serif;
+  padding: 1%;
+}
+
+.todo-input button:hover,
+.news-articles button:hover,
+.news-settings button:hover {
+  cursor: pointer;
+}
+
+.todo-input button:focus,
+.todo-input input:focus,
+.news-articles button:focus,
+.news-settings button:focus {
+  outline: none;
+}
+
+.todo-list {
+  margin: 5% 0;
+}
 
 /* Side bar and burger button */
 
@@ -289,8 +364,6 @@ p {
   box-shadow:  grey 1px 1px 10px;
 }
 
-
-
 .bm-cross-button {
   height: 24px;
   width: 24px;
@@ -304,7 +377,19 @@ p {
 .side-bar-bottom {
   height: 50%;
   width: 100%;
-  background-color: grey;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.side-bar-bottom {
+  text-align: center;
+}
+
+.side-bar-bottom button {
+  width: 40%;
+}
+
+#auth-status {
+  margin-top: 10%;
 }
 
 /* Info widget */ 

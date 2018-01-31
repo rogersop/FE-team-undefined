@@ -46,11 +46,11 @@ class SideBar extends Component {
 
           <WidgetSelector assignSpace={this.props.assignSpace} widgets={this.props.widgets} selectedSpace={this.state.selectedSpace} />
 
-          <button id="sign-in-or-out-button"
-            style={{ marginLeft: "25px" }} onClick={this.handleAuthClick}>Sign In/Authorize</button>
-          <button id="revoke-access-button"
-            style={{ display: "none", marginLeft: "25px" }}>Revoke access</button>
-          <div id="auth-status" style={{ display: "inline", paddingLeft: "25px" }}></div><hr />
+          <div id="auth-status"></div><br />
+            <button id="sign-in-or-out-button"
+              style={{ marginLeft: "25px" }} onClick={this.handleAuthClick}>Sign In/Authorize</button>
+            <button id="revoke-access-button"
+              style={{ display: "none", marginLeft: "25px" }}>Revoke access</button>
         </div>
       </Menu>
     )

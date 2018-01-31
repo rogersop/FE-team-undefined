@@ -53,14 +53,16 @@ class NewsWidget extends Component {
     const {articles, settings} = this.state
    
     return (
-      <div className="news-widget">
+        <div className="news-widget">
       {
         settings ?
         
         <div className="news-settings">
-          <p>Filter settings</p>
-          <p>by category:</p>
+          <h3>Filter settings</h3>
+          <button onClick={this.handleSettingsClick}>Save Settings</button>
+          <div className="settings">
           <form className="category-selector">
+          <h4>By Category:</h4>
             <label>
               <input 
               type="radio" name="category" value="business" 
@@ -106,9 +108,8 @@ class NewsWidget extends Component {
               Technology
             </label>
           </form>
-          <br/>
-          <p> By country: </p>
           <form className="country-selector">
+          <h4> By Country: </h4>
             <label>
               <input 
               type="radio" name="country" value="au" 
@@ -142,11 +143,11 @@ class NewsWidget extends Component {
               USA
             </label>
           </form>
-          <button onClick={this.handleSettingsClick}>Save settings</button>
+          </div>
         </div> :
         
         <div className="news-articles">
-          <h4>Latest headlines:</h4>
+          <h3>// LATEST HEADLINES</h3>
           <button onClick={this.handleSettingsClick}>Settings</button>
           {articles.map((article, i) => {
             return <div key={i}>
@@ -159,7 +160,7 @@ class NewsWidget extends Component {
           })}
         </div>
       }
-    </div>
+      </div>
     )
   }
 

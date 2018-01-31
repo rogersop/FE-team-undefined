@@ -97,7 +97,11 @@ class TodoWidget extends Component {
     return (
       <div className="todo-widget">
         <div className="todo-header">
-          <h3>To-Do:</h3>
+          <h3>// DAILY WORK PLANNER</h3>
+          <div className="todo-input">
+            <input type="text" value={inputText} onChange={this.updateInputText} />
+            <button onClick={this.addTodoItem}>Add Task</button>
+          </div>
         </div>
         <div className="todo-list">
         {this.filterTodos(todoItems, selectedFilter).map((item, i) => {
@@ -112,17 +116,11 @@ class TodoWidget extends Component {
            </TodoItem>
         })}
         </div>
-
         <div className="todo-footer">
           <div className="todo-filter">
             <span className="filter-option" onClick={this.setFilterAll} value="All">All</span>{" | "}
             <span className="filter-option" onClick={this.setFilterDone} value="Done">Done</span>{" | "}
             <span className="filter-option" onClick={this.setFilterTodo} value="To-Do">To-Do</span>
-          </div>
-
-          <div className="todo-input">
-            <input type="text" value={inputText} onChange={this.updateInputText} />
-            <button onClick={this.addTodoItem}>Add item</button>
           </div>
         </div>
       </div>
