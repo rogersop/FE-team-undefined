@@ -8,6 +8,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   height: 100%;
   width: 100%;
+  font-weight: 400;
 }
 
 .App {
@@ -48,21 +49,19 @@ body {
   top: 0;
   left: 50%;
   padding-right: 5%;
-  /* background-color: rgba(255, 0, 0, 0.03); */
+
 }
 
 #SW {
   top: 50%;
   left: 0;
   padding-right: 1%;
-  /* background-color: rgba(255, 255, 0, 0.03); */
 }
 
 #SE {
   top: 50%;
   left: 50%;
   padding-right: 5%;
-  /* background-color: rgba(0, 128, 0, 0.03); */
 }
 
 h4 {
@@ -83,7 +82,7 @@ p {
   margin: 1%;
   grid-template-columns: 20% 80%;
   grid-template-rows: 10% 10% 10% 10% 10%;
-  font-size: 2.1vh;
+  font-size: 1.5vh;
 }
 
 /* Like button */
@@ -98,7 +97,7 @@ p {
   align-items: center;
 }
 
-.i.fa.fa-reply,
+
 .i.fa.fa-envelope-open, {
   font-size: 4vh;
   color: whitesmoke;
@@ -123,7 +122,8 @@ p {
 }
 
 .fa:hover {
-  text-shadow: 0 0 10px rgb(255, 0, 0);
+  color: rgb(224, 224, 224);
+  cursor: pointer;
 } 
 
 /* General widget styling */
@@ -134,13 +134,13 @@ p {
 .todo-widget,
 .news-widget,
 .twitter-widget {
-  color: rgb(230, 230, 230);
+  color: rgb(255, 255, 255);
   text-shadow: black 1px 1px 5px;    
   /* background-color: rgba(0, 0, 0, 0.55); */
   padding: 2.5%;
   box-sizing: border-box;
   overflow-y: scroll;
-  font-weight: bold;
+ 
 }
 
 .info-widget {
@@ -174,11 +174,18 @@ p {
   margin-bottom: 2%;
 }
 
+.calendar-widget h2,
+.calendar-widget h3,
+.calendar-widget h4 {
+  margin: 0.5vh;
+}
 
 .calendar-widget p,
 .email-widget p {
-  font-size: 10px;
-  margin-bottom: 1%;
+  font-size: 2vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  margin-left: 0.5vh
 }
 
 .email-container i {
@@ -228,7 +235,7 @@ p {
 .article-source,
 .article-title {
   float: left;
-  font-size: 2vh;
+  font-size: 1.7vh;
 }
 
 /* Twitter widget */
@@ -279,11 +286,10 @@ p {
 
 .bm-burger-bars {
   background: white;
+  box-shadow:  grey 1px 1px 10px;
 }
 
-.bm-burger-bars:hover {
-  box-shadow: 0 0 10px rgb(255, 0, 0);
-}
+
 
 .bm-cross-button {
   height: 24px;
