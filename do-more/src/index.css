@@ -175,13 +175,7 @@ p {
   margin-bottom: 2%;
 }
 
-.calendar-widget h2,
-.calendar-widget h3,
-.calendar-widget h4 {
-  margin: 0.5vh;
-}
 
-.calendar-widget p,
 .email-widget p {
   font-size: 2vh;
   margin-top: 2vh;
@@ -197,9 +191,25 @@ p {
   text-shadow: grey 1px 1px 10px;
 }
 
+.calendar-widget p {
+  font-size: 2vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  margin-left: 0.5vh
+}
+
+.calendar-widget h3 {
+padding-top: 0.1vh; 
+}
+
+.calendar-widget h5,
+.calendar-widget h6 {
+  margin: 0.2vh;
+}
+
 .calendar-widget a {
   text-decoration: none;
-  color: white;
+  color: rgb(27, 25, 39);
   display: grid;
   margin: 0;
   padding: 0;
