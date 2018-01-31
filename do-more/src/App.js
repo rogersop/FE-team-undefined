@@ -154,7 +154,7 @@ class App extends Component {
             <i className="fa fa-refresh" />
           </p>
           <p className="like-logo" onClick={this.handleLikeBackground}>
-              <i className="fa fa-heart-o" />
+            <i className="fa fa-heart-o" />
           </p>  
           </div>
           <WidgetContainer id="NW" widget={widgets[spaces.topLeft]} />
