@@ -100,9 +100,14 @@ class TodoWidget extends Component {
     const {todoItems, inputText, selectedFilter} = this.state;
 
     return (
-      <div className="todo-widget todoWidget" draggable='true' onDragStart={this.dragstart_handler} id="todoWidget">
+
+      <div className="todo-widget todoWidget">
         <div className="todo-header todoWidget">
-          <h3 className="todoWidget">To-Do:</h3>
+          <h3 className="todoWidget">// DAILY WORK PLANNER</h3>
+          <div className="todo-input todoWidget">
+            <input className="todoWidget" type="text" value={inputText} onChange={this.updateInputText} />
+            <button className="todoWidget" onClick={this.addTodoItem}>Add Task</button>
+          </div>
         </div>
         <div className="todo-list todoWidget">
         {this.filterTodos(todoItems, selectedFilter).map((item, i) => {
@@ -117,18 +122,13 @@ class TodoWidget extends Component {
            </TodoItem>
         })}
         </div>
-
         <div className="todo-footer todoWidget">
           <div className="todo-filter todoWidget">
-            <span className="filter-option todoWidget" onClick={this.setFilterAll} value="All" >All</span>{" | "}
-            <span className="filter-option todoWidget" onClick={this.setFilterDone} value="Done" >Done</span>{" | "}
-            <span className="filter-option todoWidget" onClick={this.setFilterTodo} value="To-Do" >To-Do</span>
+            <span className="filter-option todoWidget" onClick={this.setFilterAll} value="All">All</span>{" | "}
+            <span className="filter-option todoWidget" onClick={this.setFilterDone} value="Done">Done</span>{" | "}
+            <span className="filter-option todoWidget" onClick={this.setFilterTodo} value="To-Do">To-Do</span>
           </div>
 
-          <div className="todo-input todoWidget">
-            <input type="text" className="todoWidget"value={inputText} onChange={this.updateInputText} />
-            <button onClick={this.addTodoItem} className="todoWidget">Add item</button>
-          </div>
         </div>
       </div>
     )

@@ -56,62 +56,76 @@ class NewsWidget extends Component {
     const {articles, settings} = this.state
    
     return (
-      <div className="news-widget newsWidget" draggable='true' onDragStart={this.dragstart_handler} id="newsWidget">
+
+        <div className="news-widget newsWidget">
       {
         settings ?
         
         <div className="news-settings newsWidget">
-          <p>Filter settings</p>
-          <p>by category:</p>
+          <h3 className="newsWidget">Filter settings</h3>
+          <button className="newsWidget" onClick={this.handleSettingsClick}>Save Settings</button>
+          <div className="settings newsWidget">
           <form className="category-selector newsWidget">
-            <label>
+          <h4 className="newsWidget">By Category:</h4>
+            <label className="newsWidget">
               <input 
+              className="newsWidget"
               type="radio" name="category" value="business" 
               checked={this.state.category==='business'} 
               onChange={this.handleCategoryChange} />
               Business
             </label>
             <label>
-              <input 
+              <input  
+              className="newsWidget"
               type="radio" name="category" value="entertainment" 
               checked={this.state.category==='entertainment'} 
               onChange={this.handleCategoryChange} />
               Entertainment
             </label>
             <label>
-              <input type="radio" name="category" value="general" 
+              <input  
+              className="newsWidget"
+               type="radio" name="category" value="general" 
               checked={this.state.category==='general'} 
               onChange={this.handleCategoryChange} />
               General
             </label>
             <label>
-              <input type="radio" name="category" value="health" 
+              <input  
+              className="newsWidget"
+              type="radio" name="category" value="health" 
               checked={this.state.category==='health'} 
               onChange={this.handleCategoryChange} />
               Health
             </label>
             <label>
-              <input type="radio" name="category" value="science" 
+              <input  
+              className="newsWidget"
+              type="radio" name="category" value="science" 
               checked={this.state.category==='science'} 
               onChange={this.handleCategoryChange} />
               Science
             </label>
             <label>
-              <input type="radio" name="category" value="sports"  
+              <input  
+              className="newsWidget"
+              type="radio" name="category" value="sports"  
               checked={this.state.category==='sports'} 
               onChange={this.handleCategoryChange} />
               Sports
             </label>
             <label>
-              <input type="radio" name="category" value="technology" 
+              <input  
+              className="newsWidget"
+              type="radio" name="category" value="technology" 
               checked={this.state.category==='technology'} 
               onChange={this.handleCategoryChange} />
               Technology
             </label>
           </form>
-          <br/>
-          <p> By country: </p>
           <form className="country-selector newsWidget">
+          <h4 className="newsWidget"> By Country: </h4>
             <label>
               <input 
               type="radio" name="country" value="au" 
@@ -120,39 +134,43 @@ class NewsWidget extends Component {
               Australia
             </label>
             <label>
-              <input 
+              <input  
+              className="newsWidget" 
               type="radio" name="country" value="ie" 
               checked={this.state.country==='ie'} 
               onChange={this.handleCountryChange} />
               Ireland
             </label>
             <label>
-              <input type="radio" name="country" value="gb" 
+              <input  
+              className="newsWidget" type="radio" name="country" value="gb" 
               checked={this.state.country==='gb'} 
               onChange={this.handleCountryChange} />
               Great Britain
             </label>
             <label>
-              <input type="radio" name="country" value="ca" 
+              <input  
+              className="newsWidget" type="radio" name="country" value="ca" 
               checked={this.state.country==='ca'} 
               onChange={this.handleCountryChange} />
              Canada
             </label>
             <label>
-              <input type="radio" name="country" value="us" 
+              <input  
+              className="newsWidget" type="radio" name="country" value="us" 
               checked={this.state.country==='us'} 
               onChange={this.handleCountryChange} />
               USA
             </label>
           </form>
-          <button onClick={this.handleSettingsClick}>Save settings</button>
+          </div>
         </div> :
         
-        <div className="news-articles newsWidget"> 
-          <h4>Latest headlines:</h4>
+        <div className="news-articles newsWidget">
+          <h3 className="newsWidget">// LATEST HEADLINES</h3>
           <button onClick={this.handleSettingsClick}>Settings</button>
           {articles.map((article, i) => {
-            return <div key={i}>
+            return <div className="newsWidget" key={i}>
               <a className="article-block newsWidget" href={article.url}>
                 <div className="article-image-box newsWidget"><img className="article-image newsWidget" src={article.urlToImage} alt="news pic" /></div>
                 <span className="article-title newsWidget">{article.title}</span>
@@ -162,7 +180,7 @@ class NewsWidget extends Component {
           })}
         </div>
       }
-    </div>
+      </div>
     )
   }
 

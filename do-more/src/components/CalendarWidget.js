@@ -44,14 +44,14 @@ class CalendarWidget extends Component {
           endTime = moment(endTime.split('-05:00')[0], 'YYYY-MM-DD-HH-mm-ss')
           const startTimeFormatted = startTime.format('llll');
           const duration = endTime.from(startTime, true)
-
           return <a key={i} className="event-container calendarWidget" href="https://calendar.google.com/calendar/r/agenda">
-            <p className="calendarWidget">{summary}</p>
-            <p className="calendarWidget">{startTimeFormatted}</p>
-            <p className="calendarWidget">This event lasts {duration}</p>
-            <p className="calendarWidget">{location}</p>
-            <p className="calendarWidget">{description}</p>
-          </a>
+              <h2 className="calendarWidget">{summary}</h2>
+              <h3 className="calendarWidget">{location}</h3>
+              <h3 className="calendarWidget">{startTimeFormatted}</h3> 
+              <h4 className="calendarWidget">This event lasts {duration}</h4>
+              
+              <p className="calendarWidget">{description}</p>
+            </a>
         })
       }
       </div>
