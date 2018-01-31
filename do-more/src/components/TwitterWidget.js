@@ -77,7 +77,9 @@ class TwitterWidget extends Component {
 
 
   render () {
+
     if(!this.state.isAuthenticated) return  <div className="twitter-widget twitterWidget twitterWidget" draggable='true' onDragStart={this.dragstart_handler} id="twitterWidget"><button onClick = {this.twitterSignin}>Twitter Sign in</button></div>
+
     return (
       <div className="twitter-widget twitterWidget" draggable='true' onDragStart={this.dragstart_handler} id="twitterWidget">
 

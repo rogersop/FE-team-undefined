@@ -31,7 +31,7 @@ class SideBar extends Component {
 
   render() {
     return (
-      <Menu pageWrapId={"page-wrap"}>
+      <Menu right pageWrapId={"page-wrap"}>
         <div className="side-bar-top">
           <InfoWidget />
         </div>

@@ -7,7 +7,7 @@ import NewsWidget from './components/NewsWidget';
 import EmailWidget from './components/EmailWidget';
 import TwitterWidget from './components/TwitterWidget';
 import TodoWidget from './components/TodoWidget';
-import {increaseUseCount, getRandomBackground} from './database/index.js';
+import {increaseUseCount, getRandomBackground, increaseLikeCount, decreaseLikeCount} from './database/index.js';
 // import getRandomBackground from './database/index.js';
 import moment from 'moment';
 
@@ -37,23 +37,17 @@ class App extends Component {
         component: <TodoWidget />
       }
     },
-    background: {}
+    background: {},
+    backgroundLiked: false
   }
 
   componentWillMount = () => {
     const currentTimeStamp = moment().format();
     const lastRefreshTimeStamp = localStorage.getItem('bgLastRefresh')
-    const difference = moment.utc(moment(currentTimeStamp).diff(moment(lastRefreshTimeStamp))).format('HH')
+    const difference = moment(currentTimeStamp).diff(moment(lastRefreshTimeStamp), 'hours');
     const currentBackground = JSON.parse(localStorage.getItem('background'));
-
-    if (lastRefreshTimeStamp === null || +difference > 24) {
-      getRandomBackground()
-        .then(background => {
-          this.setState({ background })
-
-          localStorage.setItem('background', JSON.stringify(background))
-          localStorage.setItem('bgLastRefresh', currentTimeStamp)
-        })
+    if (lastRefreshTimeStamp === null || +difference >= 12) {
+      this.handleRefreshBackground()
     } else {
      this.setState({ background: currentBackground })
     }
@@ -95,6 +89,7 @@ class App extends Component {
 
   autoFetchEmails = () => {
     setTimeout(() => this.props.fetchFiveEmails((fiveEmails) => {
+      console.log(fiveEmails)
       const functioningWidgets = Object.assign({}, this.state.widgets, {
         emailWidget: Object.assign({}, this.state.widgets.emailWidget, {
           component: <EmailWidget loading={false} emails={fiveEmails} />
@@ -108,6 +103,7 @@ class App extends Component {
 
   autoFetchEvents = () => {
     setTimeout(() => this.props.fetchFiveEvents((fiveEvents) => {
+      console.log(fiveEvents)
       const functioningWidgets = Object.assign({}, this.state.widgets, {
         calendarWidget: Object.assign({}, this.state.widgets.calendarWidget, {
           component: <CalendarWidget loading={false} events={fiveEvents} />
@@ -135,6 +131,31 @@ class App extends Component {
     });
   }
 
+  handleLikeBackground = () => {
+    if (!this.state.backgroundLiked) {
+      increaseLikeCount(this.state.background.key);
+      this.setState({backgroundLiked: true})
+    }
+  }
+
+  handleRefreshClick = () => {
+    this.handleRefreshBackground();
+    decreaseLikeCount(this.state.background.key);
+  }
+
+  handleRefreshBackground = () => {
+    const currentTimeStamp = moment().format();
+    getRandomBackground()
+        .then(background => {
+          this.setState({ 
+            background,
+            backgroundLiked: false
+           })
+          localStorage.setItem('background', JSON.stringify(background))
+          localStorage.setItem('bgLastRefresh', currentTimeStamp)
+        })
+  }
+
   render() {
 
     const { widgets, spaces, background } = this.state
@@ -156,6 +177,14 @@ class App extends Component {
           <WidgetContainer id="topRight" widget={widgets[spaces.topRight]} assignSpace={this.assignSpace} findSpace={this.findSpace} findCurrentWidget={this.findCurrentWidget} />
           <WidgetContainer id="bottomRight" widget={widgets[spaces.bottomRight]} assignSpace={this.assignSpace} findSpace={this.findSpace} findCurrentWidget={this.findCurrentWidget} />
           <WidgetContainer id="bottomLeft" widget={widgets[spaces.bottomLeft]} assignSpace={this.assignSpace} findSpace={this.findSpace} findCurrentWidget={this.findCurrentWidget}  />
+          <div className="background-btns">
+          <p className="refresh-logo" onClick={this.handleRefreshClick}>
+            <i className="fa fa-refresh" />
+          </p>
+          <p className="like-logo" onClick={this.handleLikeBackground}>
+            <i className="fa fa-heart-o" />
+          </p>  
+          </div>
         </div>
       </div>
     );

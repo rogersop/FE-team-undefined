@@ -22,6 +22,8 @@ class CalendarWidget extends Component {
       {
         loading ?
         'Sign-in to see your upcoming calendar events...' :
+        events.items.length < 1 ?
+        'No more upcoming events this week...':
         events.items.map((event, i) => {
           const summary = event.summary;
           const location = event.location;
@@ -32,13 +34,14 @@ class CalendarWidget extends Component {
           endTime = moment(endTime.split('-05:00')[0], 'YYYY-MM-DD-HH-mm-ss')
           const startTimeFormatted = startTime.format('llll');
           const duration = endTime.from(startTime, true)
-          return <div key={i} className="event-container calendarWidget">
+
+          return <a key={i} className="event-container calendarWidget" href="https://calendar.google.com/calendar/r/agenda">
             <p className="calendarWidget">{summary}</p>
             <p className="calendarWidget">{startTimeFormatted}</p>
             <p className="calendarWidget">This event lasts {duration}</p>
             <p className="calendarWidget">{location}</p>
             <p className="calendarWidget">{description}</p>
-          </div>
+          </a>
         })
       }
       </div>
