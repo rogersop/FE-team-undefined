@@ -22,7 +22,13 @@ class App extends Component {
     },
     widgets: {
       'emailWidget': {
-        component: <EmailWidget loading={true} emails={[]} />
+        component: <EmailWidget 
+                      loading={true} 
+                      emails={[]} 
+                      fetchFiveEmails={this.props.fetchFiveEmails} 
+                      getUser={this.props.getUser} 
+                      refreshEmailsOnLoad={this.refreshEmailsOnLoad}
+                    />
       },
       'calendarWidget': {
         component: <CalendarWidget loading={true} events={[]} />
@@ -79,11 +85,15 @@ class App extends Component {
     return spaces[position];
   }
 
+  refreshEmailsOnLoad = () => {
+    this.autoFetchEmails();
+  }
+
   autoFetchEmails = () => {
     setTimeout(() => this.props.fetchFiveEmails((fiveEmails) => {
       const functioningWidgets = Object.assign({}, this.state.widgets, {
         emailWidget: Object.assign({}, this.state.widgets.emailWidget, {
-          component: <EmailWidget loading={false} emails={fiveEmails} />
+          component: <EmailWidget loading={false} emails={fiveEmails} refreshEmailsOnLoad={this.refreshEmailsOnLoad} />
         })
       })
       this.setState({
@@ -94,7 +104,6 @@ class App extends Component {
 
   autoFetchEvents = () => {
     setTimeout(() => this.props.fetchFiveEvents((fiveEvents) => {
-      console.log(fiveEvents)
       const functioningWidgets = Object.assign({}, this.state.widgets, {
         calendarWidget: Object.assign({}, this.state.widgets.calendarWidget, {
           component: <CalendarWidget loading={false} events={fiveEvents} />

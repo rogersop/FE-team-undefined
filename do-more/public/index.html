@@ -33,7 +33,7 @@
   <script>
     var GoogleAuth;
     var SCOPE =
-      "https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.compose https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly";
+      "https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly";
 
     let fiveEmails = [];
     let user;
@@ -67,7 +67,6 @@
         // Handle initial sign-in state. (Determine if user is already signed in.)
         user = GoogleAuth.currentUser.get();
         setSigninStatus();
-
         // Call handleAuthClick function when user clicks on
         //      "Sign In/Authorize" button.
         $('#revoke-access-button').click(function () {
@@ -127,6 +126,10 @@
       }
     }
 
+    function getUser () {
+      return user;
+    }
+
     function revokeAccess() {
       GoogleAuth.disconnect();
     }
@@ -151,6 +154,7 @@
     function updateSigninStatus(isSignedIn) {
       setSigninStatus();
     }
+
   </script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

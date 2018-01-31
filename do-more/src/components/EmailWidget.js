@@ -4,40 +4,34 @@ import moment from 'moment';
 
 class EmailWidget extends Component {
 
-  handleReplyClick = () => {
-    this.setState({
-      replying: true
-    })
-  }
+  state = {}
 
-  updateReplyContent = (event) => {
-    this.setState({
-      replyContent: event.target.value
-    })
-  }
-
-  updateReplyingTo = (event) => {
-    this.setState({
-      replyingTo: event.target.value
-    })
-  }
-
-  handleSendEmail = () => {
-    this.setState({
-      replying: false,
-      replyingTo: '',
-      replyContent: ''
-    })
-  }
-  
   dragstart_handler = (event) => {
     // console.log('dragging')
     event.dataTransfer.setData("text/plain", event.target.id);
   }
 
+  componentDidMount = () => {
+    setTimeout(() => {
+      this.props.fetchFiveEmails(emails => {
+        this.setState({
+          emails,
+          loading: false
+        })
+      });
+    }, 1000)
+  }
+  // componentWillReceiveProps = (newProps) => {
+  //   // const emails = newProps.emails
+  //   // if (emails.length) {
+  //     this.props.refreshEmailsOnLoad()
+  //   // }
+  // }
+
+
   render () {
-    const emails = this.props.emails;
-    const loading = this.props.loading;
+    const emails = this.state.emails ? this.state.emails : this.props.emails;
+    const loading = this.state.loading === false ? this.state.loading : this.props.loading;
 
     return( 
 

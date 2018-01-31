@@ -7,4 +7,5 @@ ReactDOM.render(
   authClick={window.authClick}
     fetchFiveEmails={window.fetchFiveEmails} 
     fetchFiveEvents={window.fetchFiveEvents}
+    getUser={window.getUser}
   /> , document.getElementById('root'));
