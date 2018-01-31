@@ -19,13 +19,26 @@ class WidgetContainer extends Component {
 
       const widRex = /Widget/;
       let targetContainer;
-      
-      if(event.target.id.match(widRex)){
-        targetContainer = this.props.findSpace(event.target.id);
-      } else { 
-        targetContainer = event.target.id;
-        
+      let eventWidgetClass;
+      const eventTargetClasses = event.target.classList;
+
+      eventTargetClasses.forEach(className => {
+          if(className.match(widRex)){
+            eventWidgetClass = className;
+          }
+      })
+      console.log('eventWidgetClass', eventWidgetClass)
+      console.log('eventID', event.target.id)
+      // console.log('eventTargetClass', event.target.classList, event.target.classList.toString())
+      if(eventWidgetClass === undefined) {
+           targetContainer = event.target.id;
       }
+
+      else if(eventWidgetClass.match(widRex)){
+        targetContainer = this.props.findSpace(eventWidgetClass);
+      } 
+        
+      
       const currentWidget = event.dataTransfer.getData("text/plain");
       const previousPosition = this.props.findSpace(currentWidget);
       const replacingWidget = this.props.findCurrentWidget(targetContainer)

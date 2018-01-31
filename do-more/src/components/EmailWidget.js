@@ -17,7 +17,7 @@ class EmailWidget extends Component {
     const loading = this.props.loading;
 
     return( 
-      <div className="email-widget draggable" draggable='true' onDragStart={this.dragstart_handler} id='emailWidget' >
+      <div className="email-widget draggable emailWidget" draggable='true' onDragStart={this.dragstart_handler} id='emailWidget' >
         
         {
           loading ? 
@@ -26,11 +26,11 @@ class EmailWidget extends Component {
             const subject = email.result.payload.headers.find(header => (header.name === "Subject")).value
             const from = email.result.payload.headers.find(header => (header.name === "From")).value
             const date = moment(email.result.payload.headers.find(header => (header.name === "Date")).value.split(' +0000')[0], 'ddd-DD-MMM-YYYY-HH-mm-ss').fromNow();
-            return <div key={i} className="email-container">
-              <p>Subject: {subject}</p>
-              <p>From: {from}</p>
-              <p>Received: {date}</p>
-              <p>{email.result.snippet}</p>
+            return <div key={i} className="email-container emailWidget">
+              <p className="emailWidget">Subject: {subject}</p>
+              <p className="emailWidget">From: {from}</p>
+              <p className="emailWidget">Received: {date}</p>
+              <p className="emailWidget">{email.result.snippet}</p>
             </div>
           })
         }

@@ -59,14 +59,14 @@ class NewsWidget extends Component {
     const {articles, settings} = this.state
    
     return (
-      <div className="news-widget notDroppable" draggable='true' onDragStart={this.dragstart_handler} id="newsWidget">
+      <div className="news-widget newsWidget" draggable='true' onDragStart={this.dragstart_handler} id="newsWidget">
       {
         settings ?
         
-        <div className="news-settings" id="newsWidget">
+        <div className="news-settings newsWidget">
           <p>Filter settings</p>
           <p>by category:</p>
-          <form className="category-selector">
+          <form className="category-selector newsWidget">
             <label>
               <input 
               type="radio" name="category" value="business" 
@@ -114,7 +114,7 @@ class NewsWidget extends Component {
           </form>
           <br/>
           <p> By country: </p>
-          <form className="country-selector">
+          <form className="country-selector newsWidget">
             <label>
               <input 
               type="radio" name="country" value="au" 
@@ -151,15 +151,15 @@ class NewsWidget extends Component {
           <button onClick={this.handleSettingsClick}>Save settings</button>
         </div> :
         
-        <div className="news-articles" id="newsWidget"> 
+        <div className="news-articles newsWidget"> 
           <h4>Latest headlines:</h4>
           <button onClick={this.handleSettingsClick}>Settings</button>
           {articles.map((article, i) => {
             return <div key={i}>
-              <a className="article-block" href={article.url}>
-                <div className="article-image-box"><img className="article-image" id="newsWidget" src={article.urlToImage} alt="news pic" /></div>
-                <span className="article-title" id="newsWidget">{article.title}</span>
-                <span className="article-source" id="newsWidget">{article.source.name}</span>
+              <a className="article-block newsWidget" href={article.url}>
+                <div className="article-image-box newsWidget"><img className="article-image newsWidget" src={article.urlToImage} alt="news pic" /></div>
+                <span className="article-title newsWidget">{article.title}</span>
+                <span className="article-source newsWidget" >{article.source.name}</span>
               </a>
             </div>
           })}

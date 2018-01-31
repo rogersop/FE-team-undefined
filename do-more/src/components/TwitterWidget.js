@@ -77,9 +77,9 @@ class TwitterWidget extends Component {
 
 
   render () {
-    if(!this.state.isAuthenticated) return  <div className="twitter-widget notDroppable" draggable='true' onDragStart={this.dragstart_handler} id="twitterWidget"><button onClick = {this.twitterSignin}>Twitter Sign in</button></div>
+    if(!this.state.isAuthenticated) return  <div className="twitter-widget twitterWidget twitterWidget" draggable='true' onDragStart={this.dragstart_handler} id="twitterWidget"><button onClick = {this.twitterSignin}>Twitter Sign in</button></div>
     return (
-      <div className="twitter-widget notDroppable" draggable='true' onDragStart={this.dragstart_handler} id="twitterWidget">
+      <div className="twitter-widget twitterWidget" draggable='true' onDragStart={this.dragstart_handler} id="twitterWidget">
 
       
 
@@ -87,16 +87,16 @@ class TwitterWidget extends Component {
           {
             this.state.tweets.map((tweet, i) => {
             return (
-            <div key={i} className="tweet-container">
-              <div className="tweet-grid-1">
-                <a href={`https://www.twitter.com/${tweet.screen_name}`} target="_blank"><img src={tweet.profile_image_url} alt='tweet-logo'/></a>
+            <div key={i} className="tweet-container twitterWidget">
+              <div className="tweet-grid-1 twitterWidget">
+                <a href={`https://www.twitter.com/${tweet.screen_name}`} className="twitterWidget" target="_blank"><img src={tweet.profile_image_url} alt='tweet-logo'/></a>
               </div>
-              <div className="tweet-grid-2">
-              <a href={`https://www.twitter.com/${tweet.screen_name}`} target="_blank"><p className="tweet-name">{tweet.name}</p>
-                <span className="tweet-screename"> @{tweet.screen_name}</span></a>
+              <div className="tweet-grid-2 twitterWidget">
+              <a href={`https://www.twitter.com/${tweet.screen_name}`} target="_blank"><p className="tweet-name twitterWidget">{tweet.name}</p>
+                <span className="tweet-screename twitterWidget"> @{tweet.screen_name}</span></a>
                 <div>
-                     <a href={`https://twitter.com/${tweet.screen_name}/status/${tweet.id}`} target="_blank" className="tweet-text">
-                    <p> {tweet.text}</p>
+                     <a href={`https://twitter.com/${tweet.screen_name}/status/${tweet.id}`} target="_blank" className="tweet-text twitterWidget">
+                    <p className="twitterWidget"> {tweet.text}</p>
 
                      </a>
                 </div>
@@ -105,8 +105,8 @@ class TwitterWidget extends Component {
             )
           })
         }
-        <button onClick = {this.twitterSignin}>Twitter Sign in</button>
-        <button onClick = {this.twitterSignout}>Twitter Signout</button>
+        <button className="twitterWidget" onClick = {this.twitterSignin}>Twitter Sign in</button>
+        <button className="twitterWidget" onClick = {this.twitterSignout}>Twitter Signout</button>
       </div>
     )
   }
