@@ -42,7 +42,6 @@ class EmailWidget extends Component {
               <h3 className="emailWidget">From:  {from}</h3> 
               <h3 className="emailWidget">Received:   {date}</h3>
               <p className="emailWidget">{email.result.snippet}</p>
-            </a>
             </div>
           })
         }
