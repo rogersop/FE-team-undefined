@@ -57,7 +57,7 @@ class NewsWidget extends Component {
    
     return (
 
-        <div className="news-widget newsWidget">
+        <div className="news-widget newsWidget" draggable='true' onDragStart={this.dragstart_handler} id='newsWidget'>
       {
         settings ?
         
