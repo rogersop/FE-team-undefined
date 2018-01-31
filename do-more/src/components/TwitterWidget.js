@@ -83,7 +83,7 @@ class TwitterWidget extends Component {
 
       
 
-        <h2>Latest Tweets</h2>
+        <h2 className="twitterWidget">Latest Tweets</h2>
           {
             this.state.tweets.map((tweet, i) => {
             return (
