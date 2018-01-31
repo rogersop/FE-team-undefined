@@ -91,10 +91,8 @@ class TodoWidget extends Component {
   }
 
   dragstart_handler = (event) => {
-    console.log('dragging')
-
+    // console.log('dragging')
     event.dataTransfer.setData("text/plain", event.target.id);
-
   }
 
 

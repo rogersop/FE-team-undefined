@@ -5,12 +5,9 @@ class WidgetContainer extends Component {
   
   
     dragover_handler = (event) => {
-
       event.preventDefault();
-     
       // Set the dropEffect to move
       event.dataTransfer.dropEffect = "move"
-  
     }
 
     drop_handler = (event) =>{
@@ -27,8 +24,8 @@ class WidgetContainer extends Component {
             eventWidgetClass = className;
           }
       })
-      console.log('eventWidgetClass', eventWidgetClass)
-      console.log('eventID', event.target.id)
+      // console.log('eventWidgetClass', eventWidgetClass)
+      // console.log('eventID', event.target.id)
       // console.log('eventTargetClass', event.target.classList, event.target.classList.toString())
       if(eventWidgetClass === undefined) {
            targetContainer = event.target.id;
@@ -47,11 +44,7 @@ class WidgetContainer extends Component {
       // console.log("currentWidget", currentWidget);
       // console.log("previousPosition", previousPosition);
       // console.log("replacingWidget", replacingWidget);
-
-
       this.props.assignSpace(targetContainer, currentWidget, previousPosition, replacingWidget)
-
-
     }
 
   render () {

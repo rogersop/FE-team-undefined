@@ -54,19 +54,15 @@ class App extends Component {
   }
 
   assignSpace = (space, widgetName, previousSpace, replacingWidget) => {
-    console.log(widgetName, typeof widgetName)
     increaseUseCount(widgetName);
     const newSpaces = Object.assign({}, this.state.spaces)
     newSpaces[space] = widgetName;
     if(previousSpace) {
       newSpaces[previousSpace] = replacingWidget;
-      console.log('hit me')
     }
-    console.log(newSpaces)
     this.setState({
       spaces: newSpaces
     })
-    
   }
 
   findSpace = (widgetName) => {
@@ -76,20 +72,15 @@ class App extends Component {
         return position;
       }
     }
-
   }
 
   findCurrentWidget = (position) => {
     const spaces = this.state.spaces;
-    
     return spaces[position];
-      
-    
   }
 
   autoFetchEmails = () => {
     setTimeout(() => this.props.fetchFiveEmails((fiveEmails) => {
-      console.log(fiveEmails)
       const functioningWidgets = Object.assign({}, this.state.widgets, {
         emailWidget: Object.assign({}, this.state.widgets.emailWidget, {
           component: <EmailWidget loading={false} emails={fiveEmails} />

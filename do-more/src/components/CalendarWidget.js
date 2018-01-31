@@ -5,12 +5,9 @@ import moment from 'moment';
 class CalendarWidget extends Component {
 
   dragstart_handler = (event) => {
-    console.log('dragging')
-
+    // console.log('dragging')
     event.dataTransfer.setData("text/plain", event.target.id);
-
   }
-
 
   render () {
     const events = this.props.events;

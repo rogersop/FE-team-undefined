@@ -6,7 +6,6 @@ const newsapi = new NewsAPI(process.env.REACT_APP_NEWSAPIKEY);
 
 class NewsWidget extends Component {
   
-  
   state = {
     articles: [],
     settings: false,
@@ -49,10 +48,8 @@ class NewsWidget extends Component {
   }
 
   dragstart_handler = (event) => {
-    console.log('dragging')
-
+    // console.log('dragging')
     event.dataTransfer.setData("text/plain", event.target.id);
-
   }
 
   render () {
