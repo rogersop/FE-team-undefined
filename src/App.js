@@ -188,6 +188,7 @@ class App extends Component {
           pageWrapId="page-wrap"
           outerContainerId="outer-container"
           assignSpace={this.assignSpace}
+          spaces={this.state.spaces}
           widgets={this.state.widgets}
           authClick={this.authClick}
           autoFetchEmails={this.autoFetchEmails}
