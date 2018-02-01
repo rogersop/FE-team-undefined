@@ -21,148 +21,17 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>DoMore</title>
+  <title>Frame.</title>
 </head>
 
 <body>
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
-
-
-  <!-- <script>
-    var GoogleAuth;
-    var SCOPE =
-      "https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly";
-
-    let fiveEmails = [];
-    let user;
-    let cbIn;
-
-    function handleClientLoad() {
-      // Load the API's client and auth2 modules.
-      // Call the initClient function after the modules load.
-      gapi.load('client:auth2', initClient)
-    }
-
-    function initClient() {
-      // Retrieve the discovery document for version q of Gmail API.
-      // In practice, your app can retrieve one or more discovery documents.
-      var discoveryUrls = ['https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest', 'https://content.googleapis.com/discovery/v1/apis/calendar/v3/rest'];
-
-      // Initialize the gapi.client object, which app uses to make API requests.
-      // Get API key and client ID from API Console.
-      // 'scope' field specifies space-delimited list of access scopes.
-      gapi.client.init({
-        'apiKey': 'AIzaSyCmp4f60ToAD5X-M6HWxLdfOetr1-sfQGM',
-        'discoveryDocs': discoveryUrls,
-        'clientId': '63643362222-1oafm5f9ci2ab2ucevpku7pkqd9f3mt8.apps.googleusercontent.com',
-        'scope': SCOPE
-      }).then(function () {
-        GoogleAuth = gapi.auth2.getAuthInstance();
-
-        // Listen for sign-in state changes.
-        GoogleAuth.isSignedIn.listen(updateSigninStatus);
-
-        // Handle initial sign-in state. (Determine if user is already signed in.)
-        user = GoogleAuth.currentUser.get();
-        setSigninStatus();
-        // Call handleAuthClick function when user clicks on
-        //      "Sign In/Authorize" button.
-        $('#revoke-access-button').click(function () {
-          revokeAccess();
-        });
-      });
-    }
-
-    function fetchFiveEmails(cb) {
-      if (user.w3) {
-        var requestEmailIds = gapi.client.gmail.users.messages.list({
-          'userId': user.w3.U3,
-          'maxResults': 5
-        });
-        let fiveEmailsArray = []
-        requestEmailIds.execute(function (response) {
-
-          Promise.all(response.result.messages.map(message => {
-            var requestEmailContent = gapi.client.gmail.users.messages.get({
-              "userId": user.w3.U3,
-              "id": message.id,
-              "metadataHeaders": null
-            })
-            return new Promise((resolve, reject) => {
-              requestEmailContent.execute(function (response) {
-                fiveEmailsArray.push(response);
-                if (fiveEmailsArray.length === 5) cb(fiveEmailsArray);
-              })
-            })
-          }))
-        })
-      }
-    }
-
-    function fetchFiveEvents(cb) {
-      if (user.w3) {
-        var requestEvents = gapi.client.calendar.events.list({
-          "calendarId": user.w3.U3,
-          // "maxResults": "5",
-          "privateExtendedProperty": null,
-          "sharedExtendedProperty": null
-        })
-        requestEvents.execute(cb)
-      }
-    }
-
-    function authClick(cbOut, cbInFunc) {
-      if (GoogleAuth.isSignedIn.get()) {
-        // User is authorized and has clicked 'Sign out' button.
-        GoogleAuth.signOut().then(cbOut());
-
-      } else {
-        cbIn = cbInFunc;
-        // User is not signed in. Start Google auth flow.
-        GoogleAuth.signIn();
-
-      }
-    }
-
-    function getUser () {
-      return user;
-    }
-
-    function revokeAccess() {
-      GoogleAuth.disconnect();
-    }
-
-    function setSigninStatus(isSignedIn) {
-      var user = GoogleAuth.currentUser.get();
-      var isAuthorized = user.hasGrantedScopes(SCOPE);
-      if (isAuthorized) {
-        if (cbIn) cbIn();
-        $('#sign-in-or-out-button').html('Sign out');
-        $('#revoke-access-button').css('display', 'inline-block');
-        $('#auth-status').html('Signed in.');
-        $('#fetch-emails-button').css('display', 'inline-block');
-      } else {
-        $('#sign-in-or-out-button').html('Sign In/Authorize');
-        $('#revoke-access-button').css('display', 'none');
-        $('#auth-status').html('Signed out.');
-        $('#fetch-emails-button').css('display', 'none');
-      }
-    }
-
-    function updateSigninStatus(isSignedIn) {
-      setSigninStatus();
-    }
-
-  </script> -->
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script async defer src="https://apis.google.com/js/api.js" >
-  // onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"
-  </script>
-  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script async defer src="https://apis.google.com/js/api.js" ></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 
   <div id="root"></div>
 </body>

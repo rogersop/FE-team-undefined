@@ -30,14 +30,19 @@ class SideBar extends Component {
   }
 
   handleClick = (event) => {
-      console.log(event.target.className);
-
       this.setState({
         selectedSpace : event.target.className,
       })
   }
 
   render() {
+
+    let spaces = Object.values(this.props.spaces);
+    let widgets = Object.keys(this.props.widgets);
+
+   let filteredWidget =  widgets.filter(widget => {
+      return spaces.indexOf(widget) === -1;
+    })
     return (
       <Menu right pageWrapId={"page-wrap"}>
         <div className="side-bar-top">
@@ -62,14 +67,18 @@ class SideBar extends Component {
             style={{background: this.state.selectedSpace === "bottomRight" ? "rgba(230, 127, 32, 0.945)" : undefined}}></div>
           </div>
 
-          <WidgetSelector assignSpace={this.props.assignSpace} widgets={this.props.widgets} selectedSpace={this.state.selectedSpace} />
+          <WidgetSelector assignSpace={this.props.assignSpace} widgets={filteredWidget} selectedSpace={this.state.selectedSpace} />
 
-          <div id="auth-status"></div><br />
-            <button id="sign-in-or-out-button"
-              style={{ marginLeft: "25px" }} onClick={this.handleAuthClick}>Sign In/Authorize</button>
-            <button id="revoke-access-button"
-              style={{ display: "none", marginLeft: "25px" }}>Revoke access</button>
-        </div>
+            <button id="sign-in-or-out-button" onClick={this.handleAuthClick}><i className="fa fa-google"></i> Sign In/Authorize</button>
+            <button id="revoke-access-button"><i className="fa fa-google"></i> Revoke access</button>
+          <div className="twitter-auth">
+            {
+              (!this.props.twitterIsAuthenticated) ?  
+                <button onClick = {this.props.twitterSignin}><i className="fa fa-twitter"></i> Twitter Sign In</button>:
+                <button onClick = {this.props.twitterSignout}><i className="fa fa-twitter"></i> Twitter Sign Out</button>
+            }
+          </div>
+          </div>
       </Menu>
     )
   }

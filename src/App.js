@@ -10,6 +10,20 @@ import TodoWidget from './components/TodoWidget';
 import {increaseUseCount, getRandomBackground, increaseLikeCount, decreaseLikeCount} from './database/index.js';
 import moment from 'moment';
 import $ from 'jquery';
+import firebase from 'firebase';
+
+const twitterConfig = {
+  apiKey: process.env.REACT_APP_TWITTERCONFIG_apiKey,
+  authDomain: process.env.REACT_APP_TWITTERCONFIG_authDomain,
+  databaseURL: process.env.REACT_APP_TWITTERCONFIG_databaseURL,
+  projectId: process.env.REACT_APP_TWITTERCONFIG_projectId,
+  storageBucket: process.env.REACT_APP_TWITTERCONFIG_storageBucket,
+  messagingSenderId: process.env.REACT_APP_TWITTERCONFIG_messagingSenderId
+};
+firebase.initializeApp(twitterConfig);
+
+const newTwitterProvider = new firebase.auth.TwitterAuthProvider();
+
 
 class App extends Component {
 
@@ -18,6 +32,7 @@ class App extends Component {
     SCOPE: "https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly",
     discoveryUrls: ['https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest', 'https://content.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
     cbIn: undefined,
+    twitterIsAuthenticated: false,
     spaces: {
       topLeft: 'emailWidget',
       topRight: 'todoWidget',
@@ -26,7 +41,7 @@ class App extends Component {
     },
     widgets: {
       'emailWidget': {
-        component: <EmailWidget 
+        component: <EmailWidget
                       loading={true} 
                       emails={[]}  
                     />
@@ -37,11 +52,14 @@ class App extends Component {
                       events={[]} 
                     />
       },
+      'twitterWidget': {
+        component: <TwitterWidget
+                    loading={true} 
+                    tweets={[]}
+                    />
+      },
       'newsWidget': {
         component: <NewsWidget />
-      },
-      'twitterWidget': {
-        component: <TwitterWidget />
       },
       'todoWidget': {
         component: <TodoWidget />
@@ -55,6 +73,7 @@ class App extends Component {
     setTimeout(() => {
       this.handleClientLoad();
     }, 100)
+
     const currentTimeStamp = moment().format();
     const lastRefreshTimeStamp = localStorage.getItem('bgLastRefresh')
     const difference = moment(currentTimeStamp).diff(moment(lastRefreshTimeStamp), 'hours');
@@ -160,7 +179,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(window.gapi)
 
     const { widgets, spaces, background } = this.state
 
@@ -170,11 +188,19 @@ class App extends Component {
           pageWrapId="page-wrap"
           outerContainerId="outer-container"
           assignSpace={this.assignSpace}
+          spaces={this.state.spaces}
           widgets={this.state.widgets}
           authClick={this.authClick}
           autoFetchEmails={this.autoFetchEmails}
           autoFetchEvents={this.autoFetchEvents}
-          autoClearEmailsAndEvents={this.autoClearEmailsAndEvents} />
+          autoClearEmailsAndEvents={this.autoClearEmailsAndEvents}
+          twitterIsAuthenticated={this.state.twitterIsAuthenticated}
+          twitterSignin={this.twitterSignin}
+          twitterSignout={this.twitterSignout}
+          fetchTweets={this.fetchTweets}
+          fetchTweetsInterval={this.fetchTweetsInterval}
+          addTweetsToState={this.addTweetsToState}
+           />
         <div className="App" id="page-wrap" >
           <img className="background-image" src={`${background.url}`} alt="background" />
           <WidgetContainer id="topLeft" widget={widgets[spaces.topLeft]}  assignSpace={this.assignSpace} findSpace={this.findSpace} findCurrentWidget={this.findCurrentWidget}/>
@@ -194,17 +220,13 @@ class App extends Component {
     );
   }
 
+  // GOOGLE AUTH, GMAIL AND CALENDAR FUNCTIONS
   
   handleClientLoad = () => {
-    // Load the API's client and auth2 modules.
-    // Call the initClient function after the modules load.
     window.gapi.load('client:auth2', this.initClient)
   }
 
   initClient = () => {
-    // Initialize the gapi.client object, which app uses to make API requests.
-    // Get API key and client ID from API Console.
-    // 'scope' field specifies space-delimited list of access scopes.
     window.gapi.client.init({
       'apiKey': process.env.REACT_APP_GMAILCONGIF_apiKey,
       'discoveryDocs': this.state.discoveryUrls,
@@ -213,10 +235,8 @@ class App extends Component {
     }).then(() => {
       let NewGoogleAuth = window.gapi.auth2.getAuthInstance();
       
-      // Listen for sign-in state changes.
       NewGoogleAuth.isSignedIn.listen(this.updateSigninStatus);
 
-      // Handle initial sign-in state. (Determine if user is already signed in.)
       let newUser = NewGoogleAuth.currentUser.get();
       this.setState({
         user: newUser,
@@ -239,15 +259,11 @@ class App extends Component {
     const isAuthorized = user.hasGrantedScopes(this.state.SCOPE);
     if (isAuthorized) {
       if (this.state.cbIn) this.state.cbIn();
-      $('#sign-in-or-out-button').html('Sign out');
+      $('#sign-in-or-out-button').html('<i class="fa fa-google"></i>oogle: Sign out');
       $('#revoke-access-button').css('display', 'inline-block');
-      $('#auth-status').html('Signed in.');
-      $('#fetch-emails-button').css('display', 'inline-block');
     } else {
-      $('#sign-in-or-out-button').html('Sign In/Authorize');
+      $('#sign-in-or-out-button').html('<i class="fa fa-google"></i>oogle: Sign In Gmail and Calendar');
       $('#revoke-access-button').css('display', 'none');
-      $('#auth-status').html('Signed out.');
-      $('#fetch-emails-button').css('display', 'none');
     }
   }
 
@@ -295,7 +311,6 @@ class App extends Component {
     if (this.state.user.w3) {
       const requestEvents = window.gapi.client.calendar.events.list({
         "calendarId": this.state.user.w3.U3,
-        // "maxResults": "5",
         "privateExtendedProperty": null,
         "sharedExtendedProperty": null
       })
@@ -303,7 +318,74 @@ class App extends Component {
     }
   }
 
+  // TWITTER FUNCTIONS
+  twitterSignin = () => {
+    firebase.auth().signInWithPopup(newTwitterProvider)
+      .then((result) => {
+        let token = result.credential.accessToken;
+        let secret = result.credential.secret;
+        let data = {
+          token: token,
+          secret: secret
+        }
+        this.fetchTweets(data);
+        this.fetchTweetsInterval(data);   
+        this.setState({
+          twitterIsAuthenticated: true
+        });
+        localStorage.setItem('twitterData', JSON.stringify(data))     
+      })
+        .catch(function(error) {
+            console.log(error.code)
+            console.log(error.message)
+        });
+  }
 
+  twitterSignout = () => {
+    firebase.auth().signOut()
+    .then( () => {
+      const functioningWidgets = Object.assign({}, this.state.widgets, {
+        twitterWidget: Object.assign({}, this.state.widgets.twitterWidget, {
+          component: <TwitterWidget loading={true} tweets={[]} fetchTweets={this.fetchTweets} fetchTweetsInterval={this.fetchTweetsInterval}  />
+        })
+      })
+      this.setState({
+        widgets: functioningWidgets,
+        twitterIsAuthenticated: false
+      })
+    }, (error)  => {
+       console.log(error)
+    });
+  }
+
+  fetchTweets = (data) => {
+    fetch('https://team-undefined-back-end.herokuapp.com', {method: 'POST', body: JSON.stringify(data), headers: new Headers({
+      'Content-Type': 'application/json'
+    })})
+    .then((res) => {
+      return res.json()
+    })
+    .then((res) => {
+      this.setTweetWidgetState(res)
+    })
+  }
+  
+  fetchTweetsInterval = (data) => {
+    setInterval(() => this.fetchTweets(data),  1800000) // this is 30 minutes, do not change please
+  }
+
+  setTweetWidgetState = (tweets) => {
+    const functioningWidgets = Object.assign({}, this.state.widgets, {
+      twitterWidget: Object.assign({}, this.state.widgets.twitterWidget, {
+        component: <TwitterWidget loading={false} tweets={tweets} fetchTweets={this.fetchTweets} fetchTweetsInterval={this.fetchTweetsInterval} />
+      })
+    })
+    this.setState({
+      widgets: functioningWidgets
+    }, () => {
+      localStorage.setItem("twitterState", JSON.stringify(this.state.tweets))
+    })
+  }
 }
 
 export default App;
