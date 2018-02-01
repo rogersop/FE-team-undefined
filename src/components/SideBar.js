@@ -69,18 +69,15 @@ class SideBar extends Component {
 
           <WidgetSelector assignSpace={this.props.assignSpace} widgets={filteredWidget} selectedSpace={this.state.selectedSpace} />
 
-          <div id="auth-status"></div><br />
-            <button id="sign-in-or-out-button"
-              style={{ marginLeft: "25px" }} onClick={this.handleAuthClick}>Sign In/Authorize</button>
-            <button id="revoke-access-button"
-              style={{ display: "none", marginLeft: "25px" }}>Revoke access</button>
-          </div>
+            <button id="sign-in-or-out-button" onClick={this.handleAuthClick}><i className="fa fa-google"></i> Sign In/Authorize</button>
+            <button id="revoke-access-button"><i className="fa fa-google"></i> Revoke access</button>
           <div className="twitter-auth">
             {
               (!this.props.twitterIsAuthenticated) ?  
-                <button onClick = {this.props.twitterSignin}>Twitter Sign In</button>:
-                <button onClick = {this.props.twitterSignout}>Twitter Sign Out</button>
+                <button onClick = {this.props.twitterSignin}><i className="fa fa-twitter"></i> Twitter Sign In</button>:
+                <button onClick = {this.props.twitterSignout}><i className="fa fa-twitter"></i> Twitter Sign Out</button>
             }
+          </div>
           </div>
       </Menu>
     )

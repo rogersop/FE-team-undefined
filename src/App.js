@@ -259,15 +259,11 @@ class App extends Component {
     const isAuthorized = user.hasGrantedScopes(this.state.SCOPE);
     if (isAuthorized) {
       if (this.state.cbIn) this.state.cbIn();
-      $('#sign-in-or-out-button').html('Sign out');
+      $('#sign-in-or-out-button').html('<i class="fa fa-google"></i>oogle: Sign out');
       $('#revoke-access-button').css('display', 'inline-block');
-      $('#auth-status').html('Signed in.');
-      $('#fetch-emails-button').css('display', 'inline-block');
     } else {
-      $('#sign-in-or-out-button').html('Sign In/Authorize');
+      $('#sign-in-or-out-button').html('<i class="fa fa-google"></i>oogle: Sign In Gmail and Calendar');
       $('#revoke-access-button').css('display', 'none');
-      $('#auth-status').html('Signed out.');
-      $('#fetch-emails-button').css('display', 'none');
     }
   }
 
