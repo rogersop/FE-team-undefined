@@ -108,7 +108,7 @@ import firebase from 'firebase';
 
     return (
       <div className="twitter-widget twitterWidget" draggable='true' onDragStart={this.dragstart_handler} id="twitterWidget">
-        <h2 className="twitterWidget">// LATEST TWEETS</h2>
+        <h3 className="twitterWidget">// LATEST TWEETS</h3>
         <button className="twitterWidget" onClick = {this.twitterSignout}>Twitter Sign Out</button>
           {
             this.state.tweets.map((tweet, i) => {

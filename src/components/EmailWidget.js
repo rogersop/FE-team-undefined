@@ -49,7 +49,7 @@ class EmailWidget extends Component {
 
     return( 
       <div className="email-widget draggable emailWidget" draggable='true' onDragStart={this.dragstart_handler} id='emailWidget'>
-      <h2>// LATEST EMAILS</h2>
+      <h3>// LATEST EMAILS</h3>
         {
           loading ? 
           'Sign-in to view your most recent emails...' :
