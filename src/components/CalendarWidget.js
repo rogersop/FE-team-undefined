@@ -4,7 +4,10 @@ import moment from 'moment';
 
 class CalendarWidget extends Component {
 
-  state = {}
+  state = {
+    events: [],
+    loading: true
+  }
 
   dragstart_handler = (event) => {
     // console.log('dragging')
@@ -12,19 +15,38 @@ class CalendarWidget extends Component {
   }
 
   componentDidMount = () => {
-    setTimeout(() => {
+    this.setState({
+      loading: true
+    })
+    if (this.props.fetchFiveEvents) {
       this.props.fetchFiveEvents(events => {
         this.setState({
           events,
           loading: false
         })
-      });
-    }, 1000)
+      })
+    }
+  }
+
+  componentWillReceiveProps = (newProps) => {
+    if (newProps.fetchFiveEvents) {
+      newProps.fetchFiveEvents(events => {
+        this.setState({
+          events,
+          loading: false
+        })
+      })
+    } else if (newProps.loading) {
+      this.setState({
+        loading: true,
+        events: []
+      })
+    }
   }
 
   render () {
-    const events = this.state.events ? this.state.events : this.props.events;
-    const loading = this.state.loading === false ? this.state.loading : this.props.loading;
+    const events = this.state.events;
+    const loading = this.state.loading;
     
     return(
       <div className="calendar-widget calendarWidget" draggable='true' onDragStart={this.dragstart_handler} id="calendarWidget">
@@ -32,7 +54,7 @@ class CalendarWidget extends Component {
       {
         loading ?
         'Sign-in to see your upcoming calendar events...' :
-        events.items.length < 1 ?
+        events.length < 1 ?
         'No more upcoming events this week...':
         events.items.reverse().map((event, i) => {
           const summary = event.summary;

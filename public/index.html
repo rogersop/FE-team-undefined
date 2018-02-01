@@ -30,7 +30,7 @@
   </noscript>
 
 
-  <script>
+  <!-- <script>
     var GoogleAuth;
     var SCOPE =
       "https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly";
@@ -155,10 +155,11 @@
       setSigninStatus();
     }
 
-  </script>
+  </script> -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()">
+  <script async defer src="https://apis.google.com/js/api.js" >
+  // onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"
   </script>
   <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
   
