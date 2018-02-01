@@ -7,7 +7,6 @@ class WidgetSelector extends Component {
   render () {
     const selectedSpace = this.props.selectedSpace;
     const widgetName = this.props.widgets[0];
-    console.log(widgetName)
     return (
      
          <div>

@@ -1,20 +1,4 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
-
-
-  // Initialize Firebase
-  // let config = {
-  //   apiKey: process.env.REACT_APP_TWITTERCONFIG_apiKey,
-  //   authDomain: process.env.REACT_APP_TWITTERCONFIG_authDomain,
-  //   databaseURL: process.env.REACT_APP_TWITTERCONFIG_databaseURL,
-  //   projectId: process.env.REACT_APP_TWITTERCONFIG_projectId,
-  //   storageBucket: process.env.REACT_APP_TWITTERCONFIG_storageBucket,
-  //   messagingSenderId: process.env.REACT_APP_TWITTERCONFIG_messagingSenderId
-  // };
-  
-  // firebase.initializeApp(config);
-
-  // let provider = new firebase.auth.TwitterAuthProvider();
 
   class TwitterWidget extends Component {
 
