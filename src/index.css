@@ -452,7 +452,10 @@ padding-top: 0.1vh;
 }
 
 .side-bar-bottom {
+
   text-align: center;
+  display: flex;
+ 
 }
 
 .side-bar-bottom button {
@@ -464,6 +467,12 @@ padding-top: 0.1vh;
   border: 2px solid lightgray;
   border-radius: 5px;
 }
+
+.side-bar-bottom .control-pad {
+
+  transform: translate(160%)
+}
+
 
 .side-bar-bottom select {
   background: rgb(43, 43, 43);
@@ -512,6 +521,48 @@ padding-top: 0.1vh;
    padding-top: 30px;
    font-size: 1.5em;
    color: lightgray;
+}
+
+.control-pad {
+
+  width: 70px;
+  height: 70px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+
+
+}
+
+.control-pad > div{
+  height: 50%;
+  width: 50%;
+  border: 1px solid lightgray;
+  box-sizing: border-box;
+  
+}
+
+.control-pad .topLeft {
+  border-top-left-radius: 5px;
+  
+}
+
+.control-pad .topRight {
+  border-top-right-radius: 5px;
+} 
+
+.control-pad .bottomLeft {
+  border-bottom-left-radius: 5px;
+} 
+
+.control-pad .bottomRight {
+  border-bottom-right-radius: 5px;
+} 
+
+.selected {
+  background: rgba(230, 127, 32, 0.945);
 }
 
 /* Info widget */ 

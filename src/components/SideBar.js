@@ -29,6 +29,14 @@ class SideBar extends Component {
     this.props.autoFetchEvents();
   }
 
+  handleClick = (event) => {
+      console.log(event.target.className);
+
+      this.setState({
+        selectedSpace : event.target.className,
+      })
+  }
+
   render() {
     return (
       <Menu right pageWrapId={"page-wrap"}>
@@ -43,6 +51,16 @@ class SideBar extends Component {
             <option value="bottomLeft">Bottom Left</option>
             <option value="bottomRight">Bottom Right</option>
           </select> */}
+          <div className="control-pad">
+            <div className="topLeft" onClick={this.handleClick}
+            style={{background: this.state.selectedSpace === "topLeft" ? "rgba(230, 127, 32, 0.945)" : undefined}}></div>
+            <div className="topRight" onClick={this.handleClick}
+            style={{background: this.state.selectedSpace === "topRight" ? "rgba(230, 127, 32, 0.945)" : undefined}}></div>
+            <div className="bottomLeft" onClick={this.handleClick}
+            style={{background: this.state.selectedSpace === "bottomLeft" ? "rgba(230, 127, 32, 0.945)" : undefined}}></div>
+            <div className="bottomRight" onClick={this.handleClick}
+            style={{background: this.state.selectedSpace === "bottomRight" ? "rgba(230, 127, 32, 0.945)" : undefined}}></div>
+          </div>
 
           <WidgetSelector assignSpace={this.props.assignSpace} widgets={this.props.widgets} selectedSpace={this.state.selectedSpace} />
 
