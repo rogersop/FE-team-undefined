@@ -12,29 +12,34 @@ const firebase = require('firebase');
 // if (!firebase.apps.length) {
 //   firebase.initializeApp(config);
 // }
-const db = firebase.database();
+
+
 
 // const widgets = ['twitterWidget', 'todoWidget', 'calendarWidget', 'emailWidget', 'newsWidget']
 
 const createWidgetObject = (widget) => {
+  const db = firebase.database();
   db.ref(`widgets/${widget}/`).set({
     useCount: 0
   })
 }
 
 const increaseUseCount = (widget) => {
+  const db = firebase.database();
   db.ref(`widgets/${widget}/useCount`).transaction(currentCount => {
     return currentCount + 1;
   });
 }
 
 const decreaseUseCount = (widget) => {
+  const db = firebase.database();
   db.ref(`widgets/${widget}/useCount`).transaction(currentCount => {
     return currentCount - 1;
   });
 }
 
 const getWidgetsInfo = () => {
+  const db = firebase.database();
   return db.ref('widgets').once('value')
     .then(wgtState => {
       let widgets = wgtState.val();
@@ -62,6 +67,7 @@ const imageUrls = ['http://res.cloudinary.com/teamundefined/image/upload/q_100/v
 'http://res.cloudinary.com/teamundefined/image/upload/v1516794817/sunset-3092048_1920_j6l3go.jpg']
 
 const seedImageInfo = (image) => {
+  const db = firebase.database();
   db.ref(`backgrounds/`).push({
     url: image,
     likeCount: 0
@@ -73,6 +79,7 @@ const seedImageInfo = (image) => {
 // })
 
 const getAllImagesInfo = () => {
+  const db = firebase.database();
   return db.ref('backgrounds').once('value')
     .then(bgState => {
       let backgrounds = bgState.val();
@@ -84,6 +91,7 @@ const getAllImagesInfo = () => {
 }
 
 const getImageInfo = (imageKey) => {
+  const db = firebase.database();
   return db.ref(`backgrounds/${imageKey}`).once('value')
     .then(imageInfo => {
      return imageInfo.val();
@@ -91,18 +99,21 @@ const getImageInfo = (imageKey) => {
 }
 
 const increaseLikeCount = (imageKey) => {
+  const db = firebase.database();
   db.ref(`backgrounds/${imageKey}/likeCount`).transaction(currentCount => {
     return currentCount + 1;
   });
 }
 
 const decreaseLikeCount = (imageKey) => {
+  const db = firebase.database();
   db.ref(`backgrounds/${imageKey}/likeCount`).transaction(currentCount => {
     return currentCount - 1;
   });
 }
 
 const getRandomBackground = () => {
+  const db = firebase.database();
   return getAllImagesInfo().then(imagesArr => {
     return imagesArr[Math.floor(Math.random() * (imagesArr.length - 1))]
   })
