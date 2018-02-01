@@ -134,8 +134,8 @@ p {
 .calendar-widget,
 .todo-widget,
 .twitter-widget {
-  background-color: rgba(250, 250, 250, 0.1);
-  box-shadow: -10px 10px 50px black;
+  background-color: rgba(36, 36, 36, 0.1);
+  box-shadow: 0px 2px 5px black;
   color: rgb(27, 25, 39);
   font-weight: 100;
   width: 88%;
@@ -146,7 +146,7 @@ p {
 
 .info-widget {
   color: rgb(24, 24, 24);
-  text-shadow: black 2px 2px 10px;
+  /* text-shadow: 0px 0px 1px lightgray; */
   box-sizing: border-box;
   height: 100%;
   width: 100%;
@@ -447,7 +447,8 @@ padding-top: 0.1vh;
 .side-bar-bottom {
   height: 50%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  background-color: rgba(20, 20, 20, 0.815);
 }
 
 .side-bar-bottom {
@@ -456,6 +457,24 @@ padding-top: 0.1vh;
 
 .side-bar-bottom button {
   width: 40%;
+  margin-top: 5px;
+  background: rgb(43, 43, 43);
+  padding: 5px 10px;
+  color: white;
+  border: 2px solid lightgray;
+  border-radius: 5px;
+}
+
+.side-bar-bottom select {
+  background: rgb(43, 43, 43);
+  color: white;
+  margin-bottom: 5px;
+  appearance: none;  
+  padding: 5px;
+}
+
+.side-bar-bottom select:focus {
+  outline: none;
 }
 
 #auth-status {
@@ -474,11 +493,14 @@ padding-top: 0.1vh;
 
 .weather-box {
   margin-bottom: 10px;
+  color: lightgray
 }
 
 .weather-box img {
-  height: 25%;
-  width: 25%;
+  height: 20%;
+  width: 20%;
+  margin-bottom: 5px;
+  animation: iconMove 5s  linear infinite;
 }
 
 .weather-box > * {
@@ -486,6 +508,31 @@ padding-top: 0.1vh;
 }
 
 .time-box {
-   padding: 20px 0;
+   padding: 10px 0;
+   padding-top: 30px;
    font-size: 1.5em;
+   color: lightgray;
+}
+
+/* Info widget */ 
+
+@keyframes iconMove {
+
+  0% {
+    transform: translate(0)
+  }
+  50% {
+    transform: translate(2px)
+  }
+  80% {
+    transform: translate(0)
+  }
+
+  90% {
+    transform: translate(-2px)
+  }
+
+  100% {
+    transform: translate(-1px)
+  }
 }

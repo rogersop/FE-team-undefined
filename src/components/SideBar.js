@@ -36,13 +36,13 @@ class SideBar extends Component {
           <InfoWidget />
         </div>
         <div className="side-bar-bottom">
-          <select value={this.state.selectedSpace} onChange={this.handleChange}>
+          {/* <select value={this.state.selectedSpace} onChange={this.handleChange}>
             <option value="Select space to replace">Select space to replace</option>
             <option value="topLeft">Top Left</option>
             <option value="topRight">Top Right</option>
             <option value="bottomLeft">Bottom Left</option>
             <option value="bottomRight">Bottom Right</option>
-          </select>
+          </select> */}
 
           <WidgetSelector assignSpace={this.props.assignSpace} widgets={this.props.widgets} selectedSpace={this.state.selectedSpace} />
 

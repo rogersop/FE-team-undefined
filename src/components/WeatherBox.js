@@ -35,11 +35,22 @@ class WeatherBox extends Component {
 
 
   render() {
-
     if(this.state.loading) return <div>Loading...</div>
+    let icon;
+    switch(this.state.weather.weather[0].main) {
+      case 'Rain':
+      icon = "https://cdn3.iconfinder.com/data/icons/weather-16/256/Rainy_Day-512.png";
+      break;
+      case 'Clear':
+      icon = "https://cdn3.iconfinder.com/data/icons/weather-and-weather-forecast/32/sunny-512.png";
+      break;
+      case 'Clouds':
+      icon = "https://cdn3.iconfinder.com/data/icons/weather-16/256/Overcast-512.png"
+    }
+ 
     return ( 
       <div className="weather-box">
-        <img src={this.state.weather.weather[0].icon} alt="logo"/>
+        <img src={icon} alt="logo"/>
         <h2>{this.state.weather.weather[0].main}</h2> 
         <h2>{this.state.weather.main.temp.toFixed(0) +  "°C"}</h2>
         <h2>{this.state.weather.name}</h2>

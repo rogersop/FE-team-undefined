@@ -18,7 +18,7 @@ class EmailWidget extends Component {
           loading: false
         })
       });
-    }, 1000)
+    }, 4000)
   }
 
   render () {

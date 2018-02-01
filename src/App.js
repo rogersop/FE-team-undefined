@@ -21,18 +21,18 @@ class App extends Component {
     },
     widgets: {
       'emailWidget': {
-        component: <EmailWidget 
-                      loading={true} 
-                      emails={[]} 
-                      fetchFiveEmails={this.props.fetchFiveEmails} 
-                    />
+        // component: <EmailWidget 
+        //               loading={true} 
+        //               emails={[]} 
+        //               fetchFiveEmails={this.props.fetchFiveEmails} 
+        //             />
       },
       'calendarWidget': {
-        component: <CalendarWidget 
-                      loading={true} 
-                      events={[]} 
-                      fetchFiveEvents={this.props.fetchFiveEvents} 
-                    />
+        // component: <CalendarWidget 
+        //               loading={true} 
+        //               events={[]} 
+        //               fetchFiveEvents={this.props.fetchFiveEvents} 
+        //             />
       },
       'newsWidget': {
         component: <NewsWidget />
