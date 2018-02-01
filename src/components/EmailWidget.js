@@ -4,26 +4,48 @@ import moment from 'moment';
 
 class EmailWidget extends Component {
 
-  state = {}
+  state = {
+    emails: [],
+    loading: true
+  }
 
   dragstart_handler = (event) => {
     event.dataTransfer.setData("text/plain", event.target.id);
   }
 
   componentDidMount = () => {
-    setTimeout(() => {
+    this.setState({
+      loading: true
+    })
+    if (this.props.fetchFiveEmails) {
       this.props.fetchFiveEmails(emails => {
         this.setState({
           emails,
           loading: false
         })
-      });
-    }, 1000)
+      })
+    }
+  }
+
+  componentWillReceiveProps = (newProps) => {
+    if (newProps.fetchFiveEmails) {
+      newProps.fetchFiveEmails(emails => {
+        this.setState({
+          emails,
+          loading: false
+        })
+      })
+    } else if (newProps.loading) {
+      this.setState({
+        loading: true,
+        emails: []
+      })
+    }
   }
 
   render () {
-    const emails = this.state.emails ? this.state.emails : this.props.emails;
-    const loading = this.state.loading === false ? this.state.loading : this.props.loading;
+    const emails = this.state.emails;
+    const loading = this.state.loading;
 
     return( 
       <div className="email-widget draggable emailWidget" draggable='true' onDragStart={this.dragstart_handler} id='emailWidget'>
