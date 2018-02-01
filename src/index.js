@@ -1,11 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import $ from 'jquery';
 
 ReactDOM.render(
-  <App 
-  authClick={window.authClick}
-    fetchFiveEmails={window.fetchFiveEmails} 
-    fetchFiveEvents={window.fetchFiveEvents}
-    getUser={window.getUser}
-  /> , document.getElementById('root'));
+  <App /> , document.getElementById('root'));
