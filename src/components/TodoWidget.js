@@ -123,9 +123,9 @@ class TodoWidget extends Component {
         </div>
         <div className="todo-footer todoWidget">
           <div className="todo-filter todoWidget">
-            <span className="filter-option todoWidget" onClick={this.setFilterAll} value="All">All</span>{" | "}
-            <span className="filter-option todoWidget" onClick={this.setFilterDone} value="Done">Done</span>{" | "}
-            <span className="filter-option todoWidget" onClick={this.setFilterTodo} value="To-Do">To-Do</span>
+            <span className="filter-option todoWidget" onClick={this.setFilterAll} value="All" style={{textDecoration: this.state.selectedFilter === "All" ? "underline" : "none"}}>All</span>{" | "}
+            <span className="filter-option todoWidget" onClick={this.setFilterDone} value="Done" style={{textDecoration: this.state.selectedFilter === "Done" ? "underline" : "none"}}>Done</span>{" | "}
+            <span className="filter-option todoWidget" onClick={this.setFilterTodo} value="To-Do" style={{textDecoration: this.state.selectedFilter === "Todo" ? "underline" : "none"}}>To-Do</span>
           </div>
         </div>
       </div>
