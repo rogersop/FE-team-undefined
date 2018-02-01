@@ -59,7 +59,7 @@ class EmailWidget extends Component {
             const regexForDate = / [-+][0-9][0-9][0-9][0-9]/
             const date = moment(email.result.payload.headers.find(header => (header.name === "Date")).value.split(regexForDate)[0], 'ddd-DD-MMM-YYYY-HH-mm-ss').fromNow();
             return <div key={i} className="email-container emailWidget">
-            <a className="email-link emailWidget" href="https://mail.google.com/mail/u/0/#inbox/" target="_blank">  
+            <a className="email-link emailWidget" href="https://mail.google.com/mail/u/0/#inbox/" target="_blank" rel="noopener noreferrer">  
               <h3 className="emailWidget">Subject: {subject}</h3> 
               <h3 className="emailWidget">From:  {from}</h3> 
               <h3 className="emailWidget">Received:   {date}</h3>

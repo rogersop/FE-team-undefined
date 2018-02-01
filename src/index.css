@@ -65,11 +65,7 @@ body {
   padding-left: 2%;
 }
 
-h4 {
-  padding: 0;
-  margin: 0;
-}
-
+h4,
 p {
   padding: 0;
   margin: 0;
@@ -87,6 +83,7 @@ p {
 }
 
 /* Like button */
+
 .background-btns {
   z-index: 1000;
   position: absolute;
@@ -96,13 +93,6 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.i.fa.fa-envelope-open, {
-  font-size: 4vh;
-  color: whitesmoke;
-  margin: 10%;
-  text-shadow: grey 1px 1px 10px;
 }
 
 .like-logo i {
@@ -156,18 +146,9 @@ p {
 
 .event-container,
 .email-container,
-.article-block
-{
+.article-block {
   padding: 2% 0;
   border-bottom: 1px solid rgb(27, 25, 39);
-}
-
-.email-container fa {
-  font-size: 1.5vh;
-  color: whitesmoke;
-  margin: 0;
-  padding: 0;
-  text-shadow: grey 1px 1px 10px;
 }
 
 .event-container,
@@ -186,21 +167,7 @@ p {
   margin: 0.5vh;
 }
 
-.email-widget p {
-  font-size: 2vh;
-  margin-top: 2vh;
-  margin-bottom: 2vh;
-  margin-left: 0.5vh
-}
-
-.email-container i {
-  font-size: 2vh;
-  color: whitesmoke;
-  margin: 0;
-  padding: 0;
-  text-shadow: grey 1px 1px 10px;
-}
-
+.email-widget p,
 .calendar-widget p {
   font-size: 2vh;
   margin-top: 2vh;
@@ -209,7 +176,7 @@ p {
 }
 
 .calendar-widget h3 {
-padding-top: 0.1vh; 
+  padding-top: 0.1vh; 
 }
 
 .calendar-widget h5,
@@ -231,33 +198,33 @@ padding-top: 0.1vh;
   font-size: 1.5vh;
 }
 
+.article-block {
+  padding: 2% 0;
+}
+
 .article-image-box {
-  height: 7vh;
-  width: 14vh;
+  width: 100%;
   grid-row: 1 / span 2;
 }
 
 .article-image {
-  height: 7vh;
   width: 100%;
   overflow: hidden;
 }
 
 .article-title {
-  margin-left: 10%;
-  grid-row: 2 / 1;
+  margin-left: 5%;
+  grid-row: 1 / 2;
   font-weight: bold;
+  font-size: 1.7vh;
+  overflow-wrap: break-word;
 }
 
 .article-source {
-  margin-left: 10%;
+  margin-left: 5%;
   grid-row: 2 / 2;
-}
-
-.article-source,
-.article-title {
-  float: left;
   font-size: 1.7vh;
+  overflow-wrap: break-word;
 }
 
 .news-settings h4 {
@@ -282,17 +249,17 @@ padding-top: 0.1vh;
   display: block;
 }
 
-.category-selector {
+.category-selector,
+.country-selector {
   float: left;
   width: 50%;
 }
 
-.country-selector {
-  float: left;
-  width: 50%
-}
-
 /* Twitter widget */
+
+.tweet-grid-1 img {
+  width: 100%;
+}
 
 .twitter-widget button {
   margin-left: 40%;
@@ -343,6 +310,7 @@ padding-top: 0.1vh;
   width: 100%;
   text-decoration: none;
   display: block;
+  overflow-wrap: break-word;
 }
 
 .tweet-container a {
@@ -360,6 +328,12 @@ padding-top: 0.1vh;
 
 /* Todo widget */
 
+.fa-times {
+  color: rgb(27, 25, 39);
+  margin-left: 3%;
+  font-size: 2.5vh;
+}
+
 .todo-widget {
   position: relative;
 }
@@ -372,6 +346,7 @@ padding-top: 0.1vh;
 
 .filter-option:hover {
   cursor: pointer;
+  color: whitesmoke;
 }
 
 .todo-widget {
@@ -387,16 +362,21 @@ padding-top: 0.1vh;
   background-color: rgba(255, 255, 255, 0);
   border: none;
   border-bottom: solid 0.1vh rgb(27, 25, 39);
+  font-size: 2vh;
+  font-weight: bold;
 }
 
 .todo-input button,
 .news-articles button,
 .news-settings button {
-  margin-left: 4%;
   border: solid 0.1vh rgb(27, 25, 39);
   background-color: rgba(255, 255, 255, 0);
   font-family: 'Josefin Sans', sans-serif;
   padding: 1%;
+}
+
+.todo-input button {
+  margin-left: 4%;
 }
 
 .todo-input button:hover,
