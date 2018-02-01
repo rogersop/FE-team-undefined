@@ -30,7 +30,6 @@ class NewsWidget extends Component {
       })
     });
   }
-
  
 
   handleSettingsClick = () => {
@@ -39,17 +38,13 @@ class NewsWidget extends Component {
   }
 
   handleCategoryChange = (event) => {
-    console.log(event.target.className)
-    this.setState({
-      category: event.target.className
-    });
+    const category = event.target.className.slice(0, event.target.className.length - 11);
+    this.setState({ category });
   }
 
   handleCountryChange = (event) => {
-    console.log(event.target.className)
-    this.setState({
-      country: event.target.className
-    });
+    const country = event.target.className.slice(0, event.target.className.length - 11);
+    this.setState({ country });
   }
 
   
@@ -76,7 +71,7 @@ class NewsWidget extends Component {
           <h4 className="newsWidget">By Category:</h4>
         
           <div
-              className="business"
+              className="business newsWidget"
               name="category" value="business" 
               style= {{backgroundColor: this.state.category === "business" ? "rgba(0,0,0,0.0.3)" : undefined,
                 color: this.state.category === "business" ? "rgba(255, 255, 255, 1)" : undefined}} 
@@ -85,7 +80,7 @@ class NewsWidget extends Component {
             </div>
 
             <div
-              className="entertainment"
+              className="entertainment newsWidget"
               name="category" value="entertainment" 
               style= {{backgroundColor: this.state.category === "entertainment" ? "rgba(0,0,0,0.0.3)" : undefined,
                 color: this.state.category === "entertainment" ? "rgba(255, 255, 255, 1)" : undefined}} 
@@ -94,7 +89,7 @@ class NewsWidget extends Component {
             </div>
 
             <div
-              className="general"
+              className="general newsWidget"
               name="category" value="general" 
               style= {{backgroundColor: this.state.category === "general" ? "rgba(0,0,0,0.0.3)" : undefined,
                 color: this.state.category === "general" ? "rgba(255, 255, 255, 1)" : undefined}} 
@@ -103,7 +98,7 @@ class NewsWidget extends Component {
             </div>
 
             <div
-              className="health"
+              className="health newsWidget"
               name="category" value="health" 
               style= {{backgroundColor: this.state.category === "health" ? "rgba(0,0,0,0.0.3)" : undefined,
                 color: this.state.category === "health" ? "rgba(255, 255, 255, 1)" : undefined}} 
@@ -112,7 +107,7 @@ class NewsWidget extends Component {
             </div>
 
             <div
-              className="science"
+              className="science newsWidget"
               name="category" value="science" 
               style= {{backgroundColor: this.state.category === "science" ? "rgba(0,0,0,0.0.3)" : undefined,
                 color: this.state.category === "science" ? "rgba(255, 255, 255, 1)" : undefined}} 
@@ -121,7 +116,7 @@ class NewsWidget extends Component {
             </div>
 
             <div
-              className="sports"
+              className="sports newsWidget"
               name="category" value="sports" 
               style= {{backgroundColor: this.state.category === "sports" ? "rgba(0,0,0,0.0.3)" : undefined,
                 color: this.state.category === "sports" ? "rgba(255, 255, 255, 1)" : undefined}} 
@@ -130,7 +125,7 @@ class NewsWidget extends Component {
             </div>
 
             <div
-              className="technology"
+              className="technology newsWidget"
               name="category" value="technology" 
               style= {{backgroundColor: this.state.category === "technology" ? "rgba(0,0,0,0.0.3)" : undefined,
                 color: this.state.category === "technology" ? "rgba(255, 255, 255, 1)" : undefined}} 
@@ -142,7 +137,7 @@ class NewsWidget extends Component {
           <form className="country-selector newsWidget">
           <h4 className="newsWidget"> By Country: </h4>
           <div
-          className="au"
+          className="au newsWidget"
           name="country" value="au" 
           style= {{backgroundColor: this.state.country === "au" ? "rgba(0,0,0,0.0.3)" : undefined,
             color: this.state.country === "au" ? "rgba(255, 255, 255, 1)" : undefined}} 
@@ -151,7 +146,7 @@ class NewsWidget extends Component {
         </div>
 
         <div
-          className="ie"
+          className="ie newsWidget"
           name="country" value="ie" 
           style= {{backgroundColor: this.state.country === "ie" ? "rgba(0,0,0,0.0.3)" : undefined,
             color: this.state.country === "ie" ? "rgba(255, 255, 255, 1)" : undefined}} 
@@ -160,7 +155,7 @@ class NewsWidget extends Component {
         </div>
 
         <div
-          className="gb"
+          className="gb newsWidget"
           name="country" value="gb" 
           style= {{backgroundColor: this.state.country === "gb" ? "rgba(0,0,0,0.0.3)" : undefined,
             color: this.state.country === "gb" ? "rgba(255, 255, 255, 1)" : undefined}} 
@@ -169,7 +164,7 @@ class NewsWidget extends Component {
         </div>
 
         <div
-          className="ca"
+          className="ca newsWidget"
           name="country" value="ca" 
           style= {{backgroundColor: this.state.country === "ca" ? "rgba(0,0,0,0.0.3)" : undefined,
             color: this.state.country === "ca" ? "rgba(255, 255, 255, 1)" : undefined}} 
@@ -178,7 +173,7 @@ class NewsWidget extends Component {
         </div>
 
         <div
-          className="us"
+          className="us newsWidget"
           name="country" value="us" 
           style= {{backgroundColor: this.state.country === "us" ? "rgba(0,0,0,0.0.3)" : undefined,
             color: this.state.country === "us" ? "rgba(255, 255, 255, 1)" : undefined}} 
@@ -193,12 +188,12 @@ class NewsWidget extends Component {
         </div> :
         
         <div className="news-articles newsWidget">
-          <h3 className="newsWidget">// LATEST HEADLINES</h3>
+          <h3 className="newsWidget">{"// LATEST HEADLINES"}</h3>
           <button onClick={this.handleSettingsClick}>Settings</button>
           {articles.map((article, i) => {
             return <div className="newsWidget" key={i}>
               <a className="article-block newsWidget" href={article.url}>
-                <div className="article-image-box newsWidget"><img className="article-image newsWidget" src={article.urlToImage ? article.urlToImage : "http://mariafresa.net/data_gallery/blog-news-new-orleans-times-picayune-newspaper-going-digital-gaQZWo-clipart.jpg"} alt="News Picture" /></div>
+                <div className="article-image-box newsWidget"><img className="article-image newsWidget" src={article.urlToImage ? article.urlToImage : "http://mariafresa.net/data_gallery/blog-news-new-orleans-times-picayune-newspaper-going-digital-gaQZWo-clipart.jpg"} alt="News" /></div>
                 <span className="article-title newsWidget">{article.title}</span>
                 <span className="article-source newsWidget" >{article.source.name}</span>
               </a>

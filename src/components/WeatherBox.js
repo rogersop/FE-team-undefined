@@ -41,11 +41,14 @@ class WeatherBox extends Component {
       case 'Rain':
       icon = "https://cdn3.iconfinder.com/data/icons/weather-16/256/Rainy_Day-512.png";
       break;
+      case 'Clouds':
+      icon = "https://cdn3.iconfinder.com/data/icons/weather-16/256/Overcast-512.png"
+      break;
       case 'Clear':
       icon = "https://cdn3.iconfinder.com/data/icons/weather-and-weather-forecast/32/sunny-512.png";
       break;
-      case 'Clouds':
-      icon = "https://cdn3.iconfinder.com/data/icons/weather-16/256/Overcast-512.png"
+      default:
+      icon = "https://cdn3.iconfinder.com/data/icons/weather-and-weather-forecast/32/sunny-512.png";
     }
  
     return ( 

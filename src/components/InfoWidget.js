@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import WeatherBox from './WeatherBox';
 import TimeBox from './TimeBox';
-import GreetingBox from './GreetingBox';
 
 class InfoWidget extends Component {
 
@@ -9,7 +8,6 @@ class InfoWidget extends Component {
     return (
       <div className="info-widget">
         <TimeBox />
-        <GreetingBox />
         <WeatherBox />
       </div>
     )

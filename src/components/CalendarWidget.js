@@ -50,7 +50,7 @@ class CalendarWidget extends Component {
     
     return(
       <div className="calendar-widget calendarWidget" draggable='true' onDragStart={this.dragstart_handler} id="calendarWidget">
-      <h3 className ="calendar-title"> // EVENTS </h3>
+      <h3 className ="calendar-title calendarWidget">{"// EVENTS"}</h3>
       {
         loading ?
         'Sign-in to see your upcoming calendar events...' :
@@ -71,7 +71,7 @@ class CalendarWidget extends Component {
               <h4 className="calendarWidget"> {summary.toUpperCase()}</h4>
               <h5 className="calendarWidget">- {location}</h5>
               <h5 className="calendarWidget">- {startDateFormatted}</h5> 
-              <h5 className="calendarWidget">- {startTimeFormatted} // This event lasts {duration}</h5>  
+              <h5 className="calendarWidget">- {startTimeFormatted} {"// This event lasts"} {duration}</h5>  
               <p className="calendarWidget">{description}</p>
             </a>
         })

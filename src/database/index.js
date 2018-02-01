@@ -1,20 +1,5 @@
 const firebase = require('firebase');
 
-// let config = {
-//   apiKey: "AIzaSyDMqDVxZq28Oi44ZNm84POsHu7nvkttFX0",
-//   authDomain: "team-undefined-productivity.firebaseapp.com",
-//   databaseURL: "https://team-undefined-productivity.firebaseio.com",
-//   projectId: "team-undefined-productivity",
-//   storageBucket: "team-undefined-productivity.appspot.com",
-//   messagingSenderId: "716837513754"
-// };
-// console.log(firebase.apps)
-// if (!firebase.apps.length) {
-//   firebase.initializeApp(config);
-// }
-
-
-
 // const widgets = ['twitterWidget', 'todoWidget', 'calendarWidget', 'emailWidget', 'newsWidget']
 
 const createWidgetObject = (widget) => {
@@ -113,7 +98,6 @@ const decreaseLikeCount = (imageKey) => {
 }
 
 const getRandomBackground = () => {
-  const db = firebase.database();
   return getAllImagesInfo().then(imagesArr => {
     return imagesArr[Math.floor(Math.random() * (imagesArr.length - 1))]
   })
