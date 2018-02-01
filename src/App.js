@@ -41,7 +41,7 @@ class App extends Component {
     },
     widgets: {
       'emailWidget': {
-        component: <EmailWidget 
+        component: <EmailWidget
                       loading={true} 
                       emails={[]}  
                     />
@@ -52,14 +52,14 @@ class App extends Component {
                       events={[]} 
                     />
       },
-      'newsWidget': {
-        component: <NewsWidget />
-      },
       'twitterWidget': {
         component: <TwitterWidget
                     loading={true} 
                     tweets={[]}
                     />
+      },
+      'newsWidget': {
+        component: <NewsWidget />
       },
       'todoWidget': {
         component: <TodoWidget />
@@ -336,7 +336,8 @@ class App extends Component {
         this.fetchTweetsInterval(data);   
         this.setState({
           twitterIsAuthenticated: true
-        });     
+        });
+        localStorage.setItem('twitterData', JSON.stringify(data))     
       })
         .catch(function(error) {
             console.log(error.code)
@@ -349,7 +350,7 @@ class App extends Component {
     .then( () => {
       const functioningWidgets = Object.assign({}, this.state.widgets, {
         twitterWidget: Object.assign({}, this.state.widgets.twitterWidget, {
-          component: <TwitterWidget loading={true} tweets={[]} />
+          component: <TwitterWidget loading={true} tweets={[]} fetchTweets={this.fetchTweets} fetchTweetsInterval={this.fetchTweetsInterval}  />
         })
       })
       this.setState({
@@ -380,11 +381,13 @@ class App extends Component {
   setTweetWidgetState = (tweets) => {
     const functioningWidgets = Object.assign({}, this.state.widgets, {
       twitterWidget: Object.assign({}, this.state.widgets.twitterWidget, {
-        component: <TwitterWidget loading={false} tweets={tweets} />
+        component: <TwitterWidget loading={false} tweets={tweets} fetchTweets={this.fetchTweets} fetchTweetsInterval={this.fetchTweetsInterval} />
       })
     })
     this.setState({
       widgets: functioningWidgets
+    }, () => {
+      localStorage.setItem("twitterState", JSON.stringify(this.state.tweets))
     })
   }
 }
