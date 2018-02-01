@@ -127,7 +127,6 @@ class TodoWidget extends Component {
             <span className="filter-option todoWidget" onClick={this.setFilterDone} value="Done">Done</span>{" | "}
             <span className="filter-option todoWidget" onClick={this.setFilterTodo} value="To-Do">To-Do</span>
           </div>
-
         </div>
       </div>
     )
@@ -135,6 +134,3 @@ class TodoWidget extends Component {
 }
 
 export default TodoWidget;
-
-
-

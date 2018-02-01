@@ -13,11 +13,10 @@ const TodoItem = (props) => {
       >
         {props.children}
       </span>
-      <span className="todoWidget"
+      <span className="todoWidget fa fa-times"
         data-index={props.index}
         onClick={props.deleteItem}
       >
-        [x]
       </span>
     </div>
   )

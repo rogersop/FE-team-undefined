@@ -45,7 +45,7 @@ class CalendarWidget extends Component {
           const startTimeFormatted = startTime.format('LT');
           const startDateFormatted = startTime.format('ll');
           const duration = endTime.from(startTime, true)
-          return <a key={i} className="event-container calendarWidget" href="https://calendar.google.com/calendar/r/agenda" target="_blank">
+          return <a key={i} className="event-container calendarWidget" href="https://calendar.google.com/calendar/r/agenda" target="_blank" rel="noopener noreferrer">
               <h3 className="calendarWidget">// {summary.toUpperCase()}</h3>
               <h5 className="calendarWidget">- {location}</h5>
               <h5 className="calendarWidget">- {startDateFormatted}</h5> 
