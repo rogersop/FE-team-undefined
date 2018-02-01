@@ -11,8 +11,7 @@ import firebase from 'firebase';
     storageBucket: process.env.REACT_APP_TWITTERCONFIG_storageBucket,
     messagingSenderId: process.env.REACT_APP_TWITTERCONFIG_messagingSenderId
   };
-  console.log(config)
-
+  
   firebase.initializeApp(config);
 
   let provider = new firebase.auth.TwitterAuthProvider();

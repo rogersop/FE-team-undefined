@@ -8,7 +8,6 @@ import EmailWidget from './components/EmailWidget';
 import TwitterWidget from './components/TwitterWidget';
 import TodoWidget from './components/TodoWidget';
 import {increaseUseCount, getRandomBackground, increaseLikeCount, decreaseLikeCount} from './database/index.js';
-// import getRandomBackground from './database/index.js';
 import moment from 'moment';
 
 class App extends Component {
