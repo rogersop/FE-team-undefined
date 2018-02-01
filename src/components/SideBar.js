@@ -38,6 +38,15 @@ class SideBar extends Component {
   }
 
   render() {
+
+    let spaces = Object.values(this.props.spaces);
+    let widgets = Object.keys(this.props.widgets);
+
+   let filteredWidget =  widgets.filter(widget => {
+      return spaces.indexOf(widget) === -1;
+    })
+  
+
     return (
       <Menu right pageWrapId={"page-wrap"}>
         <div className="side-bar-top">
@@ -62,7 +71,7 @@ class SideBar extends Component {
             style={{background: this.state.selectedSpace === "bottomRight" ? "rgba(230, 127, 32, 0.945)" : undefined}}></div>
           </div>
 
-          <WidgetSelector assignSpace={this.props.assignSpace} widgets={this.props.widgets} selectedSpace={this.state.selectedSpace} />
+          <WidgetSelector assignSpace={this.props.assignSpace} widgets={filteredWidget} selectedSpace={this.state.selectedSpace} />
 
           <div id="auth-status"></div><br />
             <button id="sign-in-or-out-button"

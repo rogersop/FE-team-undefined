@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 
 class WidgetSelector extends Component {
+
+
     
   render () {
     const selectedSpace = this.props.selectedSpace;
-    const widgetNames = Object.keys(this.props.widgets);
+    const widgetName = this.props.widgets[0];
+    console.log(widgetName)
     return (
-      widgetNames.map((widgetName, i) => {
-        return <div key={i}>
+     
+         <div>
           <button onClick={() => this.props.assignSpace(selectedSpace, widgetName)}>{widgetName}</button>
         </div>
-      })
+      
     )
   }
 
