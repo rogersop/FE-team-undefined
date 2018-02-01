@@ -134,14 +134,16 @@ p {
 .calendar-widget,
 .todo-widget,
 .twitter-widget {
-  background-color: rgba(36, 36, 36, 0.1);
+  background-color: rgba(255, 255, 255, 0.452);
   box-shadow: 0px 2px 5px black;
   color: rgb(27, 25, 39);
-  font-weight: 100;
+  font-weight: 400;
+  /* text-shadow: rgb(255, 255, 255) 1px 1px 1px; */
   width: 88%;
   padding: 2.5%;
   box-sizing: border-box;
   overflow-y: scroll;
+
 }
 
 .info-widget {
@@ -181,7 +183,6 @@ p {
 }
 
 .calendar-widget h2,
-.calendar-widget h3,
 .calendar-widget h4 {
   margin: 0.5vh;
 }
@@ -208,10 +209,6 @@ p {
   margin-left: 0.5vh
 }
 
-.calendar-widget h3 {
-padding-top: 0.1vh; 
-}
-
 .calendar-widget h5,
 .calendar-widget h6 {
   margin: 0.2vh;
@@ -229,6 +226,41 @@ padding-top: 0.1vh;
 
 .category-selector label {
   font-size: 1.5vh;
+}
+
+.business,
+.entertainment,
+.general,
+.health,
+.science,
+.sports,
+.technology,
+.au,
+.ie,
+.gb,
+.ca,
+.us {
+  padding: 0.1vh;
+  padding-top: 0.2vh;
+}
+
+.business:hover,
+.entertainment:hover,
+.general:hover,
+.health:hover,
+.science:hover,
+.sports:hover,
+.technology:hover,
+.au:hover,
+.ie:hover,
+.gb:hover,
+.ca:hover,
+.us {
+  font-weight: bold;
+  cursor: pointer;
+}
+.article-block {
+  padding: 2% 0;
 }
 
 .article-image-box {
@@ -270,8 +302,9 @@ padding-top: 0.1vh;
 }
 
 .news-articles h3 {
-  display: inline;
+  display: inline-block;
   margin-right: 50%;
+  
 }
 
 .settings {
@@ -302,7 +335,7 @@ padding-top: 0.1vh;
   padding: 1%;
 }
 
-.twitter-widget h2{
+.twitter-widget h3{
   display: inline-block;
 }
 

@@ -13,6 +13,8 @@ class NewsWidget extends Component {
     category: ''
   }
 
+  
+
   componentDidMount = () => {
     this.fetchArticles();
   }
@@ -29,23 +31,29 @@ class NewsWidget extends Component {
     });
   }
 
+ 
+
   handleSettingsClick = () => {
     this.state.settings ? this.setState({settings: false}) : this.setState({settings: true});
     this.fetchArticles();
   }
 
   handleCategoryChange = (event) => {
+    console.log(event.target.className)
     this.setState({
-      category: event.target.value
+      category: event.target.className
     });
   }
 
   handleCountryChange = (event) => {
-    console.log(event.target.value)
+    console.log(event.target.className)
     this.setState({
-      country: event.target.value
+      country: event.target.className
     });
   }
+
+  
+
 
   dragstart_handler = (event) => {
     event.dataTransfer.setData("text/plain", event.target.id);
@@ -66,101 +74,120 @@ class NewsWidget extends Component {
           <div className="settings newsWidget">
           <form className="category-selector newsWidget">
           <h4 className="newsWidget">By Category:</h4>
-            <label className="newsWidget">
-              <input 
-              className="newsWidget"
-              type="radio" name="category" value="business" 
-              checked={this.state.category==='business'} 
-              onChange={this.handleCategoryChange} />
+        
+          <div
+              className="business"
+              name="category" value="business" 
+              style= {{backgroundColor: this.state.category === "business" ? "rgba(0,0,0,0.0.3)" : undefined,
+                color: this.state.category === "business" ? "rgba(255, 255, 255, 1)" : undefined}} 
+              onClick={this.handleCategoryChange}>
               Business
-            </label>
-            <label>
-              <input  
-              className="newsWidget"
-              type="radio" name="category" value="entertainment" 
-              checked={this.state.category==='entertainment'} 
-              onChange={this.handleCategoryChange} />
+            </div>
+
+            <div
+              className="entertainment"
+              name="category" value="entertainment" 
+              style= {{backgroundColor: this.state.category === "entertainment" ? "rgba(0,0,0,0.0.3)" : undefined,
+                color: this.state.category === "entertainment" ? "rgba(255, 255, 255, 1)" : undefined}} 
+              onClick={this.handleCategoryChange}>
               Entertainment
-            </label>
-            <label>
-              <input  
-              className="newsWidget"
-               type="radio" name="category" value="general" 
-              checked={this.state.category==='general'} 
-              onChange={this.handleCategoryChange} />
+            </div>
+
+            <div
+              className="general"
+              name="category" value="general" 
+              style= {{backgroundColor: this.state.category === "general" ? "rgba(0,0,0,0.0.3)" : undefined,
+                color: this.state.category === "general" ? "rgba(255, 255, 255, 1)" : undefined}} 
+              onClick={this.handleCategoryChange}>
               General
-            </label>
-            <label>
-              <input  
-              className="newsWidget"
-              type="radio" name="category" value="health" 
-              checked={this.state.category==='health'} 
-              onChange={this.handleCategoryChange} />
+            </div>
+
+            <div
+              className="health"
+              name="category" value="health" 
+              style= {{backgroundColor: this.state.category === "health" ? "rgba(0,0,0,0.0.3)" : undefined,
+                color: this.state.category === "health" ? "rgba(255, 255, 255, 1)" : undefined}} 
+              onClick={this.handleCategoryChange}>
               Health
-            </label>
-            <label>
-              <input  
-              className="newsWidget"
-              type="radio" name="category" value="science" 
-              checked={this.state.category==='science'} 
-              onChange={this.handleCategoryChange} />
+            </div>
+
+            <div
+              className="science"
+              name="category" value="science" 
+              style= {{backgroundColor: this.state.category === "science" ? "rgba(0,0,0,0.0.3)" : undefined,
+                color: this.state.category === "science" ? "rgba(255, 255, 255, 1)" : undefined}} 
+              onClick={this.handleCategoryChange}>
               Science
-            </label>
-            <label>
-              <input  
-              className="newsWidget"
-              type="radio" name="category" value="sports"  
-              checked={this.state.category==='sports'} 
-              onChange={this.handleCategoryChange} />
+            </div>
+
+            <div
+              className="sports"
+              name="category" value="sports" 
+              style= {{backgroundColor: this.state.category === "sports" ? "rgba(0,0,0,0.0.3)" : undefined,
+                color: this.state.category === "sports" ? "rgba(255, 255, 255, 1)" : undefined}} 
+              onClick={this.handleCategoryChange}>
               Sports
-            </label>
-            <label>
-              <input  
-              className="newsWidget"
-              type="radio" name="category" value="technology" 
-              checked={this.state.category==='technology'} 
-              onChange={this.handleCategoryChange} />
+            </div>
+
+            <div
+              className="technology"
+              name="category" value="technology" 
+              style= {{backgroundColor: this.state.category === "technology" ? "rgba(0,0,0,0.0.3)" : undefined,
+                color: this.state.category === "technology" ? "rgba(255, 255, 255, 1)" : undefined}} 
+              onClick={this.handleCategoryChange}>
               Technology
-            </label>
+            </div>
+            
           </form>
           <form className="country-selector newsWidget">
           <h4 className="newsWidget"> By Country: </h4>
-            <label>
-              <input 
-              type="radio" name="country" value="au" 
-              checked={this.state.country==='au'} 
-              onChange={this.handleCountryChange} />
-              Australia
-            </label>
-            <label>
-              <input  
-              className="newsWidget" 
-              type="radio" name="country" value="ie" 
-              checked={this.state.country==='ie'} 
-              onChange={this.handleCountryChange} />
-              Ireland
-            </label>
-            <label>
-              <input  
-              className="newsWidget" type="radio" name="country" value="gb" 
-              checked={this.state.country==='gb'} 
-              onChange={this.handleCountryChange} />
-              Great Britain
-            </label>
-            <label>
-              <input  
-              className="newsWidget" type="radio" name="country" value="ca" 
-              checked={this.state.country==='ca'} 
-              onChange={this.handleCountryChange} />
-             Canada
-            </label>
-            <label>
-              <input  
-              className="newsWidget" type="radio" name="country" value="us" 
-              checked={this.state.country==='us'} 
-              onChange={this.handleCountryChange} />
-              USA
-            </label>
+          <div
+          className="au"
+          name="country" value="au" 
+          style= {{backgroundColor: this.state.country === "au" ? "rgba(0,0,0,0.0.3)" : undefined,
+            color: this.state.country === "au" ? "rgba(255, 255, 255, 1)" : undefined}} 
+          onClick={this.handleCountryChange}>
+          Australia
+        </div>
+
+        <div
+          className="ie"
+          name="country" value="ie" 
+          style= {{backgroundColor: this.state.country === "ie" ? "rgba(0,0,0,0.0.3)" : undefined,
+            color: this.state.country === "ie" ? "rgba(255, 255, 255, 1)" : undefined}} 
+          onClick={this.handleCountryChange}>
+          Ireland
+        </div>
+
+        <div
+          className="gb"
+          name="country" value="gb" 
+          style= {{backgroundColor: this.state.country === "gb" ? "rgba(0,0,0,0.0.3)" : undefined,
+            color: this.state.country === "gb" ? "rgba(255, 255, 255, 1)" : undefined}} 
+          onClick={this.handleCountryChange}>
+          Great Britain
+        </div>
+
+        <div
+          className="ca"
+          name="country" value="ca" 
+          style= {{backgroundColor: this.state.country === "ca" ? "rgba(0,0,0,0.0.3)" : undefined,
+            color: this.state.country === "ca" ? "rgba(255, 255, 255, 1)" : undefined}} 
+          onClick={this.handleCountryChange}>
+          Canada
+        </div>
+
+        <div
+          className="us"
+          name="country" value="us" 
+          style= {{backgroundColor: this.state.country === "us" ? "rgba(0,0,0,0.0.3)" : undefined,
+            color: this.state.country === "us" ? "rgba(255, 255, 255, 1)" : undefined}} 
+          onClick={this.handleCountryChange}>
+          USA
+        </div>
+
+        
+        
           </form>
           </div>
         </div> :
@@ -171,7 +198,7 @@ class NewsWidget extends Component {
           {articles.map((article, i) => {
             return <div className="newsWidget" key={i}>
               <a className="article-block newsWidget" href={article.url}>
-                <div className="article-image-box newsWidget"><img className="article-image newsWidget" src={article.urlToImage} alt="news pic" /></div>
+                <div className="article-image-box newsWidget"><img className="article-image newsWidget" src={article.urlToImage ? article.urlToImage : "http://mariafresa.net/data_gallery/blog-news-new-orleans-times-picayune-newspaper-going-digital-gaQZWo-clipart.jpg"} alt="News Picture" /></div>
                 <span className="article-title newsWidget">{article.title}</span>
                 <span className="article-source newsWidget" >{article.source.name}</span>
               </a>

@@ -50,7 +50,7 @@ class CalendarWidget extends Component {
     
     return(
       <div className="calendar-widget calendarWidget" draggable='true' onDragStart={this.dragstart_handler} id="calendarWidget">
-
+      <h3 className ="calendar-title"> // EVENTS </h3>
       {
         loading ?
         'Sign-in to see your upcoming calendar events...' :
@@ -68,7 +68,7 @@ class CalendarWidget extends Component {
           const startDateFormatted = startTime.format('ll');
           const duration = endTime.from(startTime, true)
           return <a key={i} className="event-container calendarWidget" href="https://calendar.google.com/calendar/r/agenda" target="_blank" rel="noopener noreferrer">
-              <h3 className="calendarWidget">// {summary.toUpperCase()}</h3>
+              <h4 className="calendarWidget"> {summary.toUpperCase()}</h4>
               <h5 className="calendarWidget">- {location}</h5>
               <h5 className="calendarWidget">- {startDateFormatted}</h5> 
               <h5 className="calendarWidget">- {startTimeFormatted} // This event lasts {duration}</h5>  
