@@ -30,14 +30,13 @@ class SideBar extends Component {
   }
 
   handleClick = (event) => {
-      console.log(event.target.className);
-
       this.setState({
         selectedSpace : event.target.className,
       })
   }
 
   render() {
+    
     return (
       <Menu right pageWrapId={"page-wrap"}>
         <div className="side-bar-top">
@@ -69,7 +68,14 @@ class SideBar extends Component {
               style={{ marginLeft: "25px" }} onClick={this.handleAuthClick}>Sign In/Authorize</button>
             <button id="revoke-access-button"
               style={{ display: "none", marginLeft: "25px" }}>Revoke access</button>
-        </div>
+          </div>
+          <div className="twitter-auth">
+            {
+              (!this.props.twitterIsAuthenticated) ?  
+                <button onClick = {this.props.twitterSignin}>Twitter Sign In</button>:
+                <button onClick = {this.props.twitterSignout}>Twitter Sign Out</button>
+            }
+          </div>
       </Menu>
     )
   }
