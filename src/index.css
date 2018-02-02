@@ -336,7 +336,7 @@ p {
 }
 
 .twitter-widget h3{
-  display: inline-block;
+  /* display: inline-block; */
 }
 
 .twitter-sign-in {

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
   state = {
     tweets: [],
-    isAuthenticated: false,
+    loading: true,
   }
 
   dragstart_handler = (event) => {
@@ -15,7 +15,7 @@ import React, { Component } from 'react';
     this.setState({
       loading: true
     })
-    if (this.props.tweets) {
+    if (this.props.tweets.length) {
       this.setState({
         tweets: this.props.tweets,
         loading: false
@@ -24,8 +24,7 @@ import React, { Component } from 'react';
   }
 
   componentWillReceiveProps = (newProps) => {
-    console.log('newprops', newProps)
-    if (newProps.tweets) {
+    if (newProps.tweets.length) {
         this.setState({
           tweets: newProps.tweets,
           loading: false
