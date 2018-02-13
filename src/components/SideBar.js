@@ -51,13 +51,13 @@ class SideBar extends Component {
         <div className="side-bar-bottom">
           <div className="control-pad">
             <div className="topLeft" onClick={this.handleClick}
-            style={{background: this.state.selectedSpace === "topLeft" ? "rgba(230, 127, 32, 0.945)" : undefined}}></div>
+            style={{background: this.state.selectedSpace === "topLeft" ? "rgba(27, 25, 39, 0.945)" : undefined}}></div>
             <div className="topRight" onClick={this.handleClick}
-            style={{background: this.state.selectedSpace === "topRight" ? "rgba(230, 127, 32, 0.945)" : undefined}}></div>
+            style={{background: this.state.selectedSpace === "topRight" ? "rgba(27, 25, 39, 0.945)" : undefined}}></div>
             <div className="bottomLeft" onClick={this.handleClick}
-            style={{background: this.state.selectedSpace === "bottomLeft" ? "rgba(230, 127, 32, 0.945)" : undefined}}></div>
+            style={{background: this.state.selectedSpace === "bottomLeft" ? "rgba(27, 25, 39, 0.945)" : undefined}}></div>
             <div className="bottomRight" onClick={this.handleClick}
-            style={{background: this.state.selectedSpace === "bottomRight" ? "rgba(230, 127, 32, 0.945)" : undefined}}></div>
+            style={{background: this.state.selectedSpace === "bottomRight" ? "rgba(27, 25, 39, 0.945)" : undefined}}></div>
           </div>
 
           <WidgetSelector assignSpace={this.props.assignSpace} widgets={filteredWidget} selectedSpace={this.state.selectedSpace} />
