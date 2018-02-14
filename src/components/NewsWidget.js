@@ -64,7 +64,7 @@ class NewsWidget extends Component {
         settings ?
         
         <div className="news-settings newsWidget">
-          <h3 className="newsWidget">Filter settings</h3>
+          <h3 className="newsWidget">Filter Settings</h3>
           <button className="newsWidget" onClick={this.handleSettingsClick}>Save Settings</button>
           <div className="settings newsWidget">
           <form className="category-selector newsWidget">
